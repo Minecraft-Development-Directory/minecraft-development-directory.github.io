@@ -10,7 +10,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Minecraft Development Directories',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/Minecraft-Development-Directories' }],
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/Minecraft-Development-Directory' }],
 			plugins: [starlightThemeFlexoki(), starlightBlog()],
 			sidebar: [
 				{
