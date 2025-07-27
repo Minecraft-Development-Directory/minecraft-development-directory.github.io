@@ -11,7 +11,8 @@ import starlightVideos from "starlight-videos";
 import starlightKbd from "starlight-kbd";
 import starlightScrollToTop from "starlight-scroll-to-top";
 import starlightAutoDrafts from "starlight-auto-drafts";
-import Icons from 'unplugin-icons/vite'
+import Icons from "unplugin-icons/vite";
+import { dev } from "astro";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,6 +20,10 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Minecraft Development Directories",
+      description: "A comprehensive directory for Minecraft development resources.",
+      defaultLocale: "en",
+      pagination: true,
+      editLink: {},
       social: [
         {
           icon: "github",
@@ -32,35 +37,44 @@ export default defineConfig({
         starlightLinksValidator(),
         starlightImageZoom(),
         starlightHeadingBadges(),
-        starlightSidebarTopics([
+        starlightSidebarTopics(
+          [
+            {
+              id: "getting-started",
+              icon: "rocket",
+              label: "Getting Started",
+              link: "/getting-started/",
+              items: [],
+            },
+            {
+              id: "development",
+              icon: "laptop",
+              label: "Development",
+              link: "/development/",
+              items: [
+                'development',
+                { label: "Mods", autogenerate: { directory: "development/mods" }, collapsed: true },
+                { label: "Plugins", autogenerate: { directory: "development/plugins" }, collapsed: true },
+                { label: "Launcher", autogenerate: { directory: "development/launcher" }, collapsed: true },
+                { label: "Tools", autogenerate: { directory: "development/tools" }, collapsed: true },
+              ],
+            },
+            {
+              id: "blog",
+              icon: "comment",
+              label: "Blog",
+              link: "/blog",
+              items: [],
+            },
+          ],
           {
-            label: "Mods",
-            link: "/mods",
-            items: [
-              {
-                label: "Guides",
-                items: [
-                  // Each item here is one entry in the navigation menu.
-                  { label: "Example Guide", slug: "guides/example" },
-                ],
-              },
-              {
-                label: "Reference",
-                autogenerate: { directory: "reference" },
-              },
-            ],
+            topics: {
+              gettingStarted: ["/getting-started/", "/getting-started/**/*"],
+              development: ["/development/", "/development/**/*"],
+              blog: ["/blog/", "/blog/**/*"],
+            },
           },
-          {
-            label: "Plugins",
-            link: "/plugins",
-            items: [],
-          },
-          {
-            label: "Launcher",
-            link: "/launcher",
-            items: [],
-          },
-        ]),
+        ),
         starlightVideos(),
         starlightKbd({
           types: [
@@ -70,15 +84,11 @@ export default defineConfig({
           ],
         }),
       ],
-      components: {
-        // Override the default `Sidebar` component with a custom one.
-        Sidebar: "./src/components/Sidebar.astro",
-      },
     }),
     starlightScrollToTop(),
     starlightAutoDrafts(),
   ],
   vite: {
-    plugins: [Icons({ compiler: 'astro'})]
-  }
+    plugins: [Icons({ compiler: "astro" })],
+  },
 });
