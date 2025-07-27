@@ -2,14 +2,16 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightThemeFlexoki from 'starlight-theme-flexoki'
+import starlightBlog from 'starlight-blog'
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://minecraft-development-directories.github.io',
 	integrations: [
 		starlight({
 			title: 'Minecraft Development Directories',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/Minecraft-Development-Directories' }],
-			plugins: [starlightThemeFlexoki()],
+			plugins: [starlightThemeFlexoki(), starlightBlog()],
 			sidebar: [
 				{
 					label: 'Guides',
