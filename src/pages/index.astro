@@ -1,0 +1,423 @@
+---
+import BaseLayout from '../layouts/Layout.astro'
+
+const title = "MC.DEV - Minecraft Development Directory"
+const description = "Forge ton avenir dans le développement Minecraft. Guides, mods, plugins, textures et ressources pour devenir un maître crafteur de code."
+---
+
+<BaseLayout {title} {description}>
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="floating-blocks">
+        <div class="floating-block grass" data-speed="0.5"></div>
+        <div class="floating-block stone" data-speed="0.8"></div>
+        <div class="floating-block diamond" data-speed="0.3"></div>
+        <div class="floating-block emerald" data-speed="0.6"></div>
+        <div class="floating-block redstone" data-speed="0.4"></div>
+        <div class="floating-block gold" data-speed="0.7"></div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="title-line">CRAFT TON</span>
+            <span class="title-line highlight">AVENIR</span>
+            <span class="title-line subtitle">EN CODE</span>
+          </h1>
+          <p class="hero-description">
+            🚀 Plonge dans l'univers infini du développement Minecraft. 
+            Crée des mods épiques, des plugins révolutionnaires et des textures uniques.
+          </p>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Guides</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">50K+</span>
+              <span class="stat-label">Devs</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">∞</span>
+              <span class="stat-label">Possibilités</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a href="/guides/getting-started" class="btn btn-primary">
+              <span>⛏️ Commencer</span>
+            </a>
+            <a href="/showcase" class="btn btn-secondary">
+              <span>🎯 Découvrir</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="hero-visual">
+          <div class="minecraft-world">
+            <div class="world-layer layer-1">
+              <div class="block grass"></div>
+              <div class="block "></div>
+            </div>
+            <div class="world-layer layer-2">
+              <div class="block dirt"></div>
+              <div class="block diamond"></div>
+            </div>
+            <div class="world-layer layer-3">
+            </div>
+          </div>
+          <div class="code-overlay">
+            <div class="code-line">
+              <span class="code-keyword">public</span> 
+              <span class="code-type">class</span> 
+              <span class="code-class">EpicMod</span>
+            </div>
+            <div class="code-line">
+              <span class="code-comment">// Ton imagination, ton monde</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Ton arsenal de développement</h2>
+        <p class="section-subtitle">Tout ce dont tu as besoin pour dominer l'univers Minecraft</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card mod-card">
+          <div class="feature-icon">🔧</div>
+          <h3 class="feature-title">Modding Forge & Fabric</h3>
+          <p class="feature-description">
+            Crée des mods révolutionnaires avec nos guides step-by-step. 
+            Du premier block aux mécaniques les plus complexes.
+          </p>
+          <div class="feature-stats">
+            <span>0+ Tutos</span>
+            <span>Expert Level</span>
+          </div>
+          <a href="/mods" class="feature-link">Explorer →</a>
+        </div>
+
+        <div class="feature-card plugin-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Plugins Bukkit/Spigot</h3>
+          <p class="feature-description">
+            Développe des plugins serveur qui changent la donne. 
+            API complète, optimisation et best practices incluses.
+          </p>
+          <div class="feature-stats">
+            <span>0+ Guides</span>
+            <span>Performance Focus</span>
+          </div>
+          <a href="/plugins" class="feature-link">Développer →</a>
+        </div>
+
+        <div class="feature-card texture-card">
+          <div class="feature-icon">🎨</div>
+          <h3 class="feature-title">Texture Packs & Assets</h3>
+          <p class="feature-description">
+            Designs tes propres univers visuels. Outils, techniques 
+            et templates pour des textures qui marquent les esprits.
+          </p>
+          <div class="feature-stats">
+            <span>0+ Assets</span>
+            <span>HD Quality</span>
+          </div>
+          <a href="/textures" class="feature-link">Créer →</a>
+        </div>
+
+        <div class="feature-card datapack-card">
+          <div class="feature-icon">📦</div>
+          <h3 class="feature-title">Datapacks & Commands</h3>
+          <p class="feature-description">
+            Maîtrise les fonctions et commandes avancées. 
+            Crée des expériences uniques sans mods requis.
+          </p>
+          <div class="feature-stats">
+            <span>0+ Functions</span>
+            <span>Vanilla Compatible</span>
+          </div>
+          <a href="/datapacks" class="feature-link">Scripter →</a>
+        </div>
+
+        <div class="feature-card bedrock-card">
+          <div class="feature-icon">🏗️</div>
+          <h3 class="feature-title">Bedrock Development</h3>
+          <p class="feature-description">
+            Étends Minecraft Bedrock avec des add-ons et behavior packs. 
+            Cross-platform et mobile-ready.
+          </p>
+          <div class="feature-stats">
+            <span>0+ Tutorials</span>
+            <span>Cross Platform</span>
+          </div>
+          <a href="/bedrock" class="feature-link">Builder →</a>
+        </div>
+
+        <div class="feature-card tools-card">
+          <div class="feature-icon">🛠️</div>
+          <h3 class="feature-title">Outils & IDE Setup</h3>
+          <p class="feature-description">
+            Configure ton environnement de développement comme un pro. 
+            Templates, scripts et workflows optimisés.
+          </p>
+          <div class="feature-stats">
+            <span>0+ Tools</span>
+            <span>Ready to Use</span>
+          </div>
+          <a href="/tools" class="feature-link">Setup →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase" id="showcase">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Créations de la communauté</h2>
+        <p class="section-subtitle">Découvre ce que nos devs ont crafté d'extraordinaire</p>
+      </div>
+      
+      <div class="showcase-grid">
+        <div class="showcase-item featured">
+          <div class="showcase-image">
+            <div class="showcase-placeholder mod-preview">
+              <span class="preview-icon">🌟</span>
+              <span class="preview-text">Epic Magic Mod</span>
+            </div>
+          </div>
+          <div class="showcase-content">
+            <div class="showcase-meta">
+              <span class="showcase-category">Mod Forge</span>
+              <span class="showcase-downloads">50K+ téléchargements</span>
+            </div>
+            <h3 class="showcase-title">MysticCraft - Magic System</h3>
+            <p class="showcase-description">
+              Un système de magie complet avec 100+ sorts, rituels et enchantements personnalisés.
+            </p>
+            <div class="showcase-author">
+              <span>Par <strong>chezpaski</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-item">
+          <div class="showcase-image">
+            <div class="showcase-placeholder plugin-preview">
+              <span class="preview-icon">⚔️</span>
+              <span class="preview-text">PvP Arena</span>
+            </div>
+          </div>
+          <div class="showcase-content">
+            <div class="showcase-meta">
+              <span class="showcase-category">Plugin Spigot</span>
+              <span class="showcase-downloads">25K+ serveurs</span>
+            </div>
+            <h3 class="showcase-title">UltimateArena Pro</h3>
+            <p class="showcase-description">
+              Plugin d'arènes PvP avec matchmaking, statistiques et tournois automatisés.
+            </p>
+            <div class="showcase-author">
+              <span>Par <strong>chezpaski</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-item">
+          <div class="showcase-image">
+            <div class="showcase-placeholder texture-preview">
+              <span class="preview-icon">🎨</span>
+              <span class="preview-text">Cyber Pack</span>
+            </div>
+          </div>
+          <div class="showcase-content">
+            <div class="showcase-meta">
+              <span class="showcase-category">Texture Pack</span>
+              <span class="showcase-downloads">100K+ downloads</span>
+            </div>
+            <h3 class="showcase-title">CyberCraft 2077</h3>
+            <p class="showcase-description">
+              Texture pack futuriste transformant Minecraft en univers cyberpunk.
+            </p>
+            <div class="showcase-author">
+              <span>Par <strong>chezpaski</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="showcase-cta">
+        <a href="/showcase" class="btn btn-outline btn-large">
+          🚀 Voir toutes les créations
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="learning-path" id="learning">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Ton parcours de développeur</h2>
+        <p class="section-subtitle">Du noob au maître crafteur en quelques étapes</p>
+      </div>
+      
+      <div class="path-container">
+        <div class="path-step" data-step="1">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">🎯 Bases Minecraft</h3>
+            <p class="step-description">Comprends l'architecture du jeu, les concepts clés et l'écosystème mod.</p>
+            <div class="step-duration">2-3 jours</div>
+          </div>
+        </div>
+        
+        <div class="path-connector"></div>
+        
+        <div class="path-step" data-step="2">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">⚒️ Premier Mod</h3>
+            <p class="step-description">Crée ton premier mod avec un block personnalisé et découvre le workflow.</p>
+            <div class="step-duration">1 semaine</div>
+          </div>
+        </div>
+        
+        <div class="path-connector"></div>
+        
+        <div class="path-step" data-step="3">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">🔥 Mécaniques Avancées</h3>
+            <p class="step-description">Items, entités, GUI, networking et systèmes complexes.</p>
+            <div class="step-duration">2-4 semaines</div>
+          </div>
+        </div>
+        
+        <div class="path-connector"></div>
+        
+        <div class="path-step" data-step="4">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3 class="step-title">🚀 Optimisation & Release</h3>
+            <p class="step-description">Performance, tests, publication et maintenance de tes créations.</p>
+            <div class="step-duration">En continu</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="path-cta">
+        <a href="/guides/learning-path" class="btn btn-primary btn-large">
+          🎓 Commencer le parcours
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="community" id="community">
+    <div class="container">
+      <div class="community-content">
+        <div class="community-text">
+          <h2 class="community-title">Rejoins la guilde des développeurs</h2>
+          <p class="community-description">
+            Plus de 50,000 développeurs partagent leurs créations, s'entraident 
+            et poussent les limites de ce qui est possible dans Minecraft.
+          </p>
+          <div class="community-features">
+            <div class="community-feature">
+              <span class="feature-emoji">💬</span>
+              <span>Support 24/7 sur Discord</span>
+            </div>
+            <div class="community-feature">
+              <span class="feature-emoji">🎯</span>
+              <span>Challenges mensuels</span>
+            </div>
+            <div class="community-feature">
+              <span class="feature-emoji">🏆</span>
+              <span>Showcase tes créations</span>
+            </div>
+            <div class="community-feature">
+              <span class="feature-emoji">📚</span>
+              <span>Accès early aux nouveaux guides</span>
+            </div>
+          </div>
+          <div class="community-actions">
+            <a href="/discord" class="btn btn-primary">
+              💬 Rejoindre Discord
+            </a>
+            <a href="/forum" class="btn btn-secondary">
+              📝 Forum Communauté
+            </a>
+          </div>
+        </div>
+        
+        <div class="community-visual">
+          <div class="community-stats">
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-value">50K+</div>
+              <div class="stat-label">Développeurs actifs</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🔧</div>
+              <div class="stat-value">500+</div>
+              <div class="stat-label">Mods créés</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">💡</div>
+              <div class="stat-value">1K+</div>
+              <div class="stat-label">Guides partagés</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⭐</div>
+              <div class="stat-value">24/7</div>
+              <div class="stat-label">Support disponible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta" id="start">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Prêt à crafter ton empire ?</h2>
+        <p class="cta-description">
+          L'aventure commence maintenant. Choisis ton chemin et commence à créer 
+          l'impossible dans l'univers Minecraft.
+        </p>
+        <div class="cta-paths">
+          <a href="/guides/forge-setup" class="cta-path">
+            <div class="path-icon">🔧</div>
+            <div class="path-text">
+              <h3>Commencer avec Forge</h3>
+              <p>Le framework le plus populaire</p>
+            </div>
+          </a>
+          <a href="/guides/fabric-setup" class="cta-path">
+            <div class="path-icon">🧵</div>
+            <div class="path-text">
+              <h3>Découvrir Fabric</h3>
+              <p>Léger et performant</p>
+            </div>
+          </a>
+          <a href="/guides/plugin-setup" class="cta-path">
+            <div class="path-icon">⚡</div>
+            <div class="path-text">
+              <h3>Créer des Plugins</h3>
+              <p>Pour serveurs multijoueurs</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+
