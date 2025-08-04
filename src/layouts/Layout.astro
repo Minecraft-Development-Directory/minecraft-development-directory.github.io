@@ -1,0 +1,156 @@
+---
+//css 
+import '../styles/global.css'
+
+export interface Props {
+  title: string
+  description?: string
+  image?: string
+  canonical?: string
+  noindex?: boolean
+}
+
+const { 
+  title, 
+  description = "Minecraft Development Directory - Ressources et guides pour développeurs", 
+  image = "/og-image.jpg",
+  canonical,
+  noindex = false 
+} = Astro.props
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site)
+---
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonicalURL}>
+  {noindex && <meta name="robots" content="noindex, nofollow">}
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={new URL(image, Astro.site)}>
+  <meta property="og:url" content={canonicalURL}>
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={new URL(image, Astro.site)}>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Theme -->
+  <meta name="theme-color" content="#1a1a1a">
+  <meta name="color-scheme" content="dark">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="/" class="logo" aria-label="Accueil">
+        <div class="logo-icon">
+          <div class="pixel-block grass"></div>
+          <div class="pixel-block stone"></div>
+          <div class="pixel-block dirt"></div>
+          <div class="pixel-block diamond"></div>
+        </div>
+        <span class="logo-text">MC développement Directory</span>
+      </a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/getting-started" class="nav-link">Getting Started</a></li>
+        <li><a href="/development/launcher" class="nav-link">Launcher</a></li>
+        <li><a href="/development/mods" class="nav-link">Mods</a></li>
+        <li><a href="/development/plugins" class="nav-link">Plugins</a></li>
+        <li><a href="/development/tools" class="nav-link">Tools</a></li>
+        <li><a href="/blog" class="nav-link">Blog</a></li>
+      </ul>
+      
+      <button class="menu-toggle" aria-label="Menu" aria-expanded="false" id="menuToggle">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main" id="main">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3 class="footer-title">⛏️ MC.DEV</h3>
+          <p class="footer-desc">Forge ton avenir dans le développement Minecraft</p>
+          <div class="social-links">
+            <a href="#" class="social-link">Discord</a>
+            <a href="#" class="social-link">GitHub</a>
+            <a href="#" class="social-link">YouTube</a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h4 class="footer-subtitle">🛠️ Développement</h4>
+          <ul class="footer-list">
+            <li><a href="/development/mods">Mods</a></li>
+            <li><a href="/development/plugins">plugin</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4 class="footer-subtitle">📦 Ressources</h4>
+          <ul class="footer-list">
+            <li><a href="/downloads">Downloads</a></li>
+            <li><a href="/tools">Outils</a></li>
+            <li><a href="/templates">Templates</a></li>
+            <li><a href="/api">API Docs</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4 class="footer-subtitle">🎮 Communauté</h4>
+          <ul class="footer-list">
+            <li><a href="/forum">Forum</a></li>
+            <li><a href="/showcase">Showcase</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/support">Support</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 MC.DEV Directory. Fait avec 💚 pour les développeurs Minecraft</p>
+        <div class="footer-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+

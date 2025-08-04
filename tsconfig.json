@@ -1,8 +1,17 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
   "compilerOptions": {
-    "types": ["unplugin-icons/types/astro"]
+    "types": [
+      "unplugin-icons/types/astro"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
