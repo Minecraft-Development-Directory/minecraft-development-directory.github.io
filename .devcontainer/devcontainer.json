@@ -1,0 +1,47 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+  "name": "NodeJS",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:22-bookworm",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24",
+      "pnpmVersion": "latest",
+      "nvmVersion": "latest"
+    },
+    "ghcr.io/devcontainers-community/npm-features/prettier:1": {
+      "version": "latest"
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "fill-labs.dependi",
+        "mhutchie.git-graph",
+        "ecmel.vscode-html-css",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "p42ai.refactor",
+        "christian-kohler.npm-intellisense",
+        "esbenp.prettier-vscode",
+        "quick-lint.quick-lint-js",
+        "bradlc.vscode-tailwindcss",
+        "MaxvanderSchee.web-accessibility",
+        "nuxtr.nuxt-vscode-extentions"
+      ]
+    }
+  },
+
+  "remoteEnv": {
+    "GPG_TTY": "$(tty)"
+  }
+}
