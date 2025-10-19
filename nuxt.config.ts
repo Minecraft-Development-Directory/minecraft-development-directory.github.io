@@ -110,6 +110,16 @@ export default defineNuxtConfig({
     provider: "iconify",
   },
 
+  nitro: {
+    prerender: {
+      routes: ["/"],
+
+      failOnError: false,
+
+      crawlLinks: true,
+    },
+  },
+
   i18n: {
     locales: [
       { code: "en", name: "English", language: "en" },

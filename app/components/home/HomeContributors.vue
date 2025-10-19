@@ -48,7 +48,7 @@ const contributorsList = computed(() => props.contributors ?? []);
               :while-hover="{ rotate: 5 }"
               :transition="{ type: 'spring', stiffness: 300 }"
             >
-              <NuxtImg
+              <img
                 width="56"
                 height="56"
                 :src="`https://github.com/${contributor.username}.png?size=56`"
