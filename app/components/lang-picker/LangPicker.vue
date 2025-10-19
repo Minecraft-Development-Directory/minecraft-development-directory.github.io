@@ -3,23 +3,29 @@ const { locales, locale, switchLocalePath } = useMddI18n();
 </script>
 
 <template>
-  <UPopover mode="hover" :content="{ align: 'end' }">
-    <UTooltip text="Change language">
-      <UButton
-        color="neutral"
-        variant="ghost"
-        class="size-8"
-        icon="i-lucide-globe"
-        aria-label="Change language"
-      />
-    </UTooltip>
+  <UPopover
+    :content="{ align: 'end' }"
+    :ui="{ content: 'w-48 p-2 flex flex-col gap-4' }"
+  >
+    <template #default="{ open }">
+      <UTooltip text="Change language">
+        <UButton
+          icon="i-lucide-globe"
+          color="neutral"
+          :variant="open ? 'soft' : 'ghost'"
+          square
+          aria-label="Change language"
+        />
+      </UTooltip>
+    </template>
 
     <template #content>
       <ul class="flex flex-col">
         <li v-for="localeItem in locales" :key="localeItem.code">
           <NuxtLink
-            class="flex justify-between py-1.5 px-2 gap-1 hover:bg-muted"
-            :to="switchLocalePath(localeItem.code) as string"
+            class="flex py-1.5 px-2 gap-1 hover:bg-muted rounded-md"
+            :to="switchLocalePath(localeItem.code)"
+            :class="{ 'text-primary': localeItem.code === locale }"
             :aria-label="localeItem.name"
           >
             <span class="size-5 text-center">

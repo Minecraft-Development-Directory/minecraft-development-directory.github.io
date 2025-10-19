@@ -21,7 +21,7 @@ features: []
 
 community:
   title: Rejoignez la communauté
-  description: Rejoignez notre communauté pour contribuer au code, signaler des problèmes, suggérer des fonctionnalités ou aider avec la documentation. Chaque contribution nous permet de grandir et rend le Développement Minecraft plus accessible pour tous.
+  description: Rejoignez notre communauté pour contribuer au code, signaler des problèmes, suggérer des fonctionnalités ou aider avec la documentation. Chaque contribution nous permet de grandir et rend le développement Minecraft plus accessible pour tous.
   links:
     - label: Star sur GitHub
       color: neutral

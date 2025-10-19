@@ -6,6 +6,7 @@ const { resolve } = createResolver(import.meta.url);
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
+    resolve("./modules/config"),
     "@nuxt/content",
     "@nuxt/eslint",
     "@nuxt/image",

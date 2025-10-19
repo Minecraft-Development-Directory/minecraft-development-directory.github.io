@@ -32,7 +32,7 @@ features:
 
 community:
   title: Join the community
-  description: Join our community to contribute code, report issues, suggest features, or help with documentation. Every contribution allows us to grow and makes Minecraft Development more accessible for everyone.
+  description: Join our community to contribute code, report issues, suggest features, or help with documentation. Every contribution allows us to grow and makes Minecraft development more accessible for everyone.
   links:
     - label: Star on GitHub
       color: neutral

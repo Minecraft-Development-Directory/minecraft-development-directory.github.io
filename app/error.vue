@@ -87,13 +87,15 @@ provide("navigation", rootNavigation);
     <NuxtLoadingIndicator color="var(--ui-primary)" :height="2" />
 
     <div :class="[route.path.startsWith('/docs/') && 'root']">
-      <Banner />
+      <AppBanner />
 
       <Header />
 
-      <UError :error="localizedError" />
+      <NuxtLayout>
+        <UError :error="localizedError" />
+      </NuxtLayout>
 
-      <Footer />
+      <AppFooter />
 
       <ClientOnly>
         <Search :files="files" :navigation="navigation" />
