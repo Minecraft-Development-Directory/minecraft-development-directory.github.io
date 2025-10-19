@@ -1,0 +1,30 @@
+title: Répertoire de Développement Minecraft
+description: Apprenez à créer des mods, plugins, datapacks Minecraft et plus encore avec notre liste organisée de tutoriels, outils et ressources pour tous les niveaux.
+hero:
+  title: Votre Voyage dans le Développement Minecraft Commence Ici
+  description: Explorez des tutoriels, outils et ressources pour créer d'incroyables mods, plugins et datapacks Minecraft.
+  links:
+    - text: Commencer
+      url: /guides/getting-started
+    - text: Explorer les Tutoriels
+      url: /guides/tutorials
+
+  features:
+    - title: Tutoriels Complets
+      description: Guides étape par étape pour les débutants et les développeurs avancés.
+    - title: Outils Essentiels
+      description: Découvrez les meilleurs logiciels et bibliothèques pour le développement Minecraft.
+    - title: Ressources Communautaires
+      description: Connectez-vous avec d'autres développeurs et partagez vos créations.
+
+features: []
+
+community:
+  title: Rejoignez la communauté
+  description: Rejoignez notre communauté pour contribuer au code, signaler des problèmes, suggérer des fonctionnalités ou aider avec la documentation. Chaque contribution nous permet de grandir et rend le Développement Minecraft plus accessible pour tous.
+  links:
+    - label: Star sur GitHub
+      color: neutral
+      to: https://github.com/Minecraft-Development-Directory/minecraft-development-directory.github.io
+      target: _blank
+      icon: i-lucide-star

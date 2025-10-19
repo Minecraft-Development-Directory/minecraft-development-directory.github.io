@@ -1,0 +1,30 @@
+title: Minecraft Development Directory
+description: Learn how to create Minecraft mods, plugins, datapacks, and more with our curated list of tutorials, tools, and resources for all skill levels.
+hero:
+  title: Your Journey into Minecraft Development Starts Here
+  description: Explore tutorials, tools, and resources to create amazing Minecraft mods, plugins, and datapacks.
+  links:
+    - text: Get Started
+      url: /guides/getting-started
+    - text: Explore Tutorials
+      url: /guides/tutorials
+
+  features:
+    - title: Comprehensive Tutorials
+      description: Step-by-step guides for beginners and advanced developers alike.
+    - title: Essential Tools
+      description: Discover the best software and libraries for Minecraft development.
+    - title: Community Resources
+      description: Connect with other developers and share your creations.
+
+features: []
+
+community:
+  title: Join the community
+  description: Join our community to contribute code, report issues, suggest features, or help with documentation. Every contribution allows us to grow and makes Minecraft Development more accessible for everyone.
+  links:
+    - label: Star on GitHub
+      color: neutral
+      to: https://github.com/Minecraft-Development-Directory/minecraft-development-directory.github.io
+      target: _blank
+      icon: i-lucide-star
