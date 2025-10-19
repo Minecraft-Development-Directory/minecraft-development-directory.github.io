@@ -1,0 +1,45 @@
+# Workflow to check that pull requests build properly
+name: PR Build Check
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - run: corepack enable
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist
+            .nuxt
+            .output
+          key: ${{ runner.os }}-nuxt-build-${{ hashFiles('.output') }}
+          restore-keys: |
+            ${{ runner.os }}-nuxt-build-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - run: npx nuxt build --preset github_pages
