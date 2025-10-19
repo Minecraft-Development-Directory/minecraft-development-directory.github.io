@@ -3,6 +3,7 @@ import { joinURL } from "ufo";
 
 const route = useRoute();
 const { locale } = useMddI18n();
+const { data: module } = await useFetch("/api/github/contributors.json");
 
 const collectionName = computed(
   () => `index_${locale.value}` as `index_${typeof locale.value}`
@@ -29,8 +30,6 @@ useSeoMeta({
   ogDescription: page.value.description,
   ogImage: joinURL(url, "/og-image.png"),
 });
-
-const { data: module } = await useFetch("/api/github/contributors.json");
 
 const contributorsRef = ref(null);
 const isContributorsInView = ref(false);
@@ -181,7 +180,7 @@ useIntersectionObserver(contributorsRef, ([entry]) => {
         ref="contributorsRef"
         class="p-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 overflow-hidden flex relative"
       >
-        <LazyHomeContributors :contributors="module?.contributors" />
+        <LazyHomeContributors :contributors="module.contributors" />
       </div>
     </UPageSection>
   </div>

@@ -110,9 +110,12 @@ export default defineNuxtConfig({
     provider: "iconify",
   },
 
+  ssr: true,
   nitro: {
     static: true,
+    preset: "github-pages",
     prerender: {
+      routes: ["/api/github/contributors.json"],
       failOnError: false,
       crawlLinks: true,
     },
