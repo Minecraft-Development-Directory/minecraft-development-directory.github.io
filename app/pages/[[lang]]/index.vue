@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { icon } from "#build/ui/prose";
 import { joinURL } from "ufo";
 
 const route = useRoute();
