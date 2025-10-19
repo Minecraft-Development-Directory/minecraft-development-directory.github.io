@@ -8,11 +8,14 @@ export const useMddI18n = () => {
     (config.mdd as { filteredLocales: LocaleObject<string>[] })
       ?.filteredLocales || [];
 
+  const _switchLocalePath = useSwitchLocalePath();
+
   return {
     locale,
     locales: filteredLocales,
     t,
     localePath: useLocalePath(),
-    switchLocalePath: useSwitchLocalePath(),
+    switchLocalePath: (localeCode: string) =>
+      _switchLocalePath(localeCode as Parameters<typeof _switchLocalePath>[0]),
   };
 };

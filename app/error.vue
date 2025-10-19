@@ -43,7 +43,6 @@ const defaultLocale = useRuntimeConfig().public.i18n.defaultLocale!;
 onMounted(() => {
   const currentLocale = route.path.split("/")[1];
   if (!locales.some((locale) => locale.code === currentLocale)) {
-    // @ts-expect-error we are sure defaultLocale is defined properly
     return navigateTo(switchLocalePath(defaultLocale) as string);
   }
 });

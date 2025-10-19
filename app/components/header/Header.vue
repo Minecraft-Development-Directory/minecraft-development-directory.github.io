@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 const route = useRoute();
 const { desktopLinks } = useHeader();
+
+const { locales } = useMddI18n();
 </script>
 
 <template>
@@ -12,6 +14,10 @@ const { desktopLinks } = useHeader();
     <UNavigationMenu :items="desktopLinks" variant="link" />
 
     <template #right>
+      <ClientOnly>
+        <LangPicker />
+      </ClientOnly>
+
       <ThemePicker />
 
       <UTooltip text="Search" :kbds="['meta', 'K']">

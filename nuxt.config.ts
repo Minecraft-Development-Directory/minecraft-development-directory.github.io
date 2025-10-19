@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@vueuse/nuxt",
     "motion-v/nuxt",
+    "nuxt-site-config",
   ],
   $development: {
     site: {
@@ -95,7 +96,7 @@ export default defineNuxtConfig({
     },
   },
 
-  icons: {
+  icon: {
     customCollections: [
       {
         prefix: "custom",

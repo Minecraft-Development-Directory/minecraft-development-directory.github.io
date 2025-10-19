@@ -2,12 +2,14 @@ title: Minecraft Development Directory
 description: Learn how to create Minecraft mods, plugins, datapacks, and more with our curated list of tutorials, tools, and resources for all skill levels.
 hero:
   title: Your Journey into Minecraft Development Starts Here
-  description: Explore tutorials, tools, and resources to create amazing Minecraft mods, plugins, and datapacks.
+  description: Explore tutorials, tools, and resources to create amazing Minecraft mods, plugins, datapacks and more.
   links:
-    - text: Get Started
+    - label: Get Started
       url: /guides/getting-started
-    - text: Explore Tutorials
+      icon: i-lucide-rocket
+    - label: Explore Tutorials
       url: /guides/tutorials
+      icon: i-lucide-book
 
   features:
     - title: Comprehensive Tutorials
@@ -17,7 +19,16 @@ hero:
     - title: Community Resources
       description: Connect with other developers and share your creations.
 
-features: []
+features:
+  - title: Wide Range of Tutorials
+    description: From beginner guides to advanced modding techniques, find tutorials that suit your skill level and interests.
+    icon: i-lucide-book-open
+  - title: Curated Tools and Libraries
+    description: Access a handpicked selection of tools, APIs, and libraries to streamline your development process.
+    icon: i-lucide-hammer
+  - title: Community Contributions
+    description: Benefit from resources and insights shared by a vibrant community of Minecraft developers.
+    icon: i-lucide-users
 
 community:
   title: Join the community

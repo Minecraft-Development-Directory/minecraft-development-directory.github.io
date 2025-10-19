@@ -1,7 +1,49 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+@import "./colors.css";
 
 @theme static {
   --font-sans: "Public Sans", sans-serif;
   --ui-container: 90rem;
+}
+
+/* Flexoki overrides for Nuxt UI colors */
+:root {
+  /* Colors */
+  --ui-primary: var(--color-flexoki-gr);
+  --ui-secondary: var(--color-flexoki-cy);
+  --ui-success: var(--color-flexoki-gr);
+  --ui-info: var(--color-flexoki-bl);
+  --ui-warning: var(--color-flexoki-or);
+  --ui-error: var(--color-flexoki-re);
+
+  /* Text */
+  --ui-text-dimmed: var(--color-flexoki-tx-3);
+  --ui-text-muted: var(--color-flexoki-tx-2);
+  --ui-text-toned: var(--color-flexoki-tx-2);
+  --ui-text: var(--color-flexoki-tx);
+  --ui-text-highlighted: var(--color-flexoki-tx);
+  --ui-text-inverted: var(--color-flexoki-bg);
+
+  /* Background */
+  --ui-bg: var(--color-flexoki-bg);
+  --ui-bg-muted: var(--color-flexoki-bg-2);
+  --ui-bg-elevated: var(--color-flexoki-ui);
+  --ui-bg-accented: var(--color-flexoki-ui-2);
+  --ui-bg-inverted: var(--color-flexoki-tx);
+
+  /* Borders */
+  --ui-border: var(--color-flexoki-ui);
+  --ui-border-muted: var(--color-flexoki-ui-2);
+  --ui-border-accented: var(--color-flexoki-ui-3);
+  --ui-border-inverted: var(--color-flexoki-tx);
+
+  /* Radius */
+  --ui-radius: 0.25rem;
+
+  /* Container */
+  --ui-container: var(--container-7xl);
+
+  /* Header */
+  --ui-header-height: var(--spacing-16);
 }

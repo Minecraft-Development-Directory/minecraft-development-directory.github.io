@@ -1,0 +1,218 @@
+:root {
+  --color-flexoki-black: oklch(0.17 0 17);
+  --color-flexoki-paper: oklch(0.99 0.02 95);
+  --color-flexoki-base-50: oklch(0.95 0.01 98);
+  --color-flexoki-base-100: oklch(0.92 0.01 98);
+  --color-flexoki-base-150: oklch(0.88 0.01 97);
+  --color-flexoki-base-200: oklch(0.85 0.01 102);
+  --color-flexoki-base-300: oklch(0.77 0.01 96);
+  --color-flexoki-base-400: oklch(0.7 0.01 94);
+  --color-flexoki-base-500: oklch(0.62 0.01 89);
+  --color-flexoki-base-600: oklch(0.54 0.01 97);
+  --color-flexoki-base-700: oklch(0.45 0 91);
+  --color-flexoki-base-800: oklch(0.37 0 68);
+  --color-flexoki-base-850: oklch(0.32 0 85);
+  --color-flexoki-base-900: oklch(0.27 0 68);
+  --color-flexoki-base-950: oklch(0.22 0 68);
+  --color-flexoki-red-50: oklch(0.93 0.04 43);
+  --color-flexoki-red-100: oklch(0.88 0.06 36);
+  --color-flexoki-red-150: oklch(0.83 0.09 32);
+  --color-flexoki-red-200: oklch(0.78 0.12 30);
+  --color-flexoki-red-300: oklch(0.68 0.15 30);
+  --color-flexoki-red-400: oklch(0.6 0.17 28);
+  --color-flexoki-red-500: oklch(0.55 0.17 28);
+  --color-flexoki-red-600: oklch(0.5 0.16 28);
+  --color-flexoki-red-700: oklch(0.45 0.14 28);
+  --color-flexoki-red-800: oklch(0.36 0.11 27);
+  --color-flexoki-red-850: oklch(0.31 0.09 26);
+  --color-flexoki-red-900: oklch(0.26 0.06 25);
+  --color-flexoki-red-950: oklch(0.21 0.03 23);
+  --color-flexoki-orange-50: oklch(0.94 0.04 68);
+  --color-flexoki-orange-100: oklch(0.89 0.07 62);
+  --color-flexoki-orange-150: oklch(0.85 0.09 60);
+  --color-flexoki-orange-200: oklch(0.81 0.11 57);
+  --color-flexoki-orange-300: oklch(0.73 0.14 53);
+  --color-flexoki-orange-400: oklch(0.66 0.15 49);
+  --color-flexoki-orange-500: oklch(0.61 0.15 47);
+  --color-flexoki-orange-600: oklch(0.57 0.15 45);
+  --color-flexoki-orange-700: oklch(0.5 0.13 45);
+  --color-flexoki-orange-800: oklch(0.4 0.1 47);
+  --color-flexoki-orange-850: oklch(0.34 0.08 48);
+  --color-flexoki-orange-900: oklch(0.28 0.06 49);
+  --color-flexoki-orange-950: oklch(0.23 0.03 54);
+  --color-flexoki-yellow-50: oklch(0.95 0.05 93);
+  --color-flexoki-yellow-100: oklch(0.91 0.09 93);
+  --color-flexoki-yellow-150: oklch(0.88 0.11 93);
+  --color-flexoki-yellow-200: oklch(0.85 0.13 92);
+  --color-flexoki-yellow-300: oklch(0.79 0.15 89);
+  --color-flexoki-yellow-400: oklch(0.73 0.15 87);
+  --color-flexoki-yellow-500: oklch(0.68 0.14 87);
+  --color-flexoki-yellow-600: oklch(0.63 0.13 86);
+  --color-flexoki-yellow-700: oklch(0.55 0.11 86);
+  --color-flexoki-yellow-800: oklch(0.43 0.09 87);
+  --color-flexoki-yellow-850: oklch(0.37 0.07 88);
+  --color-flexoki-yellow-900: oklch(0.3 0.06 90);
+  --color-flexoki-yellow-950: oklch(0.24 0.04 94);
+  --color-flexoki-green-50: oklch(0.94 0.04 109);
+  --color-flexoki-green-100: oklch(0.9 0.06 113);
+  --color-flexoki-green-150: oklch(0.85 0.08 114);
+  --color-flexoki-green-200: oklch(0.81 0.1 115);
+  --color-flexoki-green-300: oklch(0.72 0.12 117);
+  --color-flexoki-green-400: oklch(0.65 0.12 119);
+  --color-flexoki-green-500: oklch(0.6 0.13 121);
+  --color-flexoki-green-600: oklch(0.56 0.13 123);
+  --color-flexoki-green-700: oklch(0.49 0.12 123);
+  --color-flexoki-green-800: oklch(0.39 0.09 122);
+  --color-flexoki-green-850: oklch(0.34 0.08 122);
+  --color-flexoki-green-900: oklch(0.28 0.06 121);
+  --color-flexoki-green-950: oklch(0.23 0.03 119);
+  --color-flexoki-cyan-50: oklch(0.94 0.03 157);
+  --color-flexoki-cyan-100: oklch(0.9 0.05 171);
+  --color-flexoki-cyan-150: oklch(0.86 0.07 176);
+  --color-flexoki-cyan-200: oklch(0.81 0.08 179);
+  --color-flexoki-cyan-300: oklch(0.73 0.1 181);
+  --color-flexoki-cyan-400: oklch(0.67 0.1 187);
+  --color-flexoki-cyan-500: oklch(0.61 0.09 187);
+  --color-flexoki-cyan-600: oklch(0.55 0.09 187);
+  --color-flexoki-cyan-700: oklch(0.48 0.07 188);
+  --color-flexoki-cyan-800: oklch(0.39 0.06 187);
+  --color-flexoki-cyan-850: oklch(0.34 0.05 189);
+  --color-flexoki-cyan-900: oklch(0.28 0.04 186);
+  --color-flexoki-cyan-950: oklch(0.22 0.02 185);
+  --color-flexoki-blue-50: oklch(0.93 0.01 190);
+  --color-flexoki-blue-100: oklch(0.88 0.03 228);
+  --color-flexoki-blue-150: oklch(0.83 0.05 231);
+  --color-flexoki-blue-200: oklch(0.78 0.06 236);
+  --color-flexoki-blue-300: oklch(0.68 0.08 240);
+  --color-flexoki-blue-400: oklch(0.6 0.11 247);
+  --color-flexoki-blue-500: oklch(0.54 0.12 251);
+  --color-flexoki-blue-600: oklch(0.48 0.13 255);
+  --color-flexoki-blue-700: oklch(0.43 0.12 255);
+  --color-flexoki-blue-800: oklch(0.35 0.09 254);
+  --color-flexoki-blue-850: oklch(0.31 0.07 254);
+  --color-flexoki-blue-900: oklch(0.26 0.05 253);
+  --color-flexoki-blue-950: oklch(0.21 0.02 249);
+  --color-flexoki-purple-50: oklch(0.94 0.01 355);
+  --color-flexoki-purple-100: oklch(0.9 0.02 311);
+  --color-flexoki-purple-150: oklch(0.85 0.04 300);
+  --color-flexoki-purple-200: oklch(0.81 0.06 298);
+  --color-flexoki-purple-300: oklch(0.71 0.08 295);
+  --color-flexoki-purple-400: oklch(0.63 0.11 291);
+  --color-flexoki-purple-500: oklch(0.54 0.13 293);
+  --color-flexoki-purple-600: oklch(0.45 0.15 295);
+  --color-flexoki-purple-700: oklch(0.4 0.13 295);
+  --color-flexoki-purple-800: oklch(0.34 0.1 296);
+  --color-flexoki-purple-850: oklch(0.3 0.08 296);
+  --color-flexoki-purple-900: oklch(0.25 0.05 298);
+  --color-flexoki-purple-950: oklch(0.21 0.03 298);
+  --color-flexoki-magenta-50: oklch(0.94 0.03 15);
+  --color-flexoki-magenta-100: oklch(0.9 0.05 2);
+  --color-flexoki-magenta-150: oklch(0.85 0.08 356);
+  --color-flexoki-magenta-200: oklch(0.81 0.1 355);
+  --color-flexoki-magenta-300: oklch(0.72 0.14 355);
+  --color-flexoki-magenta-400: oklch(0.63 0.16 350);
+  --color-flexoki-magenta-500: oklch(0.56 0.16 350);
+  --color-flexoki-magenta-600: oklch(0.5 0.16 350);
+  --color-flexoki-magenta-700: oklch(0.44 0.14 349);
+  --color-flexoki-magenta-800: oklch(0.36 0.11 349);
+  --color-flexoki-magenta-850: oklch(0.31 0.09 348);
+  --color-flexoki-magenta-900: oklch(0.26 0.06 346);
+  --color-flexoki-magenta-950: oklch(0.21 0.03 344);
+
+  --color-flexoki-bg: light-dark(
+    var(--color-flexoki-paper),
+    var(--color-flexoki-black)
+  );
+  --color-flexoki-bg-2: light-dark(
+    var(--color-flexoki-base-50),
+    var(--color-flexoki-base-950)
+  );
+  --color-flexoki-tx: light-dark(
+    var(--color-flexoki-black),
+    var(--color-flexoki-base-200)
+  );
+  --color-flexoki-tx-2: light-dark(
+    var(--color-flexoki-base-600),
+    var(--color-flexoki-base-500)
+  );
+  --color-flexoki-tx-3: light-dark(
+    var(--color-flexoki-base-300),
+    var(--color-flexoki-base-700)
+  );
+  --color-flexoki-ui: light-dark(
+    var(--color-flexoki-base-100),
+    var(--color-flexoki-base-900)
+  );
+  --color-flexoki-ui-2: light-dark(
+    var(--color-flexoki-base-150),
+    var(--color-flexoki-base-850)
+  );
+  --color-flexoki-ui-3: light-dark(
+    var(--color-flexoki-base-200),
+    var(--color-flexoki-base-800)
+  );
+  --color-flexoki-re: light-dark(
+    var(--color-flexoki-red-600),
+    var(--color-flexoki-red-400)
+  );
+  --color-flexoki-or: light-dark(
+    var(--color-flexoki-orange-600),
+    var(--color-flexoki-orange-400)
+  );
+  --color-flexoki-ye: light-dark(
+    var(--color-flexoki-yellow-600),
+    var(--color-flexoki-yellow-400)
+  );
+  --color-flexoki-gr: light-dark(
+    var(--color-flexoki-green-600),
+    var(--color-flexoki-green-400)
+  );
+  --color-flexoki-cy: light-dark(
+    var(--color-flexoki-cyan-600),
+    var(--color-flexoki-cyan-400)
+  );
+  --color-flexoki-bl: light-dark(
+    var(--color-flexoki-blue-600),
+    var(--color-flexoki-blue-400)
+  );
+  --color-flexoki-pu: light-dark(
+    var(--color-flexoki-purple-600),
+    var(--color-flexoki-purple-400)
+  );
+  --color-flexoki-ma: light-dark(
+    var(--color-flexoki-magenta-600),
+    var(--color-flexoki-magenta-400)
+  );
+  --color-flexoki-re-2: light-dark(
+    var(--color-flexoki-red-400),
+    var(--color-flexoki-red-600)
+  );
+  --color-flexoki-or-2: light-dark(
+    var(--color-flexoki-orange-400),
+    var(--color-flexoki-orange-600)
+  );
+  --color-flexoki-ye-2: light-dark(
+    var(--color-flexoki-yellow-400),
+    var(--color-flexoki-yellow-600)
+  );
+  --color-flexoki-gr-2: light-dark(
+    var(--color-flexoki-green-400),
+    var(--color-flexoki-green-600)
+  );
+  --color-flexoki-cy-2: light-dark(
+    var(--color-flexoki-cyan-400),
+    var(--color-flexoki-cyan-600)
+  );
+  --color-flexoki-bl-2: light-dark(
+    var(--color-flexoki-blue-400),
+    var(--color-flexoki-blue-600)
+  );
+  --color-flexoki-pu-2: light-dark(
+    var(--color-flexoki-purple-400),
+    var(--color-flexoki-purple-600)
+  );
+  --color-flexoki-ma-2: light-dark(
+    var(--color-flexoki-magenta-400),
+    var(--color-flexoki-magenta-600)
+  );
+}
