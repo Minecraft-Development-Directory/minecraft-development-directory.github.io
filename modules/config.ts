@@ -39,12 +39,6 @@ export default defineNuxtModule({
       return hasLocaleFile && hasContentFolder;
     });
 
-    // Override strategy to prefix
-    nuxt.options.i18n = {
-      ...nuxt.options.i18n,
-      strategy: "prefix",
-    };
-
     // Expose filtered locales
     nuxt.options.runtimeConfig.public.mdd = {
       filteredLocales,

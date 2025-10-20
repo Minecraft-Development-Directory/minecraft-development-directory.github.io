@@ -9,7 +9,7 @@ const collectionName = computed(
   () => `index_${locale.value}` as `index_${typeof locale.value}`
 );
 
-const { data: page } = await useAsyncData(collectionName, () =>
+const { data: page } = await useAsyncData(collectionName.value, () =>
   queryCollection(collectionName.value).path(route.path).first()
 );
 if (!page.value) {
@@ -180,7 +180,7 @@ useIntersectionObserver(contributorsRef, ([entry]) => {
         ref="contributorsRef"
         class="p-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 overflow-hidden flex relative"
       >
-        <LazyHomeContributors :contributors="module.contributors" />
+        <LazyHomeContributors :contributors="module?.contributors" />
       </div>
     </UPageSection>
   </div>

@@ -72,7 +72,7 @@ for (const locale of locales) {
 
   collections[`index_${code}`] = defineCollection({
     type: "page",
-    source: joinURL(cwd, code, "index.yml"),
+    source: joinURL(cwd, code, "index.yaml"),
     schema: Page.extend({
       hero: PageHero.extend({
         features: z.array(PageFeature),
