@@ -4,10 +4,12 @@ hero:
   title: Votre Voyage dans le Développement Minecraft Commence Ici
   description: Explorez des tutoriels, outils et ressources pour créer d'incroyables mods, plugins et datapacks Minecraft.
   links:
-    - text: Commencer
+    - label: Commencer
       url: /guides/getting-started
-    - text: Explorer les Tutoriels
+      icon: i-lucide-rocket
+    - label: Explorer les Tutoriels
       url: /guides/tutorials
+      icon: i-lucide-book
 
   features:
     - title: Tutoriels Complets
@@ -17,7 +19,16 @@ hero:
     - title: Ressources Communautaires
       description: Connectez-vous avec d'autres développeurs et partagez vos créations.
 
-features: []
+features:
+  - title: Large Gamme de Tutoriels
+    description: Des guides pour débutants aux techniques de modding avancées, trouvez des tutoriels adaptés à votre niveau et à vos intérêts.
+    icon: i-lucide-book-open
+  - title: Outils et Bibliothèques Sélectionnés
+    description: Accédez à une sélection soigneusement choisie d'outils, API et bibliothèques pour optimiser votre processus de développement.
+    icon: i-lucide-hammer
+  - title: Contributions Communautaires
+    description: Bénéficiez des ressources et des perspectives partagées par une communauté dynamique de développeurs Minecraft.
+    icon: i-lucide-users
 
 community:
   title: Rejoignez la communauté

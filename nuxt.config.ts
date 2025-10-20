@@ -41,6 +41,10 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
 
   content: {
+    watch: {
+      enabled: true,
+    },
+
     build: {
       markdown: {
         highlight: {
@@ -127,7 +131,9 @@ export default defineNuxtConfig({
       { code: "en", name: "English", language: "en" },
       { code: "fr", name: "Français", language: "fr" },
     ],
-    strategy: "prefix_except_default",
+    strategy: "prefix",
     defaultLocale: "en",
   },
+
+  watch: ["content/**/*.{yaml,md,json}"],
 });
