@@ -16,5 +16,10 @@
     "toc": "On this page",
     "report": "Report an issue",
     "edit": "Edit this page"
+  },
+  "blog": {
+    "title": "Blog Posts",
+    "read_more": "Read more",
+    "no_posts": "No blog posts found."
   }
 }

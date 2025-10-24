@@ -16,5 +16,10 @@
     "toc": "Sur cette page",
     "report": "Signaler un problème",
     "edit": "Éditer cette page"
+  },
+  "blog": {
+    "title": "Articles de blog",
+    "read_more": "Lire la suite",
+    "no_posts": "Aucun article de blog trouvé."
   }
 }

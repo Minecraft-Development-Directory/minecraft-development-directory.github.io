@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "motion-v/nuxt",
     "nuxt-site-config",
+    "nuxt-og-image",
   ],
   $development: {
     site: {
@@ -61,6 +62,8 @@ export default defineNuxtConfig({
             "shell",
           ],
         },
+
+        remarkPlugins: { "remark-reading-time": {} },
       },
     },
   },

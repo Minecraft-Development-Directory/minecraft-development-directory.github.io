@@ -81,7 +81,10 @@ provide("navigation", rootNavigation);
   <UApp>
     <NuxtLoadingIndicator :height="2" />
 
-    <div :class="[route.path.startsWith('/docs/') && 'root']">
+    <div
+      class="min-h-screen flex flex-col"
+      :class="[route.path.startsWith('/docs/') && 'root']"
+    >
       <AppBanner />
 
       <Header />

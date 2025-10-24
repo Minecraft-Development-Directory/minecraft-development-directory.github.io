@@ -81,15 +81,20 @@ for (const locale of locales) {
       community: PageSection,
     }),
   });
-
-  collections[`blog_${code}`] = defineCollection({
-    type: "page",
-    source: {
-      cwd,
-      include: `${code}/blog/**/*`,
-      prefix: `/${code}/blog`,
-    },
-  });
 }
+
+collections[`blog`] = defineCollection({
+  type: "page",
+  source: {
+    cwd,
+    include: `blog/**/*`,
+    prefix: `/blog`,
+  },
+  schema: Page.extend({
+    date: z.string().refine((date) => !isNaN(Date.parse(date)), {
+      message: "Invalid date format",
+    }),
+  }),
+});
 
 export default defineContentConfig({ collections });
