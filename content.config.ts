@@ -91,6 +91,7 @@ collections[`blog`] = defineCollection({
     prefix: `/blog`,
   },
   schema: Page.extend({
+    draft: z.boolean().default(false),
     date: z.string().refine((date) => !isNaN(Date.parse(date)), {
       message: "Invalid date format",
     }),

@@ -47,3 +47,8 @@
   /* Header */
   --ui-header-height: var(--spacing-16);
 }
+
+html,
+body {
+  @apply bg-default scroll-smooth dark:scheme-dark;
+}

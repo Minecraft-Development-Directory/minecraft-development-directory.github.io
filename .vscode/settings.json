@@ -41,18 +41,15 @@
     "activityBarBadge.foreground": "#ffffff",
     "activityBarBadge.background": "#dd2c44"
   },
-  "python.analysis.autoIndent": true,
-  "python.analysis.indexing": true,
-  "python.analysis.diagnosticMode": "workspace",
-  "python.languageServer": "Pylance",
-  "python.analysis.languageServerMode": "full",
-  "vsintellicode.python.completionsEnabled": true,
-  "python.analysis.packageIndexDepths": [
-    {
-      "name": "django",
-      "depth": 4,
-      "includeAllSymbols": true
-    }
-  ],
-  "tailwindCSS.emmetCompletions": true
+  "tailwindCSS.emmetCompletions": true,
+
+  // Required for the extension
+  "mdc.enableFormatting": true,
+  // Recommended (for `mdc` and `md`, depending on your usage)
+  "[mdc]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.formatOnPaste": true
+  }
 }

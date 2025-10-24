@@ -33,12 +33,6 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
-  app: {
-    rootAttrs: {
-      class: "bg-default",
-    },
-  },
-
   css: ["~/assets/css/main.css"],
 
   content: {
