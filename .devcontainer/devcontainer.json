@@ -36,7 +36,8 @@
         "quick-lint.quick-lint-js",
         "bradlc.vscode-tailwindcss",
         "MaxvanderSchee.web-accessibility",
-        "nuxtr.nuxt-vscode-extentions"
+        "nuxtr.nuxt-vscode-extentions",
+        "lokalise.i18n-ally"
       ]
     }
   },

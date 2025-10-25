@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { withoutTrailingSlash } from "ufo";
 import * as nuxtUiLocales from "@nuxt/ui/locale";
-import type { PageCollections } from "@nuxt/content";
 
 const route = useRoute();
 const { locale, locales, switchLocalePath } = useMddI18n();
@@ -12,7 +11,6 @@ const lang = computed(
 const dir = computed(
   () => nuxtUiLocales[locale.value as keyof typeof nuxtUiLocales]?.dir || "ltr"
 );
-const collectionName = computed(() => `docs_${locale.value}`);
 
 useHead({
   meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
@@ -43,38 +41,40 @@ onMounted(() => {
 });
 
 const { data: navigation } = await useAsyncData(
-  `navigation_${collectionName.value}`,
+  `navigation_${locale.value}`,
   () =>
-    queryCollectionNavigation(collectionName.value as keyof PageCollections, [
-      "description",
+    Promise.all([
+      queryCollectionNavigation(`docs_${locale.value}`, ["description"]),
+      queryCollectionNavigation("blog", ["description"]),
     ]),
   {
+    server: true,
     transform: (data) => {
-      const rootResult =
-        data.find((item) => item.path === "/docs")?.children || data || [];
+      const flatData = data.flat();
 
       return (
-        rootResult.find((item) => item.path === `/${locale.value}`)?.children ||
-        rootResult
+        flatData.find((item) => item.path === `/${locale.value}`)?.children ||
+        flatData
       );
     },
     watch: [locale],
   }
 );
 const { data: files } = useLazyAsyncData(
-  `search_${collectionName.value}`,
+  `search_${locale.value}`,
   () =>
-    queryCollectionSearchSections(
-      collectionName.value as keyof PageCollections
-    ),
+    Promise.all([
+      queryCollectionSearchSections(`docs_${locale.value}`),
+      queryCollectionSearchSections("blog"),
+    ]),
   {
     server: false,
+    transform: (data) => data.flat(),
+    watch: [locale],
   }
 );
 
-const { rootNavigation } = useNavigation(navigation);
-
-provide("navigation", rootNavigation);
+provide("navigation", navigation);
 </script>
 
 <template>

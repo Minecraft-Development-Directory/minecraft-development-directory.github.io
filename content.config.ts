@@ -89,6 +89,7 @@ collections[`blog`] = defineCollection({
     cwd,
     include: `blog/**/*`,
     prefix: `/blog`,
+    exclude: ["**/.navigation.yml"],
   },
   schema: Page.extend({
     draft: z.boolean().default(false),

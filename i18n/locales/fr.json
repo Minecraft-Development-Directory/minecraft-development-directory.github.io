@@ -6,6 +6,12 @@
       "description": "Nous sommes désolés, mais la page que vous cherchez n'existe pas."
     }
   },
+  "header": {
+    "color-picker": {
+      "button": "Sélecteur de couleur",
+      "title": "Thème"
+    }
+  },
   "docs": {
     "copy": {
       "page": "Copier la page",
@@ -20,6 +26,9 @@
   "blog": {
     "title": "Articles de blog",
     "read_more": "Lire la suite",
-    "no_posts": "Aucun article de blog trouvé."
+    "no_posts": "Aucun article de blog trouvé.",
+    "post": {
+      "headline": "Blog"
+    }
   }
 }

@@ -15,7 +15,18 @@ export function useHeader() {
     },
   ]);
 
-  const mobileLinks = computed(() => []);
+  const mobileLinks = computed(() => [
+    {
+      label: "Guides",
+      to: localePath("/guides"),
+      active: route.path.startsWith(localePath("/guides")),
+    },
+    {
+      label: "Blog",
+      to: localePath("/blog"),
+      active: route.path.startsWith(localePath("/blog")),
+    },
+  ]);
 
   return { desktopLinks, mobileLinks };
 }

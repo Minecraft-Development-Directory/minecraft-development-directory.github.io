@@ -12,6 +12,7 @@ const { mobileLinks } = useHeader();
     orientation="vertical"
     :items="mobileLinks"
     class="-mx-2.5"
+    :ui="{ list: 'flex flex-col gap-2' }"
   />
 
   <template v-if="route.path.startsWith('/docs/')">

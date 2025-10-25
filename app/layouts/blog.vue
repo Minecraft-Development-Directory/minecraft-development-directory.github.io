@@ -1,5 +1,5 @@
 <template>
-  <UMain class="flex-1">
+  <UMain>
     <UContainer>
       <UPage>
         <slot />

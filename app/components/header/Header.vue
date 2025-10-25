@@ -2,7 +2,7 @@
 const route = useRoute();
 const { desktopLinks } = useHeader();
 
-const { locales } = useMddI18n();
+const { localePath } = useMddI18n();
 </script>
 
 <template>
@@ -40,7 +40,7 @@ const { locales } = useMddI18n();
       <HeaderBody />
     </template>
 
-    <template v-if="route.path.startsWith('/docs/')" #bottom>
+    <template v-if="route.path.startsWith(localePath('/docs/'))" #bottom>
       <HeaderBottom />
     </template>
   </UHeader>

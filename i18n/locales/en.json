@@ -6,6 +6,12 @@
       "description": "We are sorry but this page could not be found."
     }
   },
+  "header": {
+    "color-picker": {
+      "button": "Color Picker",
+      "title": "Theme"
+    }
+  },
   "docs": {
     "copy": {
       "page": "Copy page",
@@ -20,6 +26,9 @@
   "blog": {
     "title": "Blog Posts",
     "read_more": "Read more",
-    "no_posts": "No blog posts found."
+    "no_posts": "No blog posts found.",
+    "post": {
+      "headline": "Blog"
+    }
   }
 }

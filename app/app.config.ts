@@ -13,7 +13,11 @@ export default defineAppConfig({
       "A comprehensive directory for Minecraft development resources.",
   },
 
-  ui: {},
+  ui: {
+    main: {
+      base: "min-h-[calc(100vh-var(--ui-header-height))]",
+    },
+  },
 
   toc: {},
 });

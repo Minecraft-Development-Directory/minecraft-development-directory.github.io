@@ -2,6 +2,8 @@
 const appConfig = useAppConfig();
 const colorMode = useColorMode();
 
+const { t } = useMddI18n();
+
 const modes = [
   { label: "light", icon: appConfig.ui.icons.light },
   { label: "dark", icon: appConfig.ui.icons.dark },
@@ -20,20 +22,22 @@ const mode = computed({
 <template>
   <UPopover :ui="{ content: 'w-72 px-6 py-4 flex flex-col gap-4' }">
     <template #default="{ open }">
-      <UButton
-        icon="i-lucide-swatch-book"
-        color="neutral"
-        :variant="open ? 'soft' : 'ghost'"
-        square
-        aria-label="Color picker"
-        :ui="{ leadingIcon: 'text-primary' }"
-      />
+      <UTooltip :text="t('header.color-picker.button')">
+        <UButton
+          icon="i-lucide-swatch-book"
+          color="neutral"
+          :variant="open ? 'soft' : 'ghost'"
+          square
+          :aria-label="t('header.color-picker.button')"
+          :ui="{ leadingIcon: 'text-primary' }"
+        />
+      </UTooltip>
     </template>
 
     <template #content>
       <fieldset>
         <legend class="text-[11px] leading-none font-semibold mb-2">
-          Theme
+          {{ t("header.color-picker.title") }}
         </legend>
 
         <div class="grid grid-cols-3 gap-1 -mx-2">
