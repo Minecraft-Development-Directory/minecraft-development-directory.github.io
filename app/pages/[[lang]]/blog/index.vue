@@ -6,12 +6,14 @@ definePageMeta({
   layout: "blog",
 });
 
-const { t, localePath } = useMddI18n();
+const { t } = useMddI18n();
 const route = useRoute();
 const router = useRouter();
 
 const pageSize = 10;
 const currentPage = ref(Number(route.query.page) || 1);
+
+const isProd = process.env.NODE_ENV === "production";
 
 watch(
   () => route.query.page,
@@ -29,12 +31,19 @@ const totalPages = computed(() => Math.ceil(totalPosts.value / pageSize));
 
 const { data: posts } = await useAsyncData(
   () => `blog-posts-${currentPage.value}`,
-  () =>
-    queryCollection(`blog`)
+  () => {
+    let query = queryCollection(`blog`);
+
+    if (isProd) {
+      query = query.where("draft", "=", false);
+    }
+
+    return query
       .order("date", "DESC")
       .limit(pageSize)
       .skip((currentPage.value - 1) * pageSize)
-      .all(),
+      .all();
+  },
   { watch: [currentPage] }
 );
 
@@ -56,10 +65,6 @@ const postsByYear = computed(() => {
 function goToPage(page: number) {
   router.push({ query: { ...route.query, page } });
   //window.scrollTo(0, 0);
-}
-
-function formatDate(post: { date: string }) {
-  return $d(new Date(post.date));
 }
 </script>
 
@@ -88,34 +93,13 @@ function formatDate(post: { date: string }) {
         </div>
 
         <div class="flex flex-col gap-6">
-          <UCard
-            v-for="post in yearPosts"
-            :key="post.path"
-            class="mb-4 bg-muted blog-card"
-          >
-            <template #header>
-              <h2 class="text-xl font-semibold">
-                <NuxtLink :to="localePath(post.path)">
-                  {{ post.title }}
-                </NuxtLink>
-              </h2>
-            </template>
-            <div>{{ post.description }}</div>
-            <template #footer>
-              <div
-                class="flex flex-col lg:flex-row gap-4 justify-between items-center"
-              >
-                <span class="text-muted text-sm">
-                  <ClientOnly>
-                    {{ formatDate(post) }}
-                  </ClientOnly>
-                </span>
-                <NuxtLink :to="localePath(post.path)" class="text-primary">
-                  {{ t("blog.read_more", "Read more") }}
-                </NuxtLink>
-              </div>
-            </template>
-          </UCard>
+          <UBlogPosts orientation="vertical">
+            <BlogPostCard
+              v-for="post in yearPosts"
+              :key="post.stem"
+              :post="post"
+            />
+          </UBlogPosts>
         </div>
       </section>
 
@@ -132,9 +116,3 @@ function formatDate(post: { date: string }) {
     </div>
   </div>
 </template>
-
-<style scoped>
-@view-transition {
-  navigation: auto;
-}
-</style>

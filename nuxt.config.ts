@@ -80,6 +80,7 @@ export default defineNuxtConfig({
         externalRelAttribute: "noopener",
       },
     },
+    viewTransition: true,
   },
 
   compatibilityDate: "2025-07-15",

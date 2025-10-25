@@ -1,40 +1,28 @@
 <script lang="ts" setup>
-import type {
-  ContentNavigationItem,
-  DocsEnCollectionItem,
-} from "@nuxt/content";
-import { findPageHeadline } from "@nuxt/content/utils";
-import { kebabCase } from "scule";
+import { withLeadingSlash } from "ufo";
+import type { BlogCollectionItem, ContentNavigationItem } from "@nuxt/content";
 import { addPrerenderPath } from "../../../../utils/prerender";
 
 definePageMeta({
   layout: "blog",
 });
 
+const { t, localizeLink } = useMddI18n();
 const route = useRoute();
-const { locale, t } = useMddI18n();
+
 const appConfig = useAppConfig();
 const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
 
-const collectionName = computed(
-  () => `docs_${locale.value}` as `docs_${typeof locale.value}`
-);
+const slug = computed(() => withLeadingSlash(String(route.params.slug)));
 
-const [{ data: page }, { data: surround }] = await Promise.all([
-  useAsyncData(kebabCase(route.path), () =>
-    queryCollection(collectionName.value).path(route.path).first()
-  ),
-  useAsyncData(`${kebabCase(route.path)}-surround`, () =>
-    queryCollectionItemSurroundings(collectionName.value, route.path, {
-      fields: ["description"],
-    })
-  ),
-]);
+const { data: page } = await useAsyncData(`blog${slug.value}`, () =>
+  queryCollection("blog").path(`/blog${slug.value}`).first()
+);
 
 if (!page.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Page not found",
+    statusMessage: t("common.error.title"),
     fatal: true,
   });
 }
@@ -52,17 +40,12 @@ useSeoMeta({
   ogDescription: description,
 });
 
-const headline = ref(findPageHeadline(navigation?.value, page.value.path));
-watch(
-  () => navigation?.value,
-  () => {
-    headline.value =
-      findPageHeadline(navigation?.value, page.value?.path) || headline.value;
-  }
-);
+const { findBreadcrumb } = useNavigation(navigation!);
+
+const breadcrumb = computed(() => findBreadcrumb(page.value?.path as string));
 
 defineOgImageComponent("blog", {
-  headline: headline.value,
+  headline: breadcrumb.value[0],
 });
 
 const github = computed(() => (appConfig.github ? appConfig.github : null));
@@ -83,21 +66,45 @@ const editLink = computed(() => {
     .filter(Boolean)
     .join("/");
 });
+
+const transitionName = computed(() => {
+  const id = page.value?.stem.replace("/", "-");
+  return {
+    title: `--blog-title-${id}`,
+    summary: `--blog-summary-${id}`,
+  };
+});
 </script>
 
 <template>
   <UPage v-if="page">
+    <div
+      class="reading-progress fixed z-60 left-0 top-0 w-full h-1 origin-[0_50%] bg-primary animate-[grow-progress_auto_linear]"
+    />
+
     <UPageHeader
-      :title="page.title"
-      :description="page.description"
-      :headline="headline"
+      :headline="t('blog.post.headline')"
       :ui="{
         wrapper: 'flex-row items-center flex-wrap justify-between',
+        title: 'blog-title',
+        description: 'blog-summary',
       }"
     >
+      <template #title>
+        <span class="blog-title">{{ page.title }}</span>
+      </template>
+
+      <template #description>
+        <span class="blog-summary">{{ page.description }}</span>
+      </template>
+
+      <template #headline>
+        <UBreadcrumb :items="breadcrumb.map(localizeLink)" />
+      </template>
+
       <template #link>
         <UButton
-          v-for="(link, index) in (page as DocsEnCollectionItem).links"
+          v-for="(link, index) in (page as BlogCollectionItem).links"
           :key="index"
           size="sm"
           v-bind="link"
@@ -108,34 +115,39 @@ const editLink = computed(() => {
     </UPageHeader>
 
     <UPageBody>
-      <ContentRenderer v-if="page" :value="page" />
+      <div class="flex flex-col h-full">
+        <ContentRenderer
+          v-if="page"
+          :value="page"
+          class="flex-1 animate-in fade-in"
+        />
 
-      <USeparator>
-        <div v-if="github" class="flex items-center gap-2 text-sm text-muted">
-          <UButton
-            variant="link"
-            color="neutral"
-            :to="editLink"
-            target="_blank"
-            icon="i-lucide-pen"
-            :ui="{ leadingIcon: 'size-4' }"
-          >
-            {{ t("docs.edit") }}
-          </UButton>
-          <span>{{ t("common.or") }}</span>
-          <UButton
-            variant="link"
-            color="neutral"
-            :to="`${github.url}/issues/new/choose`"
-            target="_blank"
-            icon="i-lucide-alert-circle"
-            :ui="{ leadingIcon: 'size-4' }"
-          >
-            {{ t("docs.report") }}
-          </UButton>
-        </div>
-      </USeparator>
-      <UContentSurround :surround="surround" />
+        <USeparator>
+          <div v-if="github" class="flex items-center gap-2 text-sm text-muted">
+            <UButton
+              variant="link"
+              color="neutral"
+              :to="editLink"
+              target="_blank"
+              icon="i-lucide-pen"
+              :ui="{ leadingIcon: 'size-4' }"
+            >
+              {{ t("docs.edit") }}
+            </UButton>
+            <span>{{ t("common.or") }}</span>
+            <UButton
+              variant="link"
+              color="neutral"
+              :to="`${github.url}/issues/new/choose`"
+              target="_blank"
+              icon="i-lucide-alert-circle"
+              :ui="{ leadingIcon: 'size-4' }"
+            >
+              {{ t("docs.report") }}
+            </UButton>
+          </div>
+        </USeparator>
+      </div>
     </UPageBody>
 
     <template v-if="page?.body?.toc?.links?.length" #right>
@@ -151,3 +163,32 @@ const editLink = computed(() => {
     </template>
   </UPage>
 </template>
+
+<style lang="css" scoped>
+html {
+  scroll-timeline: --page-scroll block;
+}
+
+@keyframes grow-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.reading-progress {
+  animation-timeline: --page-scroll;
+}
+</style>
+
+<style lang="css" scoped>
+.blog-title {
+  view-transition-name: v-bind("transitionName.title");
+}
+
+.blog-summary {
+  view-transition-name: v-bind("transitionName.summary");
+}
+</style>
