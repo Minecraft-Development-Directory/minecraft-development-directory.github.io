@@ -59,7 +59,7 @@ const { data: navigation } = await useAsyncData(
   {
     transform: (data) => {
       const rootResult =
-        data.find((item) => item.path === "/docs")?.children || data || [];
+        data.find((item) => item.path === "/guides")?.children || data || [];
 
       return (
         rootResult.find((item) => item.path === `/${locale.value}`)?.children ||
@@ -91,7 +91,7 @@ provide("navigation", rootNavigation);
 
     <div
       class="min-h-screen flex flex-col"
-      :class="[route.path.startsWith('/docs/') && 'root']"
+      :class="[route.path.startsWith('/guides/') && 'root']"
     >
       <AppBanner />
 

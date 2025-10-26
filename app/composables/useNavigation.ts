@@ -6,6 +6,8 @@ function processNavigationItem(
   item: ContentNavigationItem,
   parent?: ContentNavigationItem
 ): ContentNavigationItem | ContentNavigationItem[] {
+  const localePath = useLocalePath();
+
   if (item.shadow) {
     return (
       item.children?.flatMap((child) => processNavigationItem(child, item)) ||
@@ -15,6 +17,7 @@ function processNavigationItem(
 
   return {
     ...item,
+    path: localePath(item.path),
     title: parent?.title ? parent.title : item.title,
     badge: parent?.badge || item.badge,
     class: [item.framework && `${item.framework}-only`].filter(Boolean),

@@ -56,15 +56,16 @@ const collections: Record<string, DefinedCollection> = {};
 for (const locale of locales) {
   const code = typeof locale === "string" ? locale : locale.code;
 
-  collections[`docs_${code}`] = defineCollection(
+  collections[`guides_${code}`] = defineCollection(
     asOgImageCollection({
       type: "page",
       source: {
-        cwd,
-        include: `${code}/guildes/**/*`,
-        prefix: `/${code}`,
+        cwd: joinURL(cwd, code),
+        include: `guides/**/*`,
       },
       schema: z.object({
+        gameVersion: z.string().optional(),
+        modLoader: z.enum(["fabric", "forge"]).optional(),
         navigation: z.object({
           title: z.string().optional(),
         }),

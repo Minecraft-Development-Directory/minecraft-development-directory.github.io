@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 const route = useRoute();
 const { desktopLinks } = useHeader();
-
-const { localePath } = useMddI18n();
 </script>
 
 <template>
@@ -14,9 +12,7 @@ const { localePath } = useMddI18n();
     <UNavigationMenu :items="desktopLinks" variant="link" />
 
     <template #right>
-      <ClientOnly>
-        <LangPicker />
-      </ClientOnly>
+      <LangPicker />
 
       <ThemePicker />
 
@@ -40,7 +36,7 @@ const { localePath } = useMddI18n();
       <HeaderBody />
     </template>
 
-    <template v-if="route.path.startsWith(localePath('/docs'))" #bottom>
+    <template v-if="route.path.startsWith($localePath('/guides'))" #bottom>
       <HeaderBottom />
     </template>
   </UHeader>

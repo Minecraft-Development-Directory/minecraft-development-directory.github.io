@@ -6,8 +6,8 @@ export function extractSlug(slug: string | string[] | undefined): string {
     slug = slug.join("/");
   }
 
-  if (!slug) {
-    return "/";
+  if (!slug || slug === "/") {
+    return "";
   }
 
   slug = slug.endsWith("/") ? slug.slice(0, -1) : slug;

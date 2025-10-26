@@ -8,7 +8,7 @@
 
 @theme static {
   --font-sans: "Public Sans", sans-serif;
-  --ui-container: 90rem;
+  --container-8xl: 90rem;
 }
 
 /* Flexoki overrides for Nuxt UI colors */
@@ -46,10 +46,7 @@
   --ui-radius: 0.25rem;
 
   /* Container */
-  --ui-container: var(--container-7xl);
-
-  /* Header */
-  --ui-header-height: --spacing(16);
+  --ui-container: var(--container-8xl);
 }
 
 html,

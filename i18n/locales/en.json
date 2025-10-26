@@ -10,7 +10,14 @@
     "color-picker": {
       "button": "Color Picker",
       "title": "Theme"
+    },
+    "lang-picker": {
+      "button": "Change language",
+      "title": "Select a language"
     }
+  },
+  "guides": {
+    "header": "Guides"
   },
   "docs": {
     "copy": {
@@ -22,10 +29,20 @@
     "toc": "On this page",
     "report": "Report an issue",
     "edit": "Edit this page",
-    "star_repo": "Star on GitHub"
+    "star_repo": "Star on GitHub",
+    "config": {
+      "button": "Choose game config",
+      "mod-loaders": {
+        "title": "Mods Loader"
+      },
+      "game-versions": {
+        "title": "Game Version"
+      }
+    }
   },
   "blog": {
     "title": "Blog Posts",
+    "header": "Blog",
     "description": "Latest news and updates",
     "read_more": "Read more",
     "no_posts": "No blog posts found.",
@@ -34,6 +51,15 @@
       "reading_time": "Reading time",
       "minutes": "0 minutes | 1 minute | {n} minutes",
       "published_on": "Published on {date}"
+    }
+  },
+  "search": {
+    "github": {
+      "description": "Check out the Minecraft Development Directories repository and follow development on GitHub."
+    },
+    "get-started": {
+      "title": "Get Started",
+      "description": "Learn how to get started on Minecraft Development Directories"
     }
   }
 }

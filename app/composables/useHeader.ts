@@ -1,15 +1,15 @@
 export function useHeader() {
   const route = useRoute();
-  const { localePath } = useMddI18n();
+  const { localePath, t } = useMddI18n();
 
   const desktopLinks = computed(() => [
     {
-      label: "Guides",
+      label: t("guides.header"),
       to: localePath("/guides"),
       active: route.path.startsWith(localePath("/guides")),
     },
     {
-      label: "Blog",
+      label: t("blog.header"),
       to: localePath("/blog"),
       active: route.path.startsWith(localePath("/blog")),
     },
@@ -17,13 +17,13 @@ export function useHeader() {
 
   const mobileLinks = computed(() => [
     {
-      label: "Guides",
-      to: localePath("guides"),
+      label: t("guides.header"),
+      to: localePath("/guides"),
       active: route.path.startsWith(localePath("/guides")),
     },
     {
-      label: "Blog",
-      to: localePath("blog"),
+      label: t("blog.header"),
+      to: localePath("/blog"),
       active: route.path.startsWith(localePath("/blog")),
     },
   ]);

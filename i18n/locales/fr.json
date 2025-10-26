@@ -10,7 +10,13 @@
     "color-picker": {
       "button": "Sélecteur de couleur",
       "title": "Thème"
+    },
+    "lang-picker": {
+      "title": "Sélectionner une langue"
     }
+  },
+  "guides": {
+    "header": "Guides"
   },
   "docs": {
     "copy": {
@@ -22,10 +28,11 @@
     "toc": "Sur cette page",
     "report": "Signaler un problème",
     "edit": "Éditer cette page",
-    "star_repo": "Étoiler le dépôt"
+    "star_repo": "Étoile sur GitHub"
   },
   "blog": {
     "title": "Articles de blog",
+    "header": "Blog",
     "description": "Dernières nouvelles et mises à jour",
     "read_more": "Lire la suite",
     "no_posts": "Aucun article de blog trouvé.",
@@ -34,6 +41,15 @@
       "reading_time": "Temps de lecture",
       "minutes": "0 minutes | 1 minute | {n} minutes",
       "published_on": "Publié le {date}"
+    }
+  },
+  "search": {
+    "get-started": {
+      "description": "Découvrez comment commencer sur Minecraft Development Directories",
+      "title": "Commencer"
+    },
+    "github": {
+      "description": "Consulter le dépôt Github de Minecraft Development Directories et suivre le développement."
     }
   }
 }
