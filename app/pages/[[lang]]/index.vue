@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import { pageFeature } from "#build/ui";
+
 const route = useRoute();
-const { locale, localizeLink } = useMddI18n();
+const { locale } = useMddI18n();
 const { data: module } = await useFetch("/api/github/contributors.json");
 
 const collectionName = computed(
@@ -51,7 +53,7 @@ useIntersectionObserver(contributorsRef, ([entry]) => {
       }"
       title="Minecraft Development Directory"
       :description="page.hero.description"
-      :links="page.hero.links?.map(localizeLink)"
+      :links="page.hero.links"
     >
       <div class="flex flex-col gap-4">
         <Motion
@@ -63,7 +65,11 @@ useIntersectionObserver(contributorsRef, ([entry]) => {
           :transition="{ delay: 0.2 + 0.4 * index }"
           :in-view-options="{ once: true }"
         >
-          <UPageFeature v-bind="localizeLink(feature)" class="opacity-0" />
+          <UPageFeature
+            v-bind="feature"
+            :to="feature.to ? $localePath(feature.to) : undefined"
+            class="opacity-0"
+          />
         </Motion>
       </div>
     </UPageHero>
@@ -87,7 +93,7 @@ useIntersectionObserver(contributorsRef, ([entry]) => {
           <UPageFeature
             :title="feature.title"
             :description="feature.description"
-            :to="localizeLink(feature).to"
+            :to="feature.to"
           >
             <template #leading>
               <div class="relative p-3">

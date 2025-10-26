@@ -17,15 +17,22 @@ export default defineNuxtConfig({
     "motion-v/nuxt",
     "nuxt-site-config",
     "nuxt-og-image",
+    "nuxt-seo-utils",
   ],
   $development: {
     site: {
       url: "http://localhost:3000",
     },
+    i18n: {
+      baseUrl: "http://localhost:3000",
+    },
   },
   $production: {
     site: {
       url: "https://minecraft-development-directory.github.io/",
+    },
+    i18n: {
+      baseUrl: "https://minecraft-development-directory.github.io/",
     },
   },
 
@@ -131,6 +138,10 @@ export default defineNuxtConfig({
     ],
     strategy: "prefix",
     defaultLocale: "en",
+    detectBrowserLanguage: false,
+    experimental: {
+      strictSeo: true,
+    },
   },
 
   watch: ["content/**/*.{yaml,md,json}"],

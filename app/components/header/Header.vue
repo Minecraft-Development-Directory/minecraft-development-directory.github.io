@@ -40,7 +40,7 @@ const { localePath } = useMddI18n();
       <HeaderBody />
     </template>
 
-    <template v-if="route.path.startsWith(localePath('/docs/'))" #bottom>
+    <template v-if="route.path.startsWith(localePath('/docs'))" #bottom>
       <HeaderBottom />
     </template>
   </UHeader>

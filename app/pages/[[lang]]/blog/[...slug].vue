@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import { kebabCase } from "scule";
-import { withLeadingSlash } from "ufo";
 import type { ContentNavigationItem } from "@nuxt/content";
+import { kebabCase } from "scule";
+import { extractSlug } from "~~/utils/extractSlug";
 
 definePageMeta({
   layout: "blog",
 });
 
-const { t, localizeLink } = useMddI18n();
+const { t } = useMddI18n();
 const route = useRoute();
 
 const appConfig = useAppConfig();
 const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
 
-const slug = computed(() => withLeadingSlash(String(route.params.slug)));
+const slug = computed(() => extractSlug(route.params.slug));
 
 const { data: page } = await useAsyncData(`blog${slug.value}`, () =>
   queryCollection("blog").path(`/blog${slug.value}`).first()
@@ -37,12 +37,10 @@ useSeoMeta({
   ogDescription: description,
 });
 
-const { findBreadcrumb } = useNavigation(navigation!);
-const breadcrumb = computed(() => findBreadcrumb(page.value?.path as string));
-
-const headline = computed(() =>
-  breadcrumb.value?.[0] ? breadcrumb.value[0].label : undefined
+const blogNav = computed(() =>
+  navigation?.value.find((item) => item.path.startsWith("/blog"))
 );
+const headline = computed(() => blogNav.value?.title);
 
 defineOgImageComponent("Image", {
   title: page.value.title,
@@ -99,7 +97,9 @@ const readingTime = computed(() => {
       </template>
 
       <template #headline>
-        <UBreadcrumb :items="breadcrumb.map(localizeLink)" />
+        <NuxtLinkLocale :to="blogNav?.path">
+          {{ blogNav?.title }}
+        </NuxtLinkLocale>
       </template>
 
       <template #link>
