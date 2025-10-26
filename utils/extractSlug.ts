@@ -1,6 +1,15 @@
 import { withLeadingSlash } from "ufo";
 
 export function extractSlug(slug: string | string[] | undefined): string {
-  const url = Array.isArray(slug) ? slug.join("/") : slug || "";
-  return withLeadingSlash(url);
+  if (Array.isArray(slug)) {
+    slug = slug.filter(Boolean);
+    slug = slug.join("/");
+  }
+
+  if (!slug) {
+    return "/";
+  }
+
+  slug = slug.endsWith("/") ? slug.slice(0, -1) : slug;
+  return withLeadingSlash(slug);
 }
