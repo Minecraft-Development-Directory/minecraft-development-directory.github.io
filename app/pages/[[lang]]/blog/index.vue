@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BlogCollectionItem } from "@nuxt/content";
+import type { BlogCollectionItem, ContentNavigationItem } from "@nuxt/content";
 import { ref, computed } from "vue";
 
 definePageMeta({
@@ -31,7 +31,7 @@ const totalPosts = computed(() => total.value || 0);
 const totalPages = computed(() => Math.ceil(totalPosts.value / pageSize));
 
 const { data: posts } = await useAsyncData(
-  () => `blog-posts-${currentPage.value}`,
+  `blog-posts-${currentPage.value}`,
   () => {
     let query = queryCollection(`blog`);
 

@@ -166,9 +166,7 @@ html {
 .reading-progress {
   animation-timeline: --page-scroll;
 }
-</style>
 
-<style lang="css" scoped>
 .blog-title {
   view-transition-name: v-bind("transitionName.title");
 }

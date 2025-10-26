@@ -49,7 +49,7 @@
   --ui-container: var(--container-7xl);
 
   /* Header */
-  --ui-header-height: var(--spacing(16));
+  --ui-header-height: --spacing(16);
 }
 
 html,
