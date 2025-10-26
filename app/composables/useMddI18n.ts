@@ -15,7 +15,7 @@ export const useMddI18n = () => {
     if (link.to) {
       return {
         ...link,
-        to: link.to ? localePath(link.to) : undefined,
+        to: localePath(link.to),
       };
     }
     return link;
