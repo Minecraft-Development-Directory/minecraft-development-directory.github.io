@@ -95,7 +95,7 @@ const readingTime = computed(() => {
             v-if="page.description"
             :value="page.description"
             unwrap="p"
-            :cache-key="`${kebabCase(route.path) - description}`"
+            :cache-key="`${kebabCase(route.path)}-description`"
           />
         </span>
       </template>
