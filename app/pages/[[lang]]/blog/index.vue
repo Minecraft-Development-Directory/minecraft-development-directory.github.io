@@ -81,7 +81,10 @@ function goToPage(page: number) {
     </UPageHeader>
 
     <UPageBody>
-      <div v-if="!posts || Object.keys(posts).length === 0" class="text-muted">
+      <div
+        v-if="!posts || Object.keys(postsByYear).length === 0"
+        class="text-muted"
+      >
         {{ t("blog.no_posts") }}
       </div>
       <div v-else>
