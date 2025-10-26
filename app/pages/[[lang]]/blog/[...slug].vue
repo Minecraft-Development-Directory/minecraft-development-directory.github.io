@@ -28,9 +28,6 @@ if (!page.value) {
   });
 }
 
-// Add the page path to the prerender list
-addPrerenderPath(`/raw${route.path}.md`);
-
 const title = page.value.seo?.title || page.value.title;
 const description = page.value.seo?.description || page.value.description;
 
@@ -44,8 +41,16 @@ useSeoMeta({
 const { findBreadcrumb } = useNavigation(navigation!);
 const breadcrumb = computed(() => findBreadcrumb(page.value?.path as string));
 
-defineOgImageComponent("blog", {
-  headline: (breadcrumb.value && breadcrumb.value.length > 0 ? breadcrumb.value[0] : ""),
+const headline = computed(() =>
+  breadcrumb.value && breadcrumb.value.length > 0
+    ? breadcrumb.value[0].label
+    : undefined
+);
+
+defineOgImageComponent("Image", {
+  title: page.value.title,
+  description: page.value.description,
+  headline: headline.value,
 });
 
 const transitionName = computed(() => {
@@ -53,6 +58,7 @@ const transitionName = computed(() => {
   return {
     title: `--blog-title-${id}`,
     summary: `--blog-summary-${id}`,
+    date: `--blog-date-${id}`,
   };
 });
 
@@ -72,11 +78,6 @@ const readingTime = computed(() => {
 
 <template>
   <UPage v-if="page">
-    <!-- Reading Progress Bar -->
-    <div
-      class="reading-progress fixed z-60 left-0 top-0 w-full h-1 origin-[0_50%] bg-primary animate-[grow-progress_auto_linear]"
-    />
-
     <UPageHeader
       :headline="t('blog.post.headline')"
       :ui="{
@@ -105,18 +106,18 @@ const readingTime = computed(() => {
       </template>
 
       <template #link>
-        <UButton
-          v-for="(link, index) in (page as BlogCollectionItem).links"
-          :key="index"
-          size="sm"
-          v-bind="link"
-        />
-
         <PageHeaderLinks />
       </template>
 
       <template #default>
-        <div class="pt-4 flex flex-row gap-4 justify-end">
+        <div class="pt-4 flex flex-row gap-4 justify-between">
+          <p class="italic text-muted text-sm blog-date">
+            <ClientOnly>
+              {{
+                t("blog.post.published_on", { date: $d(new Date(page.date)) })
+              }}
+            </ClientOnly>
+          </p>
           <p class="italic text-secondary text-sm">
             {{ t("blog.post.reading_time") }}:
             {{ t("blog.post.minutes", readingTime) }}
@@ -150,28 +151,14 @@ const readingTime = computed(() => {
 </template>
 
 <style lang="css" scoped>
-html {
-  scroll-timeline: --page-scroll block;
-}
-
-@keyframes grow-progress {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-.reading-progress {
-  animation-timeline: --page-scroll;
-}
-
 .blog-title {
   view-transition-name: v-bind("transitionName.title");
 }
 
 .blog-summary {
   view-transition-name: v-bind("transitionName.summary");
+}
+.blog-date {
+  view-transition-name: v-bind("transitionName.date");
 }
 </style>

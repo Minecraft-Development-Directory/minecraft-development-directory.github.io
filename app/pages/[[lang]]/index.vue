@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { joinURL } from "ufo";
-
 const route = useRoute();
 const { locale, localizeLink } = useMddI18n();
 const { data: module } = await useFetch("/api/github/contributors.json");
@@ -20,15 +18,17 @@ if (!page.value) {
   });
 }
 
-const { url } = useSiteConfig();
-
 useSeoMeta({
   titleTemplate: "%s - Minecraft Development Directory",
   title: page.value.title,
   description: page.value.description,
   ogTitle: `${page.value.title} - Minecraft Development Directory`,
   ogDescription: page.value.description,
-  ogImage: joinURL(url, "/og-image.png"),
+});
+
+defineOgImageComponent("Image", {
+  title: "Minecraft Development Directory",
+  description: page.value.description,
 });
 
 const contributorsRef = ref(null);

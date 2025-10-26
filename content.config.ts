@@ -3,6 +3,7 @@ import { defineContentConfig, defineCollection, z } from "@nuxt/content";
 import { useNuxt } from "@nuxt/kit";
 import type { NuxtI18nOptions } from "@nuxtjs/i18n";
 import { joinURL } from "ufo";
+import { asOgImageCollection } from "nuxt-og-image/content";
 
 const { options } = useNuxt();
 const cwd = joinURL(options.rootDir, "content");
@@ -55,20 +56,22 @@ const collections: Record<string, DefinedCollection> = {};
 for (const locale of locales) {
   const code = typeof locale === "string" ? locale : locale.code;
 
-  collections[`docs_${code}`] = defineCollection({
-    type: "page",
-    source: {
-      cwd,
-      include: `${code}/guildes/**/*`,
-      prefix: `/${code}`,
-    },
-    schema: z.object({
-      navigation: z.object({
-        title: z.string().optional(),
+  collections[`docs_${code}`] = defineCollection(
+    asOgImageCollection({
+      type: "page",
+      source: {
+        cwd,
+        include: `${code}/guildes/**/*`,
+        prefix: `/${code}`,
+      },
+      schema: z.object({
+        navigation: z.object({
+          title: z.string().optional(),
+        }),
+        links: z.array(Button),
       }),
-      links: z.array(Button),
-    }),
-  });
+    })
+  );
 
   collections[`index_${code}`] = defineCollection({
     type: "page",
@@ -83,20 +86,22 @@ for (const locale of locales) {
   });
 }
 
-collections[`blog`] = defineCollection({
-  type: "page",
-  source: {
-    cwd,
-    include: `blog/**/*`,
-    prefix: `/blog`,
-    exclude: ["**/.navigation.yml"],
-  },
-  schema: Page.extend({
-    draft: z.boolean().default(false),
-    date: z.string().refine((date) => !isNaN(Date.parse(date)), {
-      message: "Invalid date format",
+collections[`blog`] = defineCollection(
+  asOgImageCollection({
+    type: "page",
+    source: {
+      cwd,
+      include: `blog/**/*`,
+      prefix: `/blog`,
+      exclude: ["**/.navigation.yml"],
+    },
+    schema: Page.extend({
+      draft: z.boolean().default(false),
+      date: z.string().refine((date) => !isNaN(Date.parse(date)), {
+        message: "Invalid date format",
+      }),
     }),
-  }),
-});
+  })
+);
 
 export default defineContentConfig({ collections });

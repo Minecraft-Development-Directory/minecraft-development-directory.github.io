@@ -26,12 +26,14 @@
   },
   "blog": {
     "title": "Blog Posts",
+    "description": "Latest news and updates",
     "read_more": "Read more",
     "no_posts": "No blog posts found.",
     "post": {
       "headline": "Blog",
       "reading_time": "Reading time",
-      "minutes": "0 minutes | 1 minute | {n} minutes"
+      "minutes": "0 minutes | 1 minute | {n} minutes",
+      "published_on": "Published on {date}"
     }
   }
 }

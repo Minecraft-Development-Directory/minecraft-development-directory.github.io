@@ -25,12 +25,14 @@
   },
   "blog": {
     "title": "Articles de blog",
+    "description": "Dernières nouvelles et mises à jour",
     "read_more": "Lire la suite",
     "no_posts": "Aucun article de blog trouvé.",
     "post": {
       "headline": "Blog",
       "reading_time": "Temps de lecture",
-      "minutes": "0 minutes | 1 minute | {n} minutes"
+      "minutes": "0 minutes | 1 minute | {n} minutes",
+      "published_on": "Publié le {date}"
     }
   }
 }
