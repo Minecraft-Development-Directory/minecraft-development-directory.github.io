@@ -16,6 +16,7 @@ const transitionName = computed(() => {
   return {
     title: `--blog-title-${id}`,
     summary: `--blog-summary-${id}`,
+    date: `--blog-date-${id}`,
   };
 });
 </script>
@@ -42,7 +43,9 @@ const transitionName = computed(() => {
 
     <template #date>
       <ClientOnly>
-        {{ formatDate(post) }}
+        <span class="blog-date">
+          {{ formatDate(post) }}
+        </span>
       </ClientOnly>
     </template>
 
@@ -69,5 +72,8 @@ const transitionName = computed(() => {
 
 .blog-summary {
   view-transition-name: v-bind("transitionName.summary");
+}
+.blog-date {
+  view-transition-name: v-bind("transitionName.date");
 }
 </style>
