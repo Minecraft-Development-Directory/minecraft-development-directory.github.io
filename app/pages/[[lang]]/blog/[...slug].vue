@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { kebabCase } from "scule";
 import { withLeadingSlash } from "ufo";
-import type { BlogCollectionItem, ContentNavigationItem } from "@nuxt/content";
-import { addPrerenderPath } from "../../../../utils/prerender";
+import type { ContentNavigationItem } from "@nuxt/content";
 
 definePageMeta({
   layout: "blog",
@@ -42,9 +41,7 @@ const { findBreadcrumb } = useNavigation(navigation!);
 const breadcrumb = computed(() => findBreadcrumb(page.value?.path as string));
 
 const headline = computed(() =>
-  breadcrumb.value && breadcrumb.value.length > 0
-    ? breadcrumb.value[0].label
-    : undefined
+  breadcrumb.value?.[0] ? breadcrumb.value[0].label : undefined
 );
 
 defineOgImageComponent("Image", {
@@ -111,12 +108,11 @@ const readingTime = computed(() => {
 
       <template #default>
         <div class="pt-4 flex flex-row gap-4 justify-between">
-          <p class="italic text-muted text-sm blog-date">
-            <ClientOnly>
-              {{
-                t("blog.post.published_on", { date: $d(new Date(page.date)) })
-              }}
-            </ClientOnly>
+          <p
+            class="italic text-muted text-sm blog-date"
+            suppress-hydration-warning
+          >
+            {{ t("blog.post.published_on", { date: $d(new Date(page.date)) }) }}
           </p>
           <p class="italic text-secondary text-sm">
             {{ t("blog.post.reading_time") }}:

@@ -51,7 +51,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - run: npx nuxt build --preset github_pages
+      - run: npx nuxt generate --preset github_pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

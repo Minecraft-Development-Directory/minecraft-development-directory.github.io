@@ -42,11 +42,9 @@ const transitionName = computed(() => {
     </template>
 
     <template #date>
-      <ClientOnly>
-        <span class="blog-date">
-          {{ formatDate(post) }}
-        </span>
-      </ClientOnly>
+      <span class="blog-date">
+        {{ formatDate(post) }}
+      </span>
     </template>
 
     <template v-if="post.draft" #badge>
