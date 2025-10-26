@@ -1,6 +1,8 @@
 export default defineAppConfig({
   github: {
     url: "https://github.com/Minecraft-Development-Directory/minecraft-development-directory.github.io",
+    branch: "main",
+    rootDir: null,
   },
   header: {
     title: "Minecraft Development Directory",
@@ -11,5 +13,11 @@ export default defineAppConfig({
       "A comprehensive directory for Minecraft development resources.",
   },
 
-  ui: {},
+  ui: {
+    main: {
+      base: "min-h-[calc(100vh-var(--ui-header-height))]",
+    },
+  },
+
+  toc: {},
 });

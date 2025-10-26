@@ -1,6 +1,10 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
 @import "@nuxt/ui";
 @import "./colors.css";
+
+@source "../../../content/**/*";
 
 @theme static {
   --font-sans: "Public Sans", sans-serif;
@@ -45,5 +49,14 @@
   --ui-container: var(--container-7xl);
 
   /* Header */
-  --ui-header-height: var(--spacing-16);
+  --ui-header-height: --spacing(16);
+}
+
+html,
+body {
+  @apply bg-default scroll-smooth dark:scheme-dark;
+}
+
+@view-transition {
+  navigate: auto;
 }

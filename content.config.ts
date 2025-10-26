@@ -81,15 +81,22 @@ for (const locale of locales) {
       community: PageSection,
     }),
   });
-
-  collections[`blog_${code}`] = defineCollection({
-    type: "page",
-    source: {
-      cwd,
-      include: `${code}/blog/**/*`,
-      prefix: `/${code}/blog`,
-    },
-  });
 }
+
+collections[`blog`] = defineCollection({
+  type: "page",
+  source: {
+    cwd,
+    include: `blog/**/*`,
+    prefix: `/blog`,
+    exclude: ["**/.navigation.yml"],
+  },
+  schema: Page.extend({
+    draft: z.boolean().default(false),
+    date: z.string().refine((date) => !isNaN(Date.parse(date)), {
+      message: "Invalid date format",
+    }),
+  }),
+});
 
 export default defineContentConfig({ collections });

@@ -7,15 +7,16 @@ const { resolve } = createResolver(import.meta.url);
 export default defineNuxtConfig({
   modules: [
     resolve("./modules/config"),
-    "@nuxt/content",
     "@nuxt/eslint",
     "@nuxt/image",
     "@nuxt/scripts",
     "@nuxt/ui",
+    "@nuxt/content",
     "@nuxtjs/i18n",
     "@vueuse/nuxt",
     "motion-v/nuxt",
     "nuxt-site-config",
+    "nuxt-og-image",
   ],
   $development: {
     site: {
@@ -30,12 +31,6 @@ export default defineNuxtConfig({
 
   devtools: {
     enabled: true,
-  },
-
-  app: {
-    rootAttrs: {
-      class: "bg-default",
-    },
   },
 
   css: ["~/assets/css/main.css"],
@@ -61,6 +56,8 @@ export default defineNuxtConfig({
             "shell",
           ],
         },
+
+        remarkPlugins: { "remark-reading-time": {} },
       },
     },
   },
@@ -83,6 +80,7 @@ export default defineNuxtConfig({
         externalRelAttribute: "noopener",
       },
     },
+    viewTransition: true,
   },
 
   compatibilityDate: "2025-07-15",

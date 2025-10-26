@@ -13,7 +13,12 @@ const { links } = useFooter();
         target="_blank"
         class="text-sm text-muted"
       >
-        Published under <span class="text-highlighted">MIT License</span>
+        Published under
+        <span
+          class="text-highlighted border-b border-dashed border-[var(--ui-text-dimmed)] hover:border-solid hover:border-[currentColor] transition-colors duration-100"
+        >
+          MIT License
+        </span>
       </NuxtLink>
     </template>
 

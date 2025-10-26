@@ -9,12 +9,24 @@ export const useMddI18n = () => {
       ?.filteredLocales || [];
 
   const _switchLocalePath = useSwitchLocalePath();
+  const localePath = useLocalePath();
+
+  const localizeLink = <T extends { to?: string }>(link: T) => {
+    if (link.to) {
+      return {
+        ...link,
+        to: localePath(link.to),
+      };
+    }
+    return link;
+  };
 
   return {
     locale,
     locales: filteredLocales,
     t,
-    localePath: useLocalePath(),
+    localePath,
+    localizeLink,
     switchLocalePath: (localeCode: string) =>
       _switchLocalePath(localeCode as Parameters<typeof _switchLocalePath>[0]),
   };

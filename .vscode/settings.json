@@ -41,18 +41,34 @@
     "activityBarBadge.foreground": "#ffffff",
     "activityBarBadge.background": "#dd2c44"
   },
-  "python.analysis.autoIndent": true,
-  "python.analysis.indexing": true,
-  "python.analysis.diagnosticMode": "workspace",
-  "python.languageServer": "Pylance",
-  "python.analysis.languageServerMode": "full",
-  "vsintellicode.python.completionsEnabled": true,
-  "python.analysis.packageIndexDepths": [
-    {
-      "name": "django",
-      "depth": 4,
-      "includeAllSymbols": true
-    }
+  "tailwindCSS.emmetCompletions": true,
+
+  // Required for the extension
+  "mdc.enableFormatting": true,
+  // Recommended (for `mdc` and `md`, depending on your usage)
+  "[mdc]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.formatOnPaste": true
+  },
+  "files.associations": {
+    "*.page-template": "vue",
+    "*.layout-template": "vue",
+    "*.vue": "vue",
+    "*.css": "tailwindcss"
+  },
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "vue": "html"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "tailwindCSS.classAttributes": ["class", "ui"],
+  "tailwindCSS.experimental.classRegex": [
+    ["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "tailwindCSS.emmetCompletions": true
+  "i18n-ally.localesPaths": ["i18n", "i18n/locales"],
+  "i18n-ally.keystyle": "nested"
 }

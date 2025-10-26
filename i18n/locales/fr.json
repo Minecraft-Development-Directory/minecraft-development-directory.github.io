@@ -6,6 +6,12 @@
       "description": "Nous sommes désolés, mais la page que vous cherchez n'existe pas."
     }
   },
+  "header": {
+    "color-picker": {
+      "button": "Sélecteur de couleur",
+      "title": "Thème"
+    }
+  },
   "docs": {
     "copy": {
       "page": "Copier la page",
@@ -16,5 +22,15 @@
     "toc": "Sur cette page",
     "report": "Signaler un problème",
     "edit": "Éditer cette page"
+  },
+  "blog": {
+    "title": "Articles de blog",
+    "read_more": "Lire la suite",
+    "no_posts": "Aucun article de blog trouvé.",
+    "post": {
+      "headline": "Blog",
+      "reading_time": "Temps de lecture",
+      "minutes": "0 minutes | 1 minute | {n} minutes"
+    }
   }
 }

@@ -2,6 +2,7 @@
 import type { NuxtError } from "#app";
 import type { PageCollections } from "@nuxt/content";
 import * as nuxtUiLocales from "@nuxt/ui/locale";
+import { makeCollectionName } from "~~/utils/collections";
 
 const props = defineProps<{
   error: NuxtError;
@@ -47,7 +48,9 @@ onMounted(() => {
   }
 });
 
-const collectionName = computed(() => `docs_${locale.value}`);
+const collectionName = computed(() =>
+  makeCollectionName(route.path, locale.value)
+);
 
 const { data: navigation } = await useAsyncData(
   `navigation_${collectionName.value}`,
@@ -86,13 +89,19 @@ provide("navigation", rootNavigation);
   <UApp>
     <NuxtLoadingIndicator color="var(--ui-primary)" :height="2" />
 
-    <div :class="[route.path.startsWith('/docs/') && 'root']">
+    <div
+      class="min-h-screen flex flex-col"
+      :class="[route.path.startsWith('/docs/') && 'root']"
+    >
       <AppBanner />
 
       <Header />
 
-      <NuxtLayout>
-        <UError :error="localizedError" />
+      <NuxtLayout class="justify-center flex-1 flex flex-col">
+        <UError
+          :error="localizedError"
+          :ui="{ statusCode: 'sm:text-4xl font-bold' }"
+        />
       </NuxtLayout>
 
       <AppFooter />
