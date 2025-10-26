@@ -7,11 +7,11 @@ const { resolve } = createResolver(import.meta.url);
 export default defineNuxtConfig({
   modules: [
     resolve("./modules/config"),
-    "@nuxt/content",
     "@nuxt/eslint",
     "@nuxt/image",
     "@nuxt/scripts",
     "@nuxt/ui",
+    "@nuxt/content",
     "@nuxtjs/i18n",
     "@vueuse/nuxt",
     "motion-v/nuxt",

@@ -18,8 +18,6 @@ const transitionName = computed(() => {
     summary: `--blog-summary-${id}`,
   };
 });
-
-console.log(post);
 </script>
 
 <template>

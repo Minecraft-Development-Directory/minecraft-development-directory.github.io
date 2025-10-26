@@ -58,6 +58,10 @@
     "*.vue": "vue",
     "*.css": "tailwindcss"
   },
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "vue": "html"
+  },
   "editor.quickSuggestions": {
     "strings": "on"
   },

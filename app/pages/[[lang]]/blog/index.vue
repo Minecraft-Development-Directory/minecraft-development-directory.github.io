@@ -6,9 +6,10 @@ definePageMeta({
   layout: "blog",
 });
 
-const { t } = useMddI18n();
+const { t, localizeLink } = useMddI18n();
 const route = useRoute();
 const router = useRouter();
+const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
 
 const pageSize = 10;
 const currentPage = ref(Number(route.query.page) || 1);
@@ -62,57 +63,64 @@ const postsByYear = computed(() => {
   return Array.from(map.entries()).sort((a, b) => b[0].localeCompare(a[0]));
 });
 
+const { findBreadcrumb } = useNavigation(navigation!);
+const breadcrumb = computed(() => findBreadcrumb("/blog"));
+
 function goToPage(page: number) {
   router.push({ query: { ...route.query, page } });
-  //window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
 }
 </script>
 
 <template>
-  <div class="container mx-auto py-8 flex-1">
-    <h1 class="text-3xl font-bold mb-6">
-      {{ t("blog.title", "Blog Posts") }}
-    </h1>
+  <UPage>
+    <UPageHeader :title="t('blog.title', 'Blog Posts')">
+      <template #headline>
+        <UBreadcrumb :items="breadcrumb.map(localizeLink)" />
+      </template>
+    </UPageHeader>
 
-    <div v-if="!posts || Object.keys(posts).length === 0" class="text-muted">
-      {{ t("blog.no_posts", "No posts found.") }}
-    </div>
-    <div v-else>
-      <section
-        v-for="[year, yearPosts] in postsByYear"
-        :key="year"
-        class="pb-6 last:pb-8 border-t border-default pt-6 grid grid-cols-1 lg:grid-cols-[--spacing(48)_auto]"
-      >
-        <div>
-          <h3
-            class="text-3xl font-semibold text-secondary pb-4 mb-4 text-center sticky top-20"
-          >
-            <span class="sr-only">Posts for the year</span>
-            {{ year }}
-          </h3>
-        </div>
-
-        <div class="flex flex-col gap-6">
-          <UBlogPosts orientation="vertical">
-            <BlogPostCard
-              v-for="post in yearPosts"
-              :key="post.stem"
-              :post="post"
-            />
-          </UBlogPosts>
-        </div>
-      </section>
-
-      <div
-        v-if="totalPages > 1"
-        class="flex justify-center border-t border-default pt-4"
-      >
-        <UPagination
-          :model-value="currentPage"
-          :total="totalPosts"
-          @update:page="goToPage"
-        />
+    <UPageBody>
+      <div v-if="!posts || Object.keys(posts).length === 0" class="text-muted">
+        {{ t("blog.no_posts") }}
       </div>
-    </div>
-  </div>
+      <div v-else>
+        <section
+          v-for="[year, yearPosts] in postsByYear"
+          :key="year"
+          class="pb-6 last:pb-8 not-first:border-t border-default pt-6 grid grid-cols-1 lg:grid-cols-[--spacing(48)_auto]"
+        >
+          <div>
+            <h3
+              class="text-3xl font-semibold text-secondary pb-4 mb-4 text-center sticky top-20"
+            >
+              <span class="sr-only">Posts for the year</span>
+              {{ year }}
+            </h3>
+          </div>
+
+          <div class="flex flex-col gap-6">
+            <UBlogPosts orientation="vertical">
+              <BlogPostCard
+                v-for="post in yearPosts"
+                :key="post.stem"
+                :post="post"
+              />
+            </UBlogPosts>
+          </div>
+        </section>
+
+        <div
+          v-if="totalPages > 1"
+          class="flex justify-center border-t border-default pt-4"
+        >
+          <UPagination
+            :model-value="currentPage"
+            :total="totalPosts"
+            @update:page="goToPage"
+          />
+        </div>
+      </div>
+    </UPageBody>
+  </UPage>
 </template>

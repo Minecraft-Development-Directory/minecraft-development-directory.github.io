@@ -21,14 +21,17 @@
     "links": "Community",
     "toc": "On this page",
     "report": "Report an issue",
-    "edit": "Edit this page"
+    "edit": "Edit this page",
+    "star_repo": "Star on GitHub"
   },
   "blog": {
     "title": "Blog Posts",
     "read_more": "Read more",
     "no_posts": "No blog posts found.",
     "post": {
-      "headline": "Blog"
+      "headline": "Blog",
+      "reading_time": "Reading time",
+      "minutes": "0 minutes | 1 minute | {n} minutes"
     }
   }
 }

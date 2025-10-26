@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { kebabCase } from "scule";
 import { withLeadingSlash } from "ufo";
 import type { BlogCollectionItem, ContentNavigationItem } from "@nuxt/content";
 import { addPrerenderPath } from "../../../../utils/prerender";
@@ -41,30 +42,10 @@ useSeoMeta({
 });
 
 const { findBreadcrumb } = useNavigation(navigation!);
-
 const breadcrumb = computed(() => findBreadcrumb(page.value?.path as string));
 
 defineOgImageComponent("blog", {
   headline: breadcrumb.value[0],
-});
-
-const github = computed(() => (appConfig.github ? appConfig.github : null));
-
-const editLink = computed(() => {
-  if (!github.value) {
-    return;
-  }
-
-  return [
-    github.value.url,
-    "edit",
-    github.value.branch,
-    github.value.rootDir,
-    "content",
-    `${page.value?.stem}.${page.value?.extension}`,
-  ]
-    .filter(Boolean)
-    .join("/");
 });
 
 const transitionName = computed(() => {
@@ -74,10 +55,24 @@ const transitionName = computed(() => {
     summary: `--blog-summary-${id}`,
   };
 });
+
+interface Reading {
+  minutes: number;
+  words: number;
+  time: string;
+}
+
+const readingTime = computed(() => {
+  const time = page.value?.meta.readingTime as Reading | undefined;
+  if (!time) return 0;
+
+  return Math.ceil(time.minutes);
+});
 </script>
 
 <template>
   <UPage v-if="page">
+    <!-- Reading Progress Bar -->
     <div
       class="reading-progress fixed z-60 left-0 top-0 w-full h-1 origin-[0_50%] bg-primary animate-[grow-progress_auto_linear]"
     />
@@ -95,7 +90,14 @@ const transitionName = computed(() => {
       </template>
 
       <template #description>
-        <span class="blog-summary">{{ page.description }}</span>
+        <span class="blog-summary">
+          <MDC
+            v-if="page.description"
+            :value="page.description"
+            unwrap="p"
+            :cache-key="`${kebabCase(route.path) - description}`"
+          />
+        </span>
       </template>
 
       <template #headline>
@@ -112,6 +114,15 @@ const transitionName = computed(() => {
 
         <PageHeaderLinks />
       </template>
+
+      <template #default>
+        <div class="pt-4 flex flex-row gap-4 justify-end">
+          <p class="italic text-secondary text-sm">
+            {{ t("blog.post.reading_time") }}:
+            {{ t("blog.post.minutes", readingTime) }}
+          </p>
+        </div>
+      </template>
     </UPageHeader>
 
     <UPageBody>
@@ -121,32 +132,6 @@ const transitionName = computed(() => {
           :value="page"
           class="flex-1 animate-in fade-in"
         />
-
-        <USeparator>
-          <div v-if="github" class="flex items-center gap-2 text-sm text-muted">
-            <UButton
-              variant="link"
-              color="neutral"
-              :to="editLink"
-              target="_blank"
-              icon="i-lucide-pen"
-              :ui="{ leadingIcon: 'size-4' }"
-            >
-              {{ t("docs.edit") }}
-            </UButton>
-            <span>{{ t("common.or") }}</span>
-            <UButton
-              variant="link"
-              color="neutral"
-              :to="`${github.url}/issues/new/choose`"
-              target="_blank"
-              icon="i-lucide-alert-circle"
-              :ui="{ leadingIcon: 'size-4' }"
-            >
-              {{ t("docs.report") }}
-            </UButton>
-          </div>
-        </USeparator>
       </div>
     </UPageBody>
 
@@ -157,7 +142,7 @@ const transitionName = computed(() => {
         :links="page.body?.toc?.links"
       >
         <template #bottom>
-          <AsideRightBottom />
+          <BlogAsideRightBottom :page="page" />
         </template>
       </UContentToc>
     </template>

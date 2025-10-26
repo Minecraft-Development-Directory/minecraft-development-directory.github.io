@@ -4,6 +4,8 @@
 @import "@nuxt/ui";
 @import "./colors.css";
 
+@source "../../../content/**/*";
+
 @theme static {
   --font-sans: "Public Sans", sans-serif;
   --ui-container: 90rem;
