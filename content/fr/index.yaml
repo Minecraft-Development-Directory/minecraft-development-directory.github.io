@@ -10,6 +10,7 @@ hero:
     - label: Explorer les Tutoriels
       # url: /guides/tutorials
       icon: i-lucide-book
+      variant: subtle
 
   features:
     - title: Tutoriels Complets
