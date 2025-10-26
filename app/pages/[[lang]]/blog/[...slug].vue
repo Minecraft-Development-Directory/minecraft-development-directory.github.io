@@ -45,7 +45,7 @@ const { findBreadcrumb } = useNavigation(navigation!);
 const breadcrumb = computed(() => findBreadcrumb(page.value?.path as string));
 
 defineOgImageComponent("blog", {
-  headline: breadcrumb.value[0],
+  headline: (breadcrumb.value && breadcrumb.value.length > 0 ? breadcrumb.value[0] : ""),
 });
 
 const transitionName = computed(() => {
