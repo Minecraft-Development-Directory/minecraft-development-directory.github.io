@@ -66,10 +66,22 @@ const postsByYear = computed(() => {
 const { findBreadcrumb } = useNavigation(navigation!);
 const breadcrumb = computed(() => findBreadcrumb("/blog"));
 
+const headline = computed(() =>
+  breadcrumb.value && breadcrumb.value.length > 0
+    ? breadcrumb.value[0].label
+    : undefined
+);
+
 function goToPage(page: number) {
   router.push({ query: { ...route.query, page } });
   window.scrollTo(0, 0);
 }
+
+defineOgImageComponent("Image", {
+  title: t("blog.title"),
+  description: t("blog.description"),
+  headline: headline.value,
+});
 </script>
 
 <template>

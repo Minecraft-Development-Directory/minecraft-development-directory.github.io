@@ -25,6 +25,7 @@
   },
   "blog": {
     "title": "Articles de blog",
+    "description": "Dernières nouvelles et mises à jour",
     "read_more": "Lire la suite",
     "no_posts": "Aucun article de blog trouvé.",
     "post": {

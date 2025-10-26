@@ -26,6 +26,7 @@
   },
   "blog": {
     "title": "Blog Posts",
+    "description": "Latest news and updates",
     "read_more": "Read more",
     "no_posts": "No blog posts found.",
     "post": {

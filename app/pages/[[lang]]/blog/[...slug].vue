@@ -44,8 +44,16 @@ useSeoMeta({
 const { findBreadcrumb } = useNavigation(navigation!);
 const breadcrumb = computed(() => findBreadcrumb(page.value?.path as string));
 
-defineOgImageComponent("blog", {
-  headline: (breadcrumb.value && breadcrumb.value.length > 0 ? breadcrumb.value[0] : ""),
+const headline = computed(() =>
+  breadcrumb.value && breadcrumb.value.length > 0
+    ? breadcrumb.value[0].label
+    : undefined
+);
+
+defineOgImageComponent("Image", {
+  title: page.value.title,
+  description: page.value.description,
+  headline: headline.value,
 });
 
 const transitionName = computed(() => {
