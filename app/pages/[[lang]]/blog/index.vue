@@ -6,7 +6,7 @@ definePageMeta({
   layout: "blog",
 });
 
-const { t, localizeLink } = useMddI18n();
+const { t } = useMddI18n();
 const route = useRoute();
 const router = useRouter();
 const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
@@ -63,14 +63,11 @@ const postsByYear = computed(() => {
   return Array.from(map.entries()).sort((a, b) => b[0].localeCompare(a[0]));
 });
 
-const { findBreadcrumb } = useNavigation(navigation!);
-const breadcrumb = computed(() => findBreadcrumb("/blog"));
-
-const headline = computed(() =>
-  breadcrumb.value && breadcrumb.value.length > 0
-    ? breadcrumb.value[0].label
-    : undefined
+const blogNav = computed(() =>
+  navigation?.value.find((item) => item.path.startsWith("/blog"))
 );
+
+const headline = computed(() => blogNav.value?.title);
 
 function goToPage(page: number) {
   router.push({ query: { ...route.query, page } });
@@ -86,9 +83,11 @@ defineOgImageComponent("Image", {
 
 <template>
   <UPage>
-    <UPageHeader :title="t('blog.title', 'Blog Posts')">
+    <UPageHeader :title="t('blog.title')" :headline="headline">
       <template #headline>
-        <UBreadcrumb :items="breadcrumb.map(localizeLink)" />
+        <NuxtLinkLocale :to="blogNav?.path">
+          {{ blogNav?.title }}
+        </NuxtLinkLocale>
       </template>
     </UPageHeader>
 

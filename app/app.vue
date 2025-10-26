@@ -1,16 +1,8 @@
 <script setup lang="ts">
 import { withoutTrailingSlash } from "ufo";
-import * as nuxtUiLocales from "@nuxt/ui/locale";
 
 const route = useRoute();
-const { locale, locales, switchLocalePath } = useMddI18n();
-
-const lang = computed(
-  () => nuxtUiLocales[locale.value as keyof typeof nuxtUiLocales]?.code || "en"
-);
-const dir = computed(
-  () => nuxtUiLocales[locale.value as keyof typeof nuxtUiLocales]?.dir || "ltr"
-);
+const { locale } = useMddI18n();
 
 useHead({
   meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
@@ -21,23 +13,11 @@ useHead({
       href: `https://minecraft-development-directory.github.io${withoutTrailingSlash(route.path)}`,
     },
   ],
-  htmlAttrs: {
-    lang,
-    dir,
-  },
 });
 
 useSeoMeta({
   ogSiteName: "Minecraft Development Directory",
   twitterCard: "summary_large_image",
-});
-
-const defaultLocale = useRuntimeConfig().public.i18n.defaultLocale;
-onMounted(() => {
-  const currentLocale = route.path.split("/")[1];
-  if (!locales.some((locale) => locale.code === currentLocale)) {
-    return navigateTo(switchLocalePath(defaultLocale) as string);
-  }
 });
 
 const { data: navigation } = await useAsyncData(

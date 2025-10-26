@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { locales, locale, switchLocalePath } = useMddI18n();
+const { locales, locale } = useMddI18n();
 </script>
 
 <template>
@@ -22,9 +22,9 @@ const { locales, locale, switchLocalePath } = useMddI18n();
     <template #content>
       <ul class="flex flex-col">
         <li v-for="localeItem in locales" :key="localeItem.code">
-          <NuxtLink
+          <SwitchLocalePathLink
             class="flex py-1.5 px-2 gap-1 hover:bg-muted rounded-md"
-            :to="switchLocalePath(localeItem.code)"
+            :locale="localeItem.code"
             :class="{ 'text-primary': localeItem.code === locale }"
             :aria-label="localeItem.name"
           >
@@ -37,7 +37,7 @@ const { locales, locale, switchLocalePath } = useMddI18n();
             <span class="text-sm">
               {{ localeItem.name }}
             </span>
-          </NuxtLink>
+          </SwitchLocalePathLink>
         </li>
       </ul>
     </template>
