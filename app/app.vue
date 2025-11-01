@@ -80,7 +80,7 @@ const isRoot = computed(() => route.path.startsWith(`/${locale.value}/guides`));
   </UApp>
 </template>
 
-<style style="css">
+<style lang="css">
 @reference "./assets/css/main.css";
 
 @variant lg {

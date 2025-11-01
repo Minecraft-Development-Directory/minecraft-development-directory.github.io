@@ -33,7 +33,7 @@
     "config": {
       "button": "Choose game config",
       "mod-loaders": {
-        "title": "Mods Loader"
+        "title": "Mod Loaders"
       },
       "game-versions": {
         "title": "Game Version"
