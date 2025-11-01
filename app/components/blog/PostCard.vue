@@ -55,9 +55,9 @@ const transitionName = computed(() => {
       <div
         class="flex flex-col gap-4 items-end px-4 py-2 border-t border-default"
       >
-        <NuxtLink :to="localePath(post.path)" class="text-primary">
+        <NuxtLinkLocale to="post.path" class="text-primary">
           {{ t("blog.read_more", "Read more") }}
-        </NuxtLink>
+        </NuxtLinkLocale>
       </div>
     </template>
   </UBlogPost>

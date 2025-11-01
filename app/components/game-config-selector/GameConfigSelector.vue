@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 const { t } = useMddI18n();
+const { gameVersion, gameVersions, modLoader, modLoaders } = useGameConfig();
+
+const versions = computed(() => Object.values(gameVersions.value));
 </script>
 
 <template>
@@ -23,7 +26,15 @@ const { t } = useMddI18n();
           {{ t("docs.config.mod-loaders.title") }}
         </legend>
 
-        <div class="grid grid-cols-3 gap-1 -mx-2"></div>
+        <div class="grid grid-cols-3 gap-1 -mx-2">
+          <GameConfigSelectorButton
+            v-for="loader in modLoaders"
+            :key="loader"
+            :label="loader"
+            :selected="modLoader === loader"
+            @click="modLoader = loader"
+          />
+        </div>
       </fieldset>
 
       <fieldset>
@@ -31,7 +42,15 @@ const { t } = useMddI18n();
           {{ t("docs.config.game-versions.title") }}
         </legend>
 
-        <div class="grid grid-cols-3 gap-1 -mx-2"></div>
+        <div class="-mx-2">
+          <USelectMenu
+            v-model="gameVersion"
+            class="w-full"
+            virtualize
+            :items="versions"
+            size="sm"
+          />
+        </div>
       </fieldset>
     </template>
   </UPopover>

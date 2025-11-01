@@ -85,7 +85,7 @@ const isRoot = computed(() => route.path.startsWith(`/${locale.value}/guides`));
 
 @variant lg {
   .root {
-    --ui-header-height: --spacing(24);
+    --ui-header-height: --spacing(28);
   }
 }
 </style>

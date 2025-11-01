@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { pageFeature } from "#build/ui";
-
 const route = useRoute();
 const { locale } = useMddI18n();
 const { data: module } = await useFetch("/api/github/contributors.json");
@@ -67,7 +65,7 @@ useIntersectionObserver(contributorsRef, ([entry]) => {
         >
           <UPageFeature
             v-bind="feature"
-            :to="feature.to ? $localePath(feature.to) : undefined"
+            :to="feature.to ? feature.to : undefined"
             class="opacity-0"
           />
         </Motion>

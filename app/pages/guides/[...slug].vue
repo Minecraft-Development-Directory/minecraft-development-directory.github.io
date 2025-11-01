@@ -7,12 +7,21 @@ const route = useRoute();
 const { locale } = useMddI18n();
 
 const { gameVersion, modLoader } = useGameConfig();
+const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
 
 definePageMeta({
   layout: "guides",
 });
 
 const slug = computed(() => extractSlug(route.params.slug));
+
+if (!slug.value) {
+  // If there is no slug, at all, try to redirect the page
+  const redirectUrl = navigation?.value[0]?.children?.[0]?.path;
+  if (typeof redirectUrl === "string") {
+    await navigateTo(redirectUrl);
+  }
+}
 
 const { data: page } = await useAsyncData(
   `guides-${slug.value}`,
@@ -61,18 +70,10 @@ watch(
   { immediate: true }
 );
 
-const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
-
 const { findBreadcrumb } = useNavigation(navigation!);
 
 const breadcrumb = computed(() => findBreadcrumb(page.value?.path as string));
 //const surround = computed(() => findSurround(page.value?.path as string));
-
-if (!import.meta.prerender) {
-  if (page.value.path === route.path) {
-    navigateTo(`/docs/getting-started`);
-  }
-}
 
 const title = page.value.seo.title
   ? page.value.seo.title

@@ -5,10 +5,10 @@ hero:
   description: Explore tutorials, tools, and resources to create amazing Minecraft mods, plugins, datapacks and more.
   links:
     - label: Get Started
-      # to: guides/getting-started
+      to: /en/guides/getting-started
       icon: i-lucide-rocket
     - label: Explore Tutorials
-      # to: guides/tutorials
+      to: /en/guides/tutorials
       icon: i-lucide-book
       variant: subtle
 

@@ -5,11 +5,6 @@ const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
 
 const route = useRoute();
 const { mobileLinks } = useHeader();
-
-const localizedNavigation = computed(() => {
-  console.log("header-body navigation", navigation?.value);
-  return navigation?.value;
-});
 </script>
 
 <template>
@@ -27,7 +22,7 @@ const localizedNavigation = computed(() => {
     </div>
 
     <UContentNavigation
-      :navigation="localizedNavigation"
+      :navigation="navigation"
       highlight
       :ui="{ linkTrailingBadge: 'font-semibold uppercase' }"
     />

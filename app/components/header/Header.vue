@@ -36,7 +36,14 @@ const { desktopLinks } = useHeader();
       <HeaderBody />
     </template>
 
-    <template v-if="route.path.startsWith($localePath('/guides'))" #bottom>
+    <template
+      v-if="
+        route.path.startsWith(
+          $localePath({ name: 'guides-slug', params: { slug: '' } })
+        )
+      "
+      #bottom
+    >
       <HeaderBottom />
     </template>
   </UHeader>

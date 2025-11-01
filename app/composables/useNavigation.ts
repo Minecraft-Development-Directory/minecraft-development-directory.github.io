@@ -80,10 +80,11 @@ function processNavigationItem(
     );
   }
 
-  const localePath = useLocalePath();
+  const { code } = useLocale();
+
   return {
     ...item,
-    path: localePath(item.path),
+    path: `/${code.value}${item.path}`,
     title: parent?.title ? parent.title : item.title,
     badge: parent?.badge || item.badge,
     class: [item.framework && `${item.framework}-only`].filter(Boolean),
@@ -96,14 +97,12 @@ function processNavigationItem(
 export const useNavigation = (
   navigation: Ref<ContentNavigationItem[] | undefined>
 ) => {
-  const { localePath } = useMddI18n();
-
-  const rootNavigation = computed(
-    () =>
-      navigation.value?.[0]?.children?.map((item) =>
-        processNavigationItem(item)
-      ) as ContentNavigationItem[]
-  );
+  const { code } = useLocale();
+  const rootNavigation = computed(() => {
+    return navigation.value?.[0]?.children?.map((item) =>
+      processNavigationItem(item)
+    ) as ContentNavigationItem[];
+  });
 
   const navigationByCategory = computed(() => {
     const route = useRoute();
@@ -111,7 +110,7 @@ export const useNavigation = (
     const slug = route.params.slug?.[0] as string;
     const children = findPageChildren(
       navigation?.value,
-      localePath(`/guides/${slug}`),
+      `/${code.value}/guides/${slug}`,
       {
         indexAsChild: true,
       }
