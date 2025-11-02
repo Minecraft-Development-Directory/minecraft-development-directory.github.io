@@ -104,6 +104,10 @@ export default defineNuxtConfig({
       failOnError: false,
       crawlLinks: true,
     },
+
+    routeRules: {
+      "/guides": { redirect: "/guides/getting-started", prerender: false },
+    },
   },
 
   vite: {

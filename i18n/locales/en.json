@@ -18,7 +18,8 @@
   },
   "guides": {
     "header": "Guides",
-    "overview": "Overview"
+    "overview": "Overview",
+    "cross-langual-alert": "You are viewing a guide in a different language than your selected language. Some content may not be fully translated."
   },
   "docs": {
     "copy": {

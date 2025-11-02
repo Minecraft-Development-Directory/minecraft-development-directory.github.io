@@ -1,16 +1,16 @@
 import type { ContentNavigationItem } from "@nuxt/content"
 import { findPageBreadcrumb, findPageChildren } from "@nuxt/content/utils"
 import { mapContentNavigation } from "@nuxt/ui/utils/content"
+import type { Locale } from "@intlify/core"
 
 function groupChildrenByCategory(
   items: ContentNavigationItem[],
   slug: string,
+  { t}: { t: (key: string) => string },
 ): ContentNavigationItem[] {
   if (!items.length) {
     return []
   }
-
-  const { t } = useMddI18n()
 
   const groups: ContentNavigationItem[] = []
 
@@ -61,27 +61,31 @@ function groupChildrenByCategory(
   return groups
 }
 
+interface ProcessNavigationItemOptions {
+  parent?: ContentNavigationItem
+  locale: Locale
+}
+
 function processNavigationItem(
   item: ContentNavigationItem,
-  parent?: ContentNavigationItem,
+  options: ProcessNavigationItemOptions,
+
 ): ContentNavigationItem | ContentNavigationItem[] {
   if (item.shadow) {
     return (
-      item.children?.flatMap(child => processNavigationItem(child, item))
+      item.children?.flatMap(child => processNavigationItem(child, { parent: item, locale: options.locale }))
       || []
     )
   }
 
-  const { code } = useLocale()
-
   return {
     ...item,
-    path: `/${code.value}${item.path}`,
-    title: parent?.title ? parent.title : item.title,
-    badge: parent?.badge || item.badge,
+    path: `/${options.locale}${item.path}`,
+    title: options.parent?.title ? options.parent.title : item.title,
+    badge: options.parent?.badge || item.badge,
     class: [item.framework && `${item.framework}-only`].filter(Boolean),
     children: item.children?.length
-      ? item.children?.flatMap(child => processNavigationItem(child))
+      ? item.children?.flatMap(child => processNavigationItem(child, { locale: options.locale }))
       : undefined,
   }
 }
@@ -89,26 +93,26 @@ function processNavigationItem(
 export const useNavigation = (
   navigation: Ref<ContentNavigationItem[] | undefined>,
 ) => {
-  const { code } = useLocale()
+  const { locale, t } = useMddI18n()
+  const route = useRoute()
+
   const rootNavigation = computed(() => {
     return navigation.value?.[0]?.children?.map(item =>
-      processNavigationItem(item),
+      processNavigationItem(item, { locale: locale.value }),
     ) as ContentNavigationItem[]
   })
 
   const navigationByCategory = computed(() => {
-    const route = useRoute()
-
     const slug = route.params.slug?.[0] as string
     const children = findPageChildren(
       navigation?.value,
-      `/${code.value}/guides/${slug}`,
+      `/${locale.value}/guides/${slug}`,
       {
         indexAsChild: true,
       },
     )
 
-    return groupChildrenByCategory(children, slug)
+    return groupChildrenByCategory(children, slug, { t })
   })
 
   function findSurround(
@@ -118,7 +122,7 @@ export const useNavigation = (
       = navigationByCategory.value?.flatMap(item => item?.children) ?? []
 
     const index = flattenNavigation.findIndex(
-      item => item?.path === `/${code.value}${path}`,
+      item => item?.path === `/${locale.value}${path}`,
     )
 
     if (index === -1) {

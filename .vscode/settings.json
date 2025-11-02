@@ -48,5 +48,13 @@
   },
   "[css]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "i18n-ally.extract.ignoredByFiles": {
+    "app/pages/guides/[...slug].vue": [
+      "Image"
+    ],
+    "app/app.vue": [
+      "width=device-width, initial-scale=1"
+    ]
   }
 }

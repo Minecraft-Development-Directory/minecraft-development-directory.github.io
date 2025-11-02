@@ -2,9 +2,10 @@
 import type { ContentNavigationItem } from "@nuxt/content"
 import { kebabCase } from "scule"
 import { extractSlug } from "~~/utils/extractSlug"
+import i18n from "~~/i18n/i18n.config"
 
 const route = useRoute()
-const { locale } = useMddI18n()
+const { locale, t } = useMddI18n()
 
 const { gameVersion, modLoader } = useGameConfig()
 const navigation = inject<Ref<ContentNavigationItem[]>>("navigation")
@@ -14,14 +15,6 @@ definePageMeta({
 })
 
 const slug = computed(() => extractSlug(route.params.slug))
-
-if (!slug.value) {
-  // If there is no slug, at all, try to redirect the page
-  const redirectUrl = navigation?.value[0]?.children?.[0]?.path
-  if (typeof redirectUrl === "string") {
-    throw await navigateTo(redirectUrl)
-  }
-}
 
 const { data: page } = await useAsyncData(
   `guides-${slug.value}`,
@@ -36,9 +29,11 @@ const { data: page } = await useAsyncData(
 
     // Fallback to default locale if not found
     if (!content && locale.value !== "en") {
-      return await queryCollection("guides_en")
+      const fallback_content = await queryCollection("guides_en")
         .path(`/guides${slug.value}`)
         .first()
+
+      return fallback_content
     }
 
     return content
@@ -48,7 +43,7 @@ const { data: page } = await useAsyncData(
 if (!page.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Page not found",
+    statusMessage: t("common.error.title"),
     fatal: true,
   })
 }
@@ -96,6 +91,10 @@ defineOgImageComponent("Image", {
   title: page.value.title,
   description: page.value.description,
 })
+
+const isCrossLangual = computed(() => {
+  return locale.value !== i18n.fallbackLocale
+})
 </script>
 
 <template>
@@ -106,6 +105,13 @@ defineOgImageComponent("Image", {
       </template>
 
       <template #description>
+        <ProseCallout
+          v-if="isCrossLangual"
+          color="warning"
+          icon="i-lucide-triangle-alert"
+        >
+          {{ t('guides.cross-langual-alert') }}
+        </ProseCallout>
         <MDC
           v-if="page.description"
           :value="page.description"
