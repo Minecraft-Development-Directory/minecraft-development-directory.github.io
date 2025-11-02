@@ -4,6 +4,8 @@ import type { ContentNavigationItem } from "@nuxt/content";
 const route = useRoute();
 
 const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
+
+const { navigationByCategory } = useNavigation(navigation!);
 </script>
 
 <template>
@@ -15,7 +17,7 @@ const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
             <UContentNavigation
               :key="route.path"
               :collapsible="false"
-              :navigation="navigation"
+              :navigation="navigationByCategory"
               highlight
               :ui="{
                 linkTrailingBadge: 'font-semibold uppercase',

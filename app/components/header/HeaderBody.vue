@@ -12,15 +12,14 @@ const { mobileLinks } = useHeader();
     orientation="vertical"
     :items="mobileLinks"
     class="-mx-2.5"
-    :ui="{ list: 'flex flex-col gap-2' }"
   />
 
-  <template v-if="route.path.startsWith('/docs/')">
+  <template v-if="route.path.startsWith($localePath('/guides/'))">
     <USeparator type="dashed" class="mt-4 mb-6" />
 
-    <!-- <div class="flex flex-col gap-2 mb-5.5">
-      <FrameworkTabs />
-    </div> -->
+    <div class="flex flex-col gap-2 mb-5.5">
+      <GameConfigSelector />
+    </div>
 
     <UContentNavigation
       :navigation="navigation"

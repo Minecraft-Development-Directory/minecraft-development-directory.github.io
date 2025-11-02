@@ -32,6 +32,7 @@ const description = page.value.seo?.description || page.value.description;
 
 useSeoMeta({
   title,
+  titleTemplate: "%s - Minecraft Development Directory",
   ogTitle: title,
   description,
   ogDescription: description,

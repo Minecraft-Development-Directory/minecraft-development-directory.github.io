@@ -24,27 +24,25 @@ const { data: navigation } = await useAsyncData(
   `navigation_${locale.value}`,
   () =>
     Promise.all([
-      queryCollectionNavigation(`docs_${locale.value}`, ["description"]),
+      queryCollectionNavigation(`guides_${locale.value}`, [
+        "description",
+        "gameVersion",
+        "modLoader",
+      ]),
       queryCollectionNavigation("blog", ["description"]),
     ]),
   {
     server: true,
-    transform: (data) => {
-      const flatData = data.flat();
-
-      return (
-        flatData.find((item) => item.path === `/${locale.value}`)?.children ||
-        flatData
-      );
-    },
+    transform: (data) => data.flat(),
     watch: [locale],
   }
 );
+
 const { data: files } = useLazyAsyncData(
   `search_${locale.value}`,
   () =>
     Promise.all([
-      queryCollectionSearchSections(`docs_${locale.value}`),
+      queryCollectionSearchSections(`guides_${locale.value}`),
       queryCollectionSearchSections("blog"),
     ]),
   {
@@ -54,17 +52,17 @@ const { data: files } = useLazyAsyncData(
   }
 );
 
-provide("navigation", navigation);
+const { rootNavigation } = useNavigation(navigation);
+provide("navigation", rootNavigation);
+
+const isRoot = computed(() => route.path.startsWith(`/${locale.value}/guides`));
 </script>
 
 <template>
   <UApp>
     <NuxtLoadingIndicator :height="2" />
 
-    <div
-      class="min-h-screen flex flex-col"
-      :class="[route.path.startsWith('/docs/') && 'root']"
-    >
+    <div class="min-h-screen flex flex-col" :class="{ root: isRoot }">
       <AppBanner />
 
       <Header />
@@ -81,3 +79,13 @@ provide("navigation", navigation);
     </div>
   </UApp>
 </template>
+
+<style lang="css">
+@reference "./assets/css/main.css";
+
+@variant lg {
+  .root {
+    --ui-header-height: --spacing(28);
+  }
+}
+</style>

@@ -74,6 +74,14 @@ function goToPage(page: number) {
   window.scrollTo(0, 0);
 }
 
+useSeoMeta({
+  titleTemplate: "%s - Minecraft Development Directory",
+  title: t("blog.title"),
+  description: t("blog.description"),
+  ogTitle: `${t("blog.title")} - Minecraft Development Directory`,
+  ogDescription: t("blog.description"),
+});
+
 defineOgImageComponent("Image", {
   title: t("blog.title"),
   description: t("blog.description"),

@@ -2,11 +2,10 @@ import type { DefinedCollection } from "@nuxt/content";
 import { defineContentConfig, defineCollection, z } from "@nuxt/content";
 import { useNuxt } from "@nuxt/kit";
 import type { NuxtI18nOptions } from "@nuxtjs/i18n";
-import { joinURL } from "ufo";
 import { asOgImageCollection } from "nuxt-og-image/content";
+import { MOD_LOADERS, ALL_MINECRAFT_VERSIONS } from "./utils/minecraftData";
 
 const { options } = useNuxt();
-const cwd = joinURL(options.rootDir, "content");
 const locales = options.i18n.locales as Exclude<
   NuxtI18nOptions["locales"],
   undefined
@@ -56,15 +55,18 @@ const collections: Record<string, DefinedCollection> = {};
 for (const locale of locales) {
   const code = typeof locale === "string" ? locale : locale.code;
 
-  collections[`docs_${code}`] = defineCollection(
+  collections[`guides_${code}`] = defineCollection(
     asOgImageCollection({
       type: "page",
       source: {
-        cwd,
-        include: `${code}/guildes/**/*`,
-        prefix: `/${code}`,
+        include: `${code}/guides/**/*`,
+        prefix: `/guides`,
       },
       schema: z.object({
+        gameVersion: z
+          .enum(ALL_MINECRAFT_VERSIONS as [string, ...string[]])
+          .optional(),
+        modLoader: z.enum(MOD_LOADERS).optional(),
         navigation: z.object({
           title: z.string().optional(),
         }),
@@ -75,7 +77,9 @@ for (const locale of locales) {
 
   collections[`index_${code}`] = defineCollection({
     type: "page",
-    source: joinURL(cwd, code, "index.yaml"),
+    source: {
+      include: `${code}/index.{yaml,yml}`,
+    },
     schema: Page.extend({
       hero: PageHero.extend({
         features: z.array(PageFeature),
@@ -90,7 +94,6 @@ collections[`blog`] = defineCollection(
   asOgImageCollection({
     type: "page",
     source: {
-      cwd,
       include: `blog/**/*`,
       prefix: `/blog`,
       exclude: ["**/.navigation.yml"],
