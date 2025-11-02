@@ -19,7 +19,7 @@ if (!slug.value) {
   // If there is no slug, at all, try to redirect the page
   const redirectUrl = navigation?.value[0]?.children?.[0]?.path;
   if (typeof redirectUrl === "string") {
-    await navigateTo(redirectUrl);
+    throw await navigateTo(redirectUrl);
   }
 }
 
@@ -70,10 +70,10 @@ watch(
   { immediate: true }
 );
 
-const { findBreadcrumb } = useNavigation(navigation!);
+const { findBreadcrumb, findSurround } = useNavigation(navigation!);
 
 const breadcrumb = computed(() => findBreadcrumb(page.value?.path as string));
-//const surround = computed(() => findSurround(page.value?.path as string));
+const surround = computed(() => findSurround(page.value?.path as string));
 
 const title = page.value.seo.title
   ? page.value.seo.title
@@ -114,8 +114,8 @@ useSeoMeta({
       <ContentRenderer v-if="page.body" :value="page" />
 
       <!-- Surrounds -->
-      <USeparator v-if="false" />
-      <UContentSurround />
+      <USeparator v-if="surround" />
+      <UContentSurround :surround="surround" />
     </UPageBody>
 
     <template v-if="page.body.toc?.links.length" #right>

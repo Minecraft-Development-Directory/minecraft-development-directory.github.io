@@ -57,17 +57,6 @@ function groupChildrenByCategory(
     groups.push(...withChildren);
   }
 
-  /*for (const category of categories[slug as keyof typeof categories] || []) {
-    if (categorized[category.id]?.length) {
-      groups.push({
-        title: category.title,
-        path: `/docs/${slug}`,
-        class: 'framework' in category ? [`${category.framework}-only`] : undefined,
-        children: categorized[category.id]
-      })
-    }
-  }*/
-
   return groups;
 }
 
@@ -121,6 +110,23 @@ export const useNavigation = (
     return groupChildrenByCategory(children, slug);
   });
 
+  function findSurround(
+    path: string
+  ): [ContentNavigationItem | undefined, ContentNavigationItem | undefined] {
+    const flattenNavigation =
+      navigationByCategory.value?.flatMap((item) => item?.children) ?? [];
+
+    const index = flattenNavigation.findIndex(
+      (item) => item?.path === `/${code.value}${path}`
+    );
+
+    if (index === -1) {
+      return [undefined, undefined];
+    }
+
+    return [flattenNavigation[index - 1], flattenNavigation[index + 1]];
+  }
+
   function findBreadcrumb(path: string) {
     const breadcrumb = findPageBreadcrumb(navigation?.value, path, {
       indexAsChild: true,
@@ -133,5 +139,6 @@ export const useNavigation = (
     rootNavigation,
     navigationByCategory,
     findBreadcrumb,
+    findSurround,
   };
 };
