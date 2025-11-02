@@ -114,6 +114,9 @@ export default defineNuxtConfig({
         dir: resolve("./app/assets/icons"),
       },
     ],
+    serverBundle: {
+      collections: ["lucide", "cib"],
+    },
     clientBundle: {
       scan: true,
       includeCustomCollections: true,
