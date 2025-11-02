@@ -2,10 +2,9 @@
   <li>
     <div
       :class="[
-        'px-2 py-1 gap-2 rounded-md flex items-center select-none',
+        'px-2 py-1 gap-2 rounded-md flex items-center select-none hover:bg-accented transition-colors duration-150 ease-in',
         {
-          'cursor-pointer hover:bg-accented transition-colors duration-150 ease-in':
-            item.type === 'folder',
+          'cursor-pointer': item.type === 'folder',
         },
       ]"
       @click="toggle"
@@ -17,7 +16,14 @@
         :style="{ color: iconData.color }"
       />
 
-      <span>{{ itemName }}</span>
+      <span class="flex-1">{{ itemName }}</span>
+
+      <span
+        v-if="item.comment"
+        class="text-muted italic"
+      >
+        {{ item.comment }}
+      </span>
     </div>
 
     <ul
@@ -35,32 +41,35 @@
 </template>
 
 <script lang="ts">
-interface TreeItemFile {
-  name: string;
-  type: "file";
+interface TreeItemBase {
+  name: string
+  type: string
+  comment?: string
+}
+interface TreeItemFile extends TreeItemBase {
+  type: "file"
 }
 
-interface TreeItemFolder {
-  name: string;
-  type: "folder";
-  children: TreeItem[];
+interface TreeItemFolder extends TreeItemBase {
+  type: "folder"
+  children: TreeItem[]
 }
 
-export type TreeItem = TreeItemFile | TreeItemFolder;
+export type TreeItem = TreeItemFile | TreeItemFolder
 
 interface IconData {
-  icon: string;
-  color?: string;
+  icon: string
+  color?: string
 }
 
 interface IconMap {
   folder: {
-    open: IconData;
-    closed: IconData;
-  };
+    open: IconData
+    closed: IconData
+  }
   file: {
-    [key: string]: IconData;
-  };
+    [key: string]: IconData
+  }
 }
 
 const ICON_MAP = Object.freeze({
@@ -79,48 +88,49 @@ const ICON_MAP = Object.freeze({
     xml: { icon: "i-lucide-code-xml", color: "var(--color-flexoki-or)" },
     plaintext: { icon: "i-lucide-file-text" },
   },
-} satisfies IconMap);
+} satisfies IconMap)
 
-type IconType = typeof ICON_MAP.file;
+type IconType = typeof ICON_MAP.file
 function isIconType(key: string): key is keyof IconType {
-  return key in ICON_MAP.file;
+  return key in ICON_MAP.file
 }
 </script>
 
 <script lang="ts" setup>
 // Define the component's props
-const props = defineProps<{ item: TreeItem }>();
+const props = defineProps<{ item: TreeItem }>()
 
 // State
-const isOpen = ref(true); // Controls the expansion state
+const isOpen = ref(true) // Controls the expansion state
 
 const itemName = computed(() =>
-  props.item.type === "folder" ? props.item.name + "/" : props.item.name
-);
+  props.item.type === "folder" ? props.item.name + "/" : props.item.name,
+)
 
 const iconData = computed<IconData>(() => {
   // Determine the correct Font Awesome icon
   if (props.item.type === "folder") {
     // Folder icons: open or closed
-    return isOpen.value ? ICON_MAP.folder.open : ICON_MAP.folder.closed;
-  } else {
+    return isOpen.value ? ICON_MAP.folder.open : ICON_MAP.folder.closed
+  }
+  else {
     // File icons: determined by extension or type
 
     // Extract file extension (without dot)
-    const fileExt =
-      props.item.name.split(".").pop()?.toLowerCase() || "plaintext";
+    const fileExt
+      = props.item.name.split(".").pop()?.toLowerCase() || "plaintext"
 
     // Return the corresponding icon data or default to plaintext
     return isIconType(fileExt)
       ? ICON_MAP.file[fileExt]
-      : ICON_MAP.file.plaintext;
+      : ICON_MAP.file.plaintext
   }
-});
+})
 
 // Methods
 function toggle() {
   if (props.item.type === "folder") {
-    isOpen.value = !isOpen.value;
+    isOpen.value = !isOpen.value
   }
 }
 </script>

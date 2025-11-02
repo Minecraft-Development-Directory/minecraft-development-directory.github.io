@@ -1,24 +1,24 @@
 <script lang="ts" setup>
-import type { BlogCollectionItem } from "@nuxt/content";
+import type { BlogCollectionItem } from "@nuxt/content"
 
 const { post } = defineProps<{
-  post: BlogCollectionItem;
-}>();
+  post: BlogCollectionItem
+}>()
 
-const { t, localePath } = useMddI18n();
+const { t, localePath } = useMddI18n()
 
 function formatDate(post: { date: string }) {
-  return $d(new Date(post.date));
+  return $d(new Date(post.date))
 }
 
 const transitionName = computed(() => {
-  const id = post.stem.replace("/", "-");
+  const id = post.stem.replace("/", "-")
   return {
     title: `--blog-title-${id}`,
     summary: `--blog-summary-${id}`,
     date: `--blog-date-${id}`,
-  };
-});
+  }
+})
 </script>
 
 <template>
@@ -47,15 +47,26 @@ const transitionName = computed(() => {
       </span>
     </template>
 
-    <template v-if="post.draft" #badge>
-      <UBadge variant="subtle" color="warning">Draft</UBadge>
+    <template
+      v-if="post.draft"
+      #badge
+    >
+      <UBadge
+        variant="subtle"
+        color="warning"
+      >
+        Draft
+      </UBadge>
     </template>
 
     <template #footer>
       <div
         class="flex flex-col gap-4 items-end px-4 py-2 border-t border-default"
       >
-        <NuxtLinkLocale :to="post.path" class="text-primary">
+        <NuxtLinkLocale
+          :to="post.path"
+          class="text-primary"
+        >
           {{ t("blog.read_more", "Read more") }}
         </NuxtLinkLocale>
       </div>

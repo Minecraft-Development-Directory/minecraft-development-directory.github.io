@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { locales, locale, t } = useMddI18n();
+const { locales, locale, t } = useMddI18n()
 </script>
 
 <template>
@@ -25,7 +25,10 @@ const { locales, locale, t } = useMddI18n();
           {{ t("header.lang-picker.title") }}
         </legend>
         <ul class="flex flex-col">
-          <li v-for="localeItem in locales" :key="localeItem.code">
+          <li
+            v-for="localeItem in locales"
+            :key="localeItem.code"
+          >
             <SwitchLocalePathLink
               class="flex py-1.5 px-2 gap-1 hover:bg-muted rounded-md"
               :locale="localeItem.code"

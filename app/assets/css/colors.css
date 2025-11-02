@@ -119,100 +119,28 @@
   --color-flexoki-magenta-900: oklch(0.26 0.06 346);
   --color-flexoki-magenta-950: oklch(0.21 0.03 344);
 
-  --color-flexoki-bg: light-dark(
-    var(--color-flexoki-paper),
-    var(--color-flexoki-black)
-  );
-  --color-flexoki-bg-2: light-dark(
-    var(--color-flexoki-base-50),
-    var(--color-flexoki-base-950)
-  );
-  --color-flexoki-tx: light-dark(
-    var(--color-flexoki-black),
-    var(--color-flexoki-base-200)
-  );
-  --color-flexoki-tx-2: light-dark(
-    var(--color-flexoki-base-600),
-    var(--color-flexoki-base-500)
-  );
-  --color-flexoki-tx-3: light-dark(
-    var(--color-flexoki-base-300),
-    var(--color-flexoki-base-700)
-  );
-  --color-flexoki-ui: light-dark(
-    var(--color-flexoki-base-100),
-    var(--color-flexoki-base-900)
-  );
-  --color-flexoki-ui-2: light-dark(
-    var(--color-flexoki-base-150),
-    var(--color-flexoki-base-850)
-  );
-  --color-flexoki-ui-3: light-dark(
-    var(--color-flexoki-base-200),
-    var(--color-flexoki-base-800)
-  );
-  --color-flexoki-re: light-dark(
-    var(--color-flexoki-red-600),
-    var(--color-flexoki-red-400)
-  );
-  --color-flexoki-or: light-dark(
-    var(--color-flexoki-orange-600),
-    var(--color-flexoki-orange-400)
-  );
-  --color-flexoki-ye: light-dark(
-    var(--color-flexoki-yellow-600),
-    var(--color-flexoki-yellow-400)
-  );
-  --color-flexoki-gr: light-dark(
-    var(--color-flexoki-green-600),
-    var(--color-flexoki-green-400)
-  );
-  --color-flexoki-cy: light-dark(
-    var(--color-flexoki-cyan-600),
-    var(--color-flexoki-cyan-400)
-  );
-  --color-flexoki-bl: light-dark(
-    var(--color-flexoki-blue-600),
-    var(--color-flexoki-blue-400)
-  );
-  --color-flexoki-pu: light-dark(
-    var(--color-flexoki-purple-600),
-    var(--color-flexoki-purple-400)
-  );
-  --color-flexoki-ma: light-dark(
-    var(--color-flexoki-magenta-600),
-    var(--color-flexoki-magenta-400)
-  );
-  --color-flexoki-re-2: light-dark(
-    var(--color-flexoki-red-400),
-    var(--color-flexoki-red-600)
-  );
-  --color-flexoki-or-2: light-dark(
-    var(--color-flexoki-orange-400),
-    var(--color-flexoki-orange-600)
-  );
-  --color-flexoki-ye-2: light-dark(
-    var(--color-flexoki-yellow-400),
-    var(--color-flexoki-yellow-600)
-  );
-  --color-flexoki-gr-2: light-dark(
-    var(--color-flexoki-green-400),
-    var(--color-flexoki-green-600)
-  );
-  --color-flexoki-cy-2: light-dark(
-    var(--color-flexoki-cyan-400),
-    var(--color-flexoki-cyan-600)
-  );
-  --color-flexoki-bl-2: light-dark(
-    var(--color-flexoki-blue-400),
-    var(--color-flexoki-blue-600)
-  );
-  --color-flexoki-pu-2: light-dark(
-    var(--color-flexoki-purple-400),
-    var(--color-flexoki-purple-600)
-  );
-  --color-flexoki-ma-2: light-dark(
-    var(--color-flexoki-magenta-400),
-    var(--color-flexoki-magenta-600)
-  );
+  --color-flexoki-bg: light-dark(var(--color-flexoki-paper), var(--color-flexoki-black));
+  --color-flexoki-bg-2: light-dark(var(--color-flexoki-base-50), var(--color-flexoki-base-950));
+  --color-flexoki-tx: light-dark(var(--color-flexoki-black), var(--color-flexoki-base-200));
+  --color-flexoki-tx-2: light-dark(var(--color-flexoki-base-600), var(--color-flexoki-base-500));
+  --color-flexoki-tx-3: light-dark(var(--color-flexoki-base-300), var(--color-flexoki-base-700));
+  --color-flexoki-ui: light-dark(var(--color-flexoki-base-100), var(--color-flexoki-base-900));
+  --color-flexoki-ui-2: light-dark(var(--color-flexoki-base-150), var(--color-flexoki-base-850));
+  --color-flexoki-ui-3: light-dark(var(--color-flexoki-base-200), var(--color-flexoki-base-800));
+  --color-flexoki-re: light-dark(var(--color-flexoki-red-600), var(--color-flexoki-red-400));
+  --color-flexoki-or: light-dark(var(--color-flexoki-orange-600), var(--color-flexoki-orange-400));
+  --color-flexoki-ye: light-dark(var(--color-flexoki-yellow-600), var(--color-flexoki-yellow-400));
+  --color-flexoki-gr: light-dark(var(--color-flexoki-green-600), var(--color-flexoki-green-400));
+  --color-flexoki-cy: light-dark(var(--color-flexoki-cyan-600), var(--color-flexoki-cyan-400));
+  --color-flexoki-bl: light-dark(var(--color-flexoki-blue-600), var(--color-flexoki-blue-400));
+  --color-flexoki-pu: light-dark(var(--color-flexoki-purple-600), var(--color-flexoki-purple-400));
+  --color-flexoki-ma: light-dark(var(--color-flexoki-magenta-600), var(--color-flexoki-magenta-400));
+  --color-flexoki-re-2: light-dark(var(--color-flexoki-red-400), var(--color-flexoki-red-600));
+  --color-flexoki-or-2: light-dark(var(--color-flexoki-orange-400), var(--color-flexoki-orange-600));
+  --color-flexoki-ye-2: light-dark(var(--color-flexoki-yellow-400), var(--color-flexoki-yellow-600));
+  --color-flexoki-gr-2: light-dark(var(--color-flexoki-green-400), var(--color-flexoki-green-600));
+  --color-flexoki-cy-2: light-dark(var(--color-flexoki-cyan-400), var(--color-flexoki-cyan-600));
+  --color-flexoki-bl-2: light-dark(var(--color-flexoki-blue-400), var(--color-flexoki-blue-600));
+  --color-flexoki-pu-2: light-dark(var(--color-flexoki-purple-400), var(--color-flexoki-purple-600));
+  --color-flexoki-ma-2: light-dark(var(--color-flexoki-magenta-400), var(--color-flexoki-magenta-600));
 }

@@ -1,18 +1,18 @@
-import type { LocaleObject } from "@nuxtjs/i18n";
+import type { LocaleObject } from "@nuxtjs/i18n"
 
 export const useMddI18n = () => {
-  const config = useRuntimeConfig().public;
+  const config = useRuntimeConfig().public
 
-  const { locale, t } = useI18n();
-  const filteredLocales =
-    (
+  const { locale, t } = useI18n()
+  const filteredLocales
+    = (
       config.mdd as {
-        filteredLocales: LocaleObject<(typeof locale)["value"]>[];
+        filteredLocales: LocaleObject<(typeof locale)["value"]>[]
       }
-    )?.filteredLocales || [];
+    )?.filteredLocales || []
 
-  const _switchLocalePath = useSwitchLocalePath();
-  const localePath = useLocalePath();
+  const _switchLocalePath = useSwitchLocalePath()
+  const localePath = useLocalePath()
 
   return {
     locale,
@@ -21,5 +21,5 @@ export const useMddI18n = () => {
     localePath,
     switchLocalePath: (localeCode: string) =>
       _switchLocalePath(localeCode as Parameters<typeof _switchLocalePath>[0]),
-  };
-};
+  }
+}

@@ -2,18 +2,18 @@
 /**
  * @credits Pergel <https://nuxtlabs.com/>
  */
-import { computed } from "vue";
+import { computed } from "vue"
 
 const props = withDefaults(
-  defineProps<{ title?: string; description?: string; headline?: string }>(),
+  defineProps<{ title?: string, description?: string, headline?: string }>(),
   {
     title: "title",
     description: "description",
     headline: "MDD",
-  }
-);
+  },
+)
 
-const title = computed(() => props.title.slice(0, 60));
+const title = computed(() => props.title.slice(0, 60))
 </script>
 
 <template>
@@ -31,9 +31,24 @@ const title = computed(() => props.title.slice(0, 60));
         opacity="0.7"
         filter="url(#filter0_f_448_25)"
       >
-        <circle cx="901.5" cy="45.5" r="199.5" fill="#87993c" />
-        <circle cx="600.5" cy="216.5" r="199.5" fill="#39a99f" />
-        <circle cx="179.5" cy="317.5" r="199.5" fill="#4485be" />
+        <circle
+          cx="901.5"
+          cy="45.5"
+          r="199.5"
+          fill="#87993c"
+        />
+        <circle
+          cx="600.5"
+          cy="216.5"
+          r="199.5"
+          fill="#39a99f"
+        />
+        <circle
+          cx="179.5"
+          cy="317.5"
+          r="199.5"
+          fill="#4485be"
+        />
       </g>
       <defs>
         <filter
@@ -45,7 +60,10 @@ const title = computed(() => props.title.slice(0, 60));
           filterUnits="userSpaceOnUse"
           color-interpolation-filters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood
+            flood-opacity="0"
+            result="BackgroundImageFix"
+          />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -87,14 +105,54 @@ const title = computed(() => props.title.slice(0, 60));
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <line x1="6.5" x2="6.5" y2="44" stroke="#bfc97c" />
-        <line x1="38.5" x2="38.5" y2="44" stroke="#bfc97c" />
-        <line y1="5.5" x2="44" y2="5.5" stroke="#bfc97c" />
-        <line y1="37.5" x2="44" y2="37.5" stroke="#bfc97c" />
-        <circle cx="6.53613" cy="5.45508" r="1.5" fill="#87993c" />
-        <circle cx="38.5957" cy="5.45508" r="1.5" fill="#87993c" />
-        <circle cx="6.53711" cy="37.4551" r="1.5" fill="#87993c" />
-        <circle cx="38.5957" cy="37.4551" r="1.5" fill="#87993c" />
+        <line
+          x1="6.5"
+          x2="6.5"
+          y2="44"
+          stroke="#bfc97c"
+        />
+        <line
+          x1="38.5"
+          x2="38.5"
+          y2="44"
+          stroke="#bfc97c"
+        />
+        <line
+          y1="5.5"
+          x2="44"
+          y2="5.5"
+          stroke="#bfc97c"
+        />
+        <line
+          y1="37.5"
+          x2="44"
+          y2="37.5"
+          stroke="#bfc97c"
+        />
+        <circle
+          cx="6.53613"
+          cy="5.45508"
+          r="1.5"
+          fill="#87993c"
+        />
+        <circle
+          cx="38.5957"
+          cy="5.45508"
+          r="1.5"
+          fill="#87993c"
+        />
+        <circle
+          cx="6.53711"
+          cy="37.4551"
+          r="1.5"
+          fill="#87993c"
+        />
+        <circle
+          cx="38.5957"
+          cy="37.4551"
+          r="1.5"
+          fill="#87993c"
+        />
       </svg>
       <UIcon
         name="i-lucide-container"

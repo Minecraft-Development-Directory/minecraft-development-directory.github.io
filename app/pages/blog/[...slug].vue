@@ -1,34 +1,34 @@
 <script lang="ts" setup>
-import type { ContentNavigationItem } from "@nuxt/content";
-import { kebabCase } from "scule";
-import { extractSlug } from "~~/utils/extractSlug";
+import type { ContentNavigationItem } from "@nuxt/content"
+import { kebabCase } from "scule"
+import { extractSlug } from "~~/utils/extractSlug"
 
 definePageMeta({
   layout: "blog",
-});
+})
 
-const { t } = useMddI18n();
-const route = useRoute();
+const { t } = useMddI18n()
+const route = useRoute()
 
-const appConfig = useAppConfig();
-const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
+const appConfig = useAppConfig()
+const navigation = inject<Ref<ContentNavigationItem[]>>("navigation")
 
-const slug = computed(() => extractSlug(route.params.slug));
+const slug = computed(() => extractSlug(route.params.slug))
 
 const { data: page } = await useAsyncData(`blog${slug.value}`, () =>
-  queryCollection("blog").path(`/blog${slug.value}`).first()
-);
+  queryCollection("blog").path(`/blog${slug.value}`).first(),
+)
 
 if (!page.value) {
   throw createError({
     statusCode: 404,
     statusMessage: t("common.error.title"),
     fatal: true,
-  });
+  })
 }
 
-const title = page.value.seo?.title || page.value.title;
-const description = page.value.seo?.description || page.value.description;
+const title = page.value.seo?.title || page.value.title
+const description = page.value.seo?.description || page.value.description
 
 useSeoMeta({
   title,
@@ -36,40 +36,40 @@ useSeoMeta({
   ogTitle: title,
   description,
   ogDescription: description,
-});
+})
 
 const blogNav = computed(() =>
-  navigation?.value.find((item) => item.path.startsWith("/blog"))
-);
-const headline = computed(() => blogNav.value?.title);
+  navigation?.value.find(item => item.path.startsWith("/blog")),
+)
+const headline = computed(() => blogNav.value?.title)
 
 defineOgImageComponent("Image", {
   title: page.value.title,
   description: page.value.description,
   headline: headline.value,
-});
+})
 
 const transitionName = computed(() => {
-  const id = page.value?.stem.replace("/", "-");
+  const id = page.value?.stem.replace("/", "-")
   return {
     title: `--blog-title-${id}`,
     summary: `--blog-summary-${id}`,
     date: `--blog-date-${id}`,
-  };
-});
+  }
+})
 
 interface Reading {
-  minutes: number;
-  words: number;
-  time: string;
+  minutes: number
+  words: number
+  time: string
 }
 
 const readingTime = computed(() => {
-  const time = page.value?.meta.readingTime as Reading | undefined;
-  if (!time) return 0;
+  const time = page.value?.meta.readingTime as Reading | undefined
+  if (!time) return 0
 
-  return Math.ceil(time.minutes);
-});
+  return Math.ceil(time.minutes)
+})
 </script>
 
 <template>
@@ -133,7 +133,10 @@ const readingTime = computed(() => {
       </div>
     </UPageBody>
 
-    <template v-if="page?.body?.toc?.links?.length" #right>
+    <template
+      v-if="page?.body?.toc?.links?.length"
+      #right
+    >
       <UContentToc
         highlight
         :title="appConfig.toc?.title || t('docs.toc')"

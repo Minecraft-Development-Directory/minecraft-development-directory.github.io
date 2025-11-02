@@ -1,77 +1,77 @@
 <script setup lang="ts">
-import type { BlogCollectionItem, ContentNavigationItem } from "@nuxt/content";
-import { ref, computed } from "vue";
+import type { BlogCollectionItem, ContentNavigationItem } from "@nuxt/content"
+import { ref, computed } from "vue"
 
 definePageMeta({
   layout: "blog",
-});
+})
 
-const { t } = useMddI18n();
-const route = useRoute();
-const router = useRouter();
-const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
+const { t } = useMddI18n()
+const route = useRoute()
+const router = useRouter()
+const navigation = inject<Ref<ContentNavigationItem[]>>("navigation")
 
-const pageSize = 10;
-const currentPage = ref(Number(route.query.page) || 1);
+const pageSize = 10
+const currentPage = ref(Number(route.query.page) || 1)
 
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === "production"
 
 watch(
   () => route.query.page,
   (val) => {
-    currentPage.value = Number(val) || 1;
-  }
-);
+    currentPage.value = Number(val) || 1
+  },
+)
 
 const { data: total } = await useAsyncData(`blog-total`, () =>
-  queryCollection(`blog`).count("*")
-);
+  queryCollection(`blog`).count("*"),
+)
 
-const totalPosts = computed(() => total.value || 0);
-const totalPages = computed(() => Math.ceil(totalPosts.value / pageSize));
+const totalPosts = computed(() => total.value || 0)
+const totalPages = computed(() => Math.ceil(totalPosts.value / pageSize))
 
 const { data: posts } = await useAsyncData(
   `blog-posts-${currentPage.value}`,
   () => {
-    let query = queryCollection(`blog`);
+    let query = queryCollection(`blog`)
 
     if (isProd) {
-      query = query.where("draft", "=", false);
+      query = query.where("draft", "=", false)
     }
 
     return query
       .order("date", "DESC")
       .limit(pageSize)
       .skip((currentPage.value - 1) * pageSize)
-      .all();
+      .all()
   },
-  { watch: [currentPage] }
-);
+  { watch: [currentPage] },
+)
 
 const postsByYear = computed(() => {
-  if (!posts.value) return [];
+  if (!posts.value) return []
 
-  const map = new Map<string, BlogCollectionItem[]>();
+  const map = new Map<string, BlogCollectionItem[]>()
 
   for (const post of posts.value) {
-    const year = post.date ? new Date(post.date).getFullYear() : "Unknown";
-    if (!map.has(`${year}`)) map.set(`${year}`, []);
-    map.get(`${year}`)!.push(post);
+    const year = post.date ? new Date(post.date).getFullYear() : "Unknown"
+    if (!map.has(`${year}`)) map.set(`${year}`, [])
+    map.get(`${year}`)!.push(post)
   }
 
   // Sort years descending (latest first)
-  return Array.from(map.entries()).sort((a, b) => b[0].localeCompare(a[0]));
-});
+  return Array.from(map.entries()).sort((a, b) => b[0].localeCompare(a[0]))
+})
 
 const blogNav = computed(() =>
-  navigation?.value.find((item) => item.path.startsWith("/blog"))
-);
+  navigation?.value.find(item => item.path.startsWith("/blog")),
+)
 
-const headline = computed(() => blogNav.value?.title);
+const headline = computed(() => blogNav.value?.title)
 
 function goToPage(page: number) {
-  router.push({ query: { ...route.query, page } });
-  window.scrollTo(0, 0);
+  router.push({ query: { ...route.query, page } })
+  window.scrollTo(0, 0)
 }
 
 useSeoMeta({
@@ -80,18 +80,21 @@ useSeoMeta({
   description: t("blog.description"),
   ogTitle: `${t("blog.title")} - Minecraft Development Directory`,
   ogDescription: t("blog.description"),
-});
+})
 
 defineOgImageComponent("Image", {
   title: t("blog.title"),
   description: t("blog.description"),
   headline: headline.value,
-});
+})
 </script>
 
 <template>
   <UPage>
-    <UPageHeader :title="t('blog.title')" :headline="headline">
+    <UPageHeader
+      :title="t('blog.title')"
+      :headline="headline"
+    >
       <template #headline>
         <NuxtLinkLocale :to="blogNav?.path">
           {{ blogNav?.title }}

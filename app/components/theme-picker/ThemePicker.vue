@@ -1,22 +1,22 @@
 <script setup lang="ts">
-const appConfig = useAppConfig();
-const colorMode = useColorMode();
+const appConfig = useAppConfig()
+const colorMode = useColorMode()
 
-const { t } = useMddI18n();
+const { t } = useMddI18n()
 
 const modes = [
   { label: "light", icon: appConfig.ui.icons.light },
   { label: "dark", icon: appConfig.ui.icons.dark },
   { label: "system", icon: appConfig.ui.icons.system },
-];
+]
 const mode = computed({
   get() {
-    return colorMode.value;
+    return colorMode.value
   },
   set(option) {
-    colorMode.preference = option;
+    colorMode.preference = option
   },
-});
+})
 </script>
 
 <template>

@@ -1,15 +1,15 @@
-import type { DefinedCollection } from "@nuxt/content";
-import { defineContentConfig, defineCollection, z } from "@nuxt/content";
-import { useNuxt } from "@nuxt/kit";
-import type { NuxtI18nOptions } from "@nuxtjs/i18n";
-import { asOgImageCollection } from "nuxt-og-image/content";
-import { MOD_LOADERS, ALL_MINECRAFT_VERSIONS } from "./utils/minecraftData";
+import type { DefinedCollection } from "@nuxt/content"
+import { defineContentConfig, defineCollection, z } from "@nuxt/content"
+import { useNuxt } from "@nuxt/kit"
+import type { NuxtI18nOptions } from "@nuxtjs/i18n"
+import { asOgImageCollection } from "nuxt-og-image/content"
+import { MOD_LOADERS, ALL_MINECRAFT_VERSIONS } from "./utils/minecraftData"
 
-const { options } = useNuxt();
+const { options } = useNuxt()
 const locales = options.i18n.locales as Exclude<
   NuxtI18nOptions["locales"],
   undefined
->;
+>
 
 const Button = z.object({
   label: z.string(),
@@ -20,7 +20,7 @@ const Button = z.object({
   target: z.enum(["_blank", "_self"]).optional(),
   id: z.string().optional(),
   class: z.string().optional(),
-});
+})
 
 const PageFeature = z.object({
   title: z.string(),
@@ -28,13 +28,13 @@ const PageFeature = z.object({
   icon: z.string(),
   to: z.string().optional(),
   target: z.enum(["_blank", "_self"]).optional(),
-});
+})
 
 const PageHero = z.object({
   title: z.string(),
   description: z.string(),
   links: z.array(Button),
-});
+})
 
 const PageSection = z.object({
   title: z.string(),
@@ -42,18 +42,18 @@ const PageSection = z.object({
   icon: z.string().optional(),
   links: z.array(Button).optional(),
   features: z.array(PageFeature).optional(),
-});
+})
 
 const Page = z.object({
   title: z.string(),
   description: z.string(),
   hero: PageHero,
-});
+})
 
-const collections: Record<string, DefinedCollection> = {};
+const collections: Record<string, DefinedCollection> = {}
 
 for (const locale of locales) {
-  const code = typeof locale === "string" ? locale : locale.code;
+  const code = typeof locale === "string" ? locale : locale.code
 
   collections[`guides_${code}`] = defineCollection(
     asOgImageCollection({
@@ -72,8 +72,8 @@ for (const locale of locales) {
         }),
         links: z.array(Button),
       }),
-    })
-  );
+    }),
+  )
 
   collections[`index_${code}`] = defineCollection({
     type: "page",
@@ -87,7 +87,7 @@ for (const locale of locales) {
       features: z.array(PageFeature),
       community: PageSection,
     }),
-  });
+  })
 }
 
 collections[`blog`] = defineCollection(
@@ -100,11 +100,11 @@ collections[`blog`] = defineCollection(
     },
     schema: Page.extend({
       draft: z.boolean().default(false),
-      date: z.string().refine((date) => !isNaN(Date.parse(date)), {
+      date: z.string().refine(date => !isNaN(Date.parse(date)), {
         message: "Invalid date format",
       }),
     }),
-  })
-);
+  }),
+)
 
-export default defineContentConfig({ collections });
+export default defineContentConfig({ collections })

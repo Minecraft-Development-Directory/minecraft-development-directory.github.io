@@ -20,4 +20,4 @@ export default defineAppConfig({
   },
 
   toc: {},
-});
+})

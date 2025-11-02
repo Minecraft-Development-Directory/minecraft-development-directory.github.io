@@ -1,41 +1,41 @@
 declare module "nuxt/schema" {
   interface AppConfig {
     seo: {
-      titleTemplate: string;
-      title: string;
-      description: string;
-    };
+      titleTemplate: string
+      title: string
+      description: string
+    }
     header: {
-      title: string;
+      title: string
       logo: {
-        light: string;
-        dark: string;
-        alt: string;
-      };
-    };
-    socials: Record<string, string>;
+        light: string
+        dark: string
+        alt: string
+      }
+    }
+    socials: Record<string, string>
     toc: {
-      title: string;
+      title: string
       bottom: {
-        title: string;
+        title: string
         links: {
-          icon: string;
-          label: string;
-          to: string;
-          target: string;
-        }[];
-      };
-    };
+          icon: string
+          label: string
+          to: string
+          target: string
+        }[]
+      }
+    }
     github:
       | {
-          owner: string;
-          name: string;
-          url: string;
-          branch: string;
-          rootDir?: string;
-        }
-      | false;
+        owner: string
+        name: string
+        url: string
+        branch: string
+        rootDir?: string
+      }
+      | false
   }
 }
 
-export {};
+export {}

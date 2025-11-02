@@ -13,10 +13,10 @@
 </template>
 
 <script lang="ts">
-import type { TreeItem } from "./TreeItem.vue";
+import type { TreeItem } from "./TreeItem.vue"
 </script>
 
 <script lang="ts" setup>
 // Define the component's props to accept the data
-defineProps<{ structure: TreeItem[] }>();
+defineProps<{ structure: TreeItem[] }>()
 </script>

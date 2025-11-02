@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const route = useRoute();
-const { links } = useFooter();
+const { links } = useFooter()
 </script>
 
 <template>
@@ -15,14 +14,18 @@ const { links } = useFooter();
       >
         Published under
         <span
-          class="text-highlighted border-b border-dashed border-[var(--ui-text-dimmed)] hover:border-solid hover:border-[currentColor] transition-colors duration-100"
+          class="text-highlighted border-b border-dashed border-(--ui-text-dimmed) hover:border-solid hover:border-[currentColor] transition-colors duration-100"
         >
           MIT License
         </span>
       </NuxtLink>
     </template>
 
-    <UNavigationMenu :items="links" variant="link" color="neutral" />
+    <UNavigationMenu
+      :items="links"
+      variant="link"
+      color="neutral"
+    />
 
     <template #right>
       <UButton

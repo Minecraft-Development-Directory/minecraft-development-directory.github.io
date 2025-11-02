@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { withoutTrailingSlash } from "ufo";
+import { withoutTrailingSlash } from "ufo"
 
-const route = useRoute();
-const { locale } = useMddI18n();
+const route = useRoute()
+const { locale } = useMddI18n()
 
 useHead({
   meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
@@ -13,12 +13,12 @@ useHead({
       href: `https://minecraft-development-directory.github.io${withoutTrailingSlash(route.path)}`,
     },
   ],
-});
+})
 
 useSeoMeta({
   ogSiteName: "Minecraft Development Directory",
   twitterCard: "summary_large_image",
-});
+})
 
 const { data: navigation } = await useAsyncData(
   `navigation_${locale.value}`,
@@ -33,10 +33,10 @@ const { data: navigation } = await useAsyncData(
     ]),
   {
     server: true,
-    transform: (data) => data.flat(),
+    transform: data => data.flat(),
     watch: [locale],
-  }
-);
+  },
+)
 
 const { data: files } = useLazyAsyncData(
   `search_${locale.value}`,
@@ -47,22 +47,25 @@ const { data: files } = useLazyAsyncData(
     ]),
   {
     server: false,
-    transform: (data) => data.flat(),
+    transform: data => data.flat(),
     watch: [locale],
-  }
-);
+  },
+)
 
-const { rootNavigation } = useNavigation(navigation);
-provide("navigation", rootNavigation);
+const { rootNavigation } = useNavigation(navigation)
+provide("navigation", rootNavigation)
 
-const isRoot = computed(() => route.path.startsWith(`/${locale.value}/guides`));
+const isRoot = computed(() => route.path.startsWith(`/${locale.value}/guides`))
 </script>
 
 <template>
   <UApp>
     <NuxtLoadingIndicator :height="2" />
 
-    <div class="min-h-screen flex flex-col" :class="{ root: isRoot }">
+    <div
+      class="min-h-screen flex flex-col"
+      :class="{ root: isRoot }"
+    >
       <AppBanner />
 
       <Header />
@@ -74,7 +77,10 @@ const isRoot = computed(() => route.path.startsWith(`/${locale.value}/guides`));
       <AppFooter />
 
       <ClientOnly>
-        <Search :files="files" :navigation="navigation" />
+        <Search
+          :files="files"
+          :navigation="navigation"
+        />
       </ClientOnly>
     </div>
   </UApp>

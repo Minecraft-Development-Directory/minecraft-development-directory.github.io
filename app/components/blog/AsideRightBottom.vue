@@ -1,16 +1,16 @@
 <script setup lang="ts">
-const { t } = useMddI18n();
-const appConfig = useAppConfig();
+const { t } = useMddI18n()
+const appConfig = useAppConfig()
 
 const { page } = defineProps<{
-  page: BlogCollectionItem;
-}>();
+  page: BlogCollectionItem
+}>()
 
-const github = computed(() => (appConfig.github ? appConfig.github : null));
+const github = computed(() => (appConfig.github ? appConfig.github : null))
 
 const editLink = computed(() => {
   if (!github.value) {
-    return;
+    return
   }
 
   return [
@@ -22,18 +22,18 @@ const editLink = computed(() => {
     `${page?.stem}.${page?.extension}`,
   ]
     .filter(Boolean)
-    .join("/");
-});
+    .join("/")
+})
 
 const reportLink = computed(() => {
   if (!github.value) {
-    return;
+    return
   }
 
-  const title = encodeURIComponent(`[Bug] Issue in \`${page?.id}\``);
+  const title = encodeURIComponent(`[Bug] Issue in \`${page?.id}\``)
   const body = encodeURIComponent(
-    `Found a bug in the following page: \`${page.id}\``
-  );
+    `Found a bug in the following page: \`${page.id}\``,
+  )
 
   return [
     github.value.url,
@@ -42,8 +42,8 @@ const reportLink = computed(() => {
     `?title=${title}&body=${body}&labels=bug&type=bug`,
   ]
     .filter(Boolean)
-    .join("/");
-});
+    .join("/")
+})
 
 const communityLinks = computed(() => [
   {
@@ -64,11 +64,17 @@ const communityLinks = computed(() => [
     to: `https://github.com/minecraft-development-directory/minecraft-development-directory.github.io`,
     target: "_blank",
   },
-]);
+])
 </script>
 
 <template>
-  <USeparator v-if="appConfig.toc?.bottom?.links?.length" type="dashed" />
+  <USeparator
+    v-if="appConfig.toc?.bottom?.links?.length"
+    type="dashed"
+  />
 
-  <UPageLinks title="Community" :links="communityLinks" />
+  <UPageLinks
+    title="Community"
+    :links="communityLinks"
+  />
 </template>
