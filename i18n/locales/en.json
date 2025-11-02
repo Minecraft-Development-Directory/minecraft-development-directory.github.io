@@ -17,7 +17,8 @@
     }
   },
   "guides": {
-    "header": "Guides"
+    "header": "Guides",
+    "overview": "Overview"
   },
   "docs": {
     "copy": {

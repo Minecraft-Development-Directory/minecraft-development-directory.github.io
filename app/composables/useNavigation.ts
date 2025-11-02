@@ -10,6 +10,8 @@ function groupChildrenByCategory(
     return [];
   }
 
+  const { t } = useMddI18n();
+
   const groups: ContentNavigationItem[] = [];
 
   const categorized: Record<string, ContentNavigationItem[]> = {};
@@ -42,7 +44,7 @@ function groupChildrenByCategory(
 
     if (withoutChildren.length) {
       groups.push({
-        title: "Overview",
+        title: t("guides.overview"),
         path: `/guides/${slug}`,
         children: withoutChildren?.map((item) => ({
           ...item,
