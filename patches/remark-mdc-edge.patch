@@ -1,0 +1,13 @@
+diff --git a/dist/index.mjs b/dist/index.mjs
+index a56aac673f8dfecaee0740e95ce2d8621b93ce78..b8af922cff47ef3275e132fbd5b46e2e03e3a79e 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -25,7 +25,7 @@ function stringifyYAML(data, options) {
+   data = flat.unflatten(data || {}, {});
+   return [
+     options?.prefix || "",
+-    stringify(data).trim(),
++    stringify(data, { lineWidth: 120 }).trim(),
+     options?.suffix || ""
+   ].join("\n").trim();
+ }

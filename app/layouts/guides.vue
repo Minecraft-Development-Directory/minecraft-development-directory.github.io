@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { ContentNavigationItem } from "@nuxt/content";
+import type { ContentNavigationItem } from "@nuxt/content"
 
-const route = useRoute();
+const route = useRoute()
 
-const navigation = inject<Ref<ContentNavigationItem[]>>("navigation");
+const navigation = inject<Ref<ContentNavigationItem[]>>("navigation")
 
-const { navigationByCategory } = useNavigation(navigation!);
+const { navigationByCategory } = useNavigation(navigation!)
 </script>
 
 <template>

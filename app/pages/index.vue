@@ -1,21 +1,21 @@
 <script lang="ts" setup>
-const route = useRoute();
-const { locale } = useMddI18n();
-const { data: module } = await useFetch("/api/github/contributors.json");
+const route = useRoute()
+const { locale } = useMddI18n()
+const { data: module } = await useFetch("/api/github/contributors.json")
 
 const collectionName = computed(
-  () => `index_${locale.value}` as `index_${typeof locale.value}`
-);
+  () => `index_${locale.value}` as `index_${typeof locale.value}`,
+)
 
 const { data: page } = await useAsyncData(collectionName.value, () =>
-  queryCollection(collectionName.value).path(route.path).first()
-);
+  queryCollection(collectionName.value).path(route.path).first(),
+)
 if (!page.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",
     fatal: true,
-  });
+  })
 }
 
 useSeoMeta({
@@ -24,19 +24,19 @@ useSeoMeta({
   description: page.value.description,
   ogTitle: `${page.value.title} - Minecraft Development Directory`,
   ogDescription: page.value.description,
-});
+})
 
 defineOgImageComponent("Image", {
   title: "Minecraft Development Directory",
   description: page.value.description,
-});
+})
 
-const contributorsRef = ref(null);
-const isContributorsInView = ref(false);
+const contributorsRef = ref(null)
+const isContributorsInView = ref(false)
 
 useIntersectionObserver(contributorsRef, ([entry]) => {
-  isContributorsInView.value = entry?.isIntersecting || false;
-});
+  isContributorsInView.value = entry?.isIntersecting || false
+})
 </script>
 
 <template>
@@ -101,10 +101,30 @@ useIntersectionObserver(contributorsRef, ([entry]) => {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <line x1="6.5" x2="6.5" y2="44" stroke="var(--ui-border)" />
-                  <line x1="38.5" x2="38.5" y2="44" stroke="var(--ui-border)" />
-                  <line y1="5.5" x2="44" y2="5.5" stroke="var(--ui-border)" />
-                  <line y1="37.5" x2="44" y2="37.5" stroke="var(--ui-border)" />
+                  <line
+                    x1="6.5"
+                    x2="6.5"
+                    y2="44"
+                    stroke="var(--ui-border)"
+                  />
+                  <line
+                    x1="38.5"
+                    x2="38.5"
+                    y2="44"
+                    stroke="var(--ui-border)"
+                  />
+                  <line
+                    y1="5.5"
+                    x2="44"
+                    y2="5.5"
+                    stroke="var(--ui-border)"
+                  />
+                  <line
+                    y1="37.5"
+                    x2="44"
+                    y2="37.5"
+                    stroke="var(--ui-border)"
+                  />
                   <circle
                     cx="6.53613"
                     cy="5.45508"

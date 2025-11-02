@@ -1,14 +1,14 @@
 <script setup lang="ts">
 defineProps<{
-  label: string;
-  icon?: string;
-  chip?: string;
-  selected?: boolean;
-}>();
+  label: string
+  icon?: string
+  chip?: string
+  selected?: boolean
+}>()
 
 const slots = defineSlots<{
-  leading: () => object;
-}>();
+  leading: () => object
+}>()
 </script>
 
 <template>
@@ -21,7 +21,10 @@ const slots = defineSlots<{
     class="capitalize ring-default rounded-md text-[11px]"
     :class="[selected ? 'bg-elevated' : 'hover:bg-elevated/50']"
   >
-    <template v-if="chip || !!slots.leading" #leading>
+    <template
+      v-if="chip || !!slots.leading"
+      #leading
+    >
       <slot name="leading">
         <span
           class="inline-block size-2 rounded-full"

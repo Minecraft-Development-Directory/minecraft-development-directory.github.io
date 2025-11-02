@@ -1,23 +1,23 @@
 <script lang="ts" setup>
-import type { ContentNavigationItem } from "@nuxt/content";
+import type { ContentNavigationItem } from "@nuxt/content"
 
 interface ContentSearchFile {
-  id: string;
-  title: string;
-  titles: string[];
-  level: number;
-  content: string;
+  id: string
+  title: string
+  titles: string[]
+  level: number
+  content: string
 }
 
 defineProps<{
-  files?: ContentSearchFile[];
-  navigation?: ContentNavigationItem[];
-}>();
+  files?: ContentSearchFile[]
+  navigation?: ContentNavigationItem[]
+}>()
 
-const fullscreen = ref(false);
-const searchTerm = ref("");
+const fullscreen = ref(false)
+const searchTerm = ref("")
 
-const { links } = useSearch();
+const { links } = useSearch()
 </script>
 
 <template>

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-const { t } = useMddI18n();
-const { gameVersion, gameVersions, modLoader, modLoaders } = useGameConfig();
+const { t } = useMddI18n()
+const { gameVersion, gameVersions, modLoader, modLoaders } = useGameConfig()
 
-const versions = computed(() => Object.values(gameVersions.value));
+const versions = computed(() => Object.values(gameVersions.value))
 </script>
 
 <template>

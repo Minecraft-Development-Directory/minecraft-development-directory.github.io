@@ -1,26 +1,38 @@
 <script lang="ts" setup>
-const route = useRoute();
-const { desktopLinks } = useHeader();
+const route = useRoute()
+const { desktopLinks } = useHeader()
 </script>
 
 <template>
-  <UHeader :ui="{ left: 'min-w-0' }" class="flex flex-col">
+  <UHeader
+    :ui="{ left: 'min-w-0' }"
+    class="flex flex-col"
+  >
     <template #left>
       <HeaderLogo />
     </template>
 
-    <UNavigationMenu :items="desktopLinks" variant="link" />
+    <UNavigationMenu
+      :items="desktopLinks"
+      variant="link"
+    />
 
     <template #right>
       <LangPicker />
 
       <ThemePicker />
 
-      <UTooltip text="Search" :kbds="['meta', 'K']">
+      <UTooltip
+        text="Search"
+        :kbds="['meta', 'K']"
+      >
         <UContentSearchButton />
       </UTooltip>
 
-      <UTooltip text="Open on Github" class="hidden lg:flex">
+      <UTooltip
+        text="Open on Github"
+        class="hidden lg:flex"
+      >
         <UButton
           color="neutral"
           variant="ghost"
@@ -39,7 +51,7 @@ const { desktopLinks } = useHeader();
     <template
       v-if="
         route.path.startsWith(
-          $localePath({ name: 'guides-slug', params: { slug: '' } })
+          $localePath({ name: 'guides-slug', params: { slug: '' } }),
         )
       "
       #bottom

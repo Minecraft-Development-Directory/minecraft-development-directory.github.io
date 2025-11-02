@@ -1,6 +1,6 @@
 export function useSearch() {
-  const route = useRoute();
-  const { t } = useI18n();
+  const route = useRoute()
+  const { t } = useI18n()
 
   const links = computed(() => [
     {
@@ -24,9 +24,9 @@ export function useSearch() {
       to: "https://github.com/Minecraft-Development-Directory/minecraft-development-directory.github.io",
       target: "_blank",
     },
-  ]);
+  ])
 
   return {
     links,
-  };
+  }
 }

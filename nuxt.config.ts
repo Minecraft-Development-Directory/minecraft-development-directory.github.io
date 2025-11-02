@@ -1,7 +1,7 @@
-import { createResolver } from "@nuxt/kit";
-import pkg from "./package.json";
+import { createResolver } from "@nuxt/kit"
+import pkg from "./package.json"
 
-const { resolve } = createResolver(import.meta.url);
+const { resolve } = createResolver(import.meta.url)
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -35,6 +35,8 @@ export default defineNuxtConfig({
       baseUrl: "https://minecraft-development-directory.github.io/",
     },
   },
+
+  ssr: true,
 
   devtools: {
     enabled: true,
@@ -81,6 +83,8 @@ export default defineNuxtConfig({
     },
   },
 
+  watch: ["content/**/*.{yaml,md,json}"],
+
   experimental: {
     extractAsyncDataHandlers: true,
     defaults: {
@@ -92,6 +96,19 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: "2025-07-15",
+  nitro: {
+    static: true,
+    preset: "github-pages",
+    prerender: {
+      routes: ["/api/github/contributors.json"],
+      failOnError: false,
+      crawlLinks: true,
+    },
+
+    routeRules: {
+      "/guides": { redirect: "/guides/getting-started", prerender: false },
+    },
+  },
 
   vite: {
     optimizeDeps: {
@@ -107,28 +124,33 @@ export default defineNuxtConfig({
     },
   },
 
-  icon: {
-    customCollections: [
-      {
-        prefix: "custom",
-        dir: resolve("./app/assets/icons"),
+  eslint: {
+    config: {
+      stylistic: {
+        indent: 2,
+        semi: false,
+        quotes: "double",
       },
-    ],
-    clientBundle: {
-      scan: true,
-      includeCustomCollections: true,
-    },
-    provider: "iconify",
-  },
-
-  ssr: true,
-  nitro: {
-    static: true,
-    preset: "github-pages",
-    prerender: {
-      routes: ["/api/github/contributors.json"],
-      failOnError: false,
-      crawlLinks: true,
+      formatters: {
+        css: true,
+        html: true,
+        markdown: "prettier",
+        prettierOptions: {
+          plugins: ["./scripts/prettier-plugin-mdc/index.mjs"],
+          overrides: [
+            {
+              files: "content/*.md",
+              options: {
+                parser: "mdc",
+                printWidth: 120,
+              },
+            },
+          ],
+        },
+        svg: true,
+        xml: true,
+      },
+      import: true,
     },
   },
 
@@ -145,5 +167,20 @@ export default defineNuxtConfig({
     },
   },
 
-  watch: ["content/**/*.{yaml,md,json}"],
-});
+  icon: {
+    customCollections: [
+      {
+        prefix: "custom",
+        dir: resolve("./app/assets/icons"),
+      },
+    ],
+    serverBundle: {
+      collections: ["lucide", "cib"],
+    },
+    clientBundle: {
+      scan: true,
+      includeCustomCollections: true,
+    },
+    provider: "iconify",
+  },
+})

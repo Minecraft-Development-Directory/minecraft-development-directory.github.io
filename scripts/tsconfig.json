@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "module": "nodenext",
+        "allowJs": true,
+        "noEmit": true
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": ["prettier-plugin-mdc"]
+}

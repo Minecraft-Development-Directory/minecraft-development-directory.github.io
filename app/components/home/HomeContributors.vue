@@ -1,16 +1,16 @@
 <script setup lang="ts">
 interface Contributor {
-  username: string;
+  username: string
 }
 interface ListProps {
-  contributors?: Contributor[];
+  contributors?: Contributor[]
 }
 
 const props = withDefaults(defineProps<ListProps>(), {
   contributors: () => [],
-});
+})
 
-const contributorsList = computed(() => props.contributors ?? []);
+const contributorsList = computed(() => props.contributors ?? [])
 </script>
 
 <template>
@@ -37,7 +37,10 @@ const contributorsList = computed(() => props.contributors ?? []);
         }"
         class="flex flex-col items-center"
       >
-        <UTooltip :text="contributor.username" :delay-duration="0">
+        <UTooltip
+          :text="contributor.username"
+          :delay-duration="0"
+        >
           <NuxtLink
             :to="`https://github.com/${contributor.username}`"
             :aria-label="contributor.username"
@@ -56,7 +59,7 @@ const contributorsList = computed(() => props.contributors ?? []);
                 :alt="contributor.username"
                 class="ring-2 ring-default hover:ring-inverted transition rounded-full size-12 aspect-square"
                 loading="lazy"
-              />
+              >
             </Motion>
           </NuxtLink>
         </UTooltip>
