@@ -12,7 +12,8 @@
       "title": "Thème"
     },
     "lang-picker": {
-      "title": "Sélectionner une langue"
+      "title": "Sélectionner une langue",
+      "button": "Changer la langue"
     }
   },
   "guides": {
@@ -29,7 +30,16 @@
     "toc": "Sur cette page",
     "report": "Signaler un problème",
     "edit": "Éditer cette page",
-    "star_repo": "Étoile sur GitHub"
+    "star_repo": "Étoile sur GitHub",
+    "config": {
+      "button": "Choissez une configuration de jeu",
+      "game-versions": {
+        "title": "Version de jeu"
+      },
+      "mod-loaders": {
+        "title": "Mod Loaders"
+      }
+    }
   },
   "blog": {
     "title": "Articles de blog",
