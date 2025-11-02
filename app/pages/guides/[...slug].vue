@@ -91,6 +91,11 @@ useSeoMeta({
   ogTitle: title,
   ogDescription: description,
 });
+
+defineOgImageComponent("Image", {
+  title: page.value.title,
+  description: page.value.description,
+});
 </script>
 
 <template>
