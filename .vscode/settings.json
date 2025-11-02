@@ -1,46 +1,4 @@
 {
-  "projectColors.mainColor": "#dd2c44",
-  "window.title": "minecraft-development-directory.github.io",
-  "workbench.colorCustomizations": {
-    "statusBarItem.warningBackground": "#dd2c44",
-    "statusBarItem.warningForeground": "#ffffff",
-    "statusBarItem.warningHoverBackground": "#dd2c44",
-    "statusBarItem.warningHoverForeground": "#ffffff90",
-    "statusBarItem.remoteBackground": "#ea3951",
-    "statusBarItem.remoteForeground": "#ffffff",
-    "statusBarItem.remoteHoverBackground": "#f7465e",
-    "statusBarItem.remoteHoverForeground": "#ffffff90",
-    "statusBar.background": "#dd2c44",
-    "statusBar.foreground": "#ffffff",
-    "statusBar.border": "#dd2c44",
-    "statusBar.debuggingBackground": "#dd2c44",
-    "statusBar.debuggingForeground": "#ffffff",
-    "statusBar.debuggingBorder": "#dd2c44",
-    "statusBar.noFolderBackground": "#dd2c44",
-    "statusBar.noFolderForeground": "#ffffff",
-    "statusBar.noFolderBorder": "#dd2c44",
-    "statusBar.prominentBackground": "#dd2c44",
-    "statusBar.prominentForeground": "#ffffff",
-    "statusBar.prominentHoverBackground": "#dd2c44",
-    "statusBar.prominentHoverForeground": "#ffffff90",
-    "focusBorder": "#dd2c4499",
-    "progressBar.background": "#dd2c44",
-    "textLink.foreground": "#ff6c84",
-    "textLink.activeForeground": "#ff7991",
-    "selection.background": "#d01f37",
-    "list.highlightForeground": "#dd2c44",
-    "list.focusAndSelectionOutline": "#dd2c4499",
-    "button.background": "#dd2c44",
-    "button.foreground": "#ffffff",
-    "button.hoverBackground": "#ea3951",
-    "tab.activeBorderTop": "#ea3951",
-    "pickerGroup.foreground": "#ea3951",
-    "list.activeSelectionBackground": "#dd2c444d",
-    "panelTitle.activeBorder": "#ea3951",
-    "activityBar.activeBorder": "#dd2c44",
-    "activityBarBadge.foreground": "#ffffff",
-    "activityBarBadge.background": "#dd2c44"
-  },
   "tailwindCSS.emmetCompletions": true,
 
   // Required for the extension
@@ -50,7 +8,8 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "editor.detectIndentation": false,
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "files.associations": {
     "*.page-template": "vue",
@@ -70,5 +29,24 @@
     ["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
   "i18n-ally.localesPaths": ["i18n", "i18n/locales"],
-  "i18n-ally.keystyle": "nested"
+  "i18n-ally.keystyle": "nested",
+  "eslint.format.enable": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[markdown]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "eslint.validate": [
+    "mdc",
+    "markdown",
+    "javascript",
+    "typescript",
+    "vue",
+    "css"
+  ],
+  "[vue]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  }
 }

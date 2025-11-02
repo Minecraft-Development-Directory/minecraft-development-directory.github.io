@@ -6,3 +6,6 @@ onlyBuiltDependencies:
   - sharp
   - unrs-resolver
   - vue-demi
+
+patchedDependencies:
+  remark-mdc-edge: patches/remark-mdc-edge.patch

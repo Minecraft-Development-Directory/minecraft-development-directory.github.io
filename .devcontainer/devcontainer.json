@@ -32,12 +32,12 @@
         "VisualStudioExptTeam.vscodeintellicode",
         "p42ai.refactor",
         "christian-kohler.npm-intellisense",
-        "esbenp.prettier-vscode",
         "quick-lint.quick-lint-js",
         "bradlc.vscode-tailwindcss",
         "MaxvanderSchee.web-accessibility",
         "nuxtr.nuxt-vscode-extentions",
-        "lokalise.i18n-ally"
+        "lokalise.i18n-ally",
+        "dbaeumer.vscode-eslint"
       ]
     }
   },

@@ -1,7 +1,7 @@
-import { createResolver } from "@nuxt/kit";
-import pkg from "./package.json";
+import { createResolver } from "@nuxt/kit"
+import pkg from "./package.json"
 
-const { resolve } = createResolver(import.meta.url);
+const { resolve } = createResolver(import.meta.url)
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -35,6 +35,8 @@ export default defineNuxtConfig({
       baseUrl: "https://minecraft-development-directory.github.io/",
     },
   },
+
+  ssr: true,
 
   devtools: {
     enabled: true,
@@ -81,6 +83,8 @@ export default defineNuxtConfig({
     },
   },
 
+  watch: ["content/**/*.{yaml,md,json}"],
+
   experimental: {
     extractAsyncDataHandlers: true,
     defaults: {
@@ -92,6 +96,15 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: "2025-07-15",
+  nitro: {
+    static: true,
+    preset: "github-pages",
+    prerender: {
+      routes: ["/api/github/contributors.json"],
+      failOnError: false,
+      crawlLinks: true,
+    },
+  },
 
   vite: {
     optimizeDeps: {
@@ -104,6 +117,49 @@ export default defineNuxtConfig({
         "json5",
         "shiki-transformer-color-highlight",
       ],
+    },
+  },
+
+  eslint: {
+    config: {
+      stylistic: {
+        indent: 2,
+        semi: false,
+        quotes: "double",
+      },
+      formatters: {
+        css: true,
+        html: true,
+        markdown: "prettier",
+        prettierOptions: {
+          plugins: ["./scripts/prettier-plugin-mdc/index.mjs"],
+          overrides: [
+            {
+              files: "content/*.md",
+              options: {
+                parser: "mdc",
+                printWidth: 120,
+              },
+            },
+          ],
+        },
+        svg: true,
+        xml: true,
+      },
+      import: true,
+    },
+  },
+
+  i18n: {
+    locales: [
+      { code: "en", name: "English", language: "en" },
+      { code: "fr", name: "Français", language: "fr" },
+    ],
+    strategy: "prefix",
+    defaultLocale: "en",
+    detectBrowserLanguage: false,
+    experimental: {
+      strictSeo: true,
     },
   },
 
@@ -123,30 +179,4 @@ export default defineNuxtConfig({
     },
     provider: "iconify",
   },
-
-  ssr: true,
-  nitro: {
-    static: true,
-    preset: "github-pages",
-    prerender: {
-      routes: ["/api/github/contributors.json"],
-      failOnError: false,
-      crawlLinks: true,
-    },
-  },
-
-  i18n: {
-    locales: [
-      { code: "en", name: "English", language: "en" },
-      { code: "fr", name: "Français", language: "fr" },
-    ],
-    strategy: "prefix",
-    defaultLocale: "en",
-    detectBrowserLanguage: false,
-    experimental: {
-      strictSeo: true,
-    },
-  },
-
-  watch: ["content/**/*.{yaml,md,json}"],
-});
+})
