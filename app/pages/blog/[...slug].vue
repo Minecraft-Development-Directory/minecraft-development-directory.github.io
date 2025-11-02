@@ -138,6 +138,7 @@ const readingTime = computed(() => {
         highlight
         :title="appConfig.toc?.title || t('docs.toc')"
         :links="page.body?.toc?.links"
+        class="z-2"
       >
         <template #bottom>
           <BlogAsideRightBottom :page="page" />
