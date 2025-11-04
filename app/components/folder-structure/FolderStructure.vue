@@ -1,8 +1,8 @@
 <template>
   <div
-    class="group font-mono text-sm/6 border border-muted bg-muted rounded-md px-4 py-3 whitespace-pre-wrap break-words overflow-x-auto focus:outline-none language-ts"
+    class="group font-mono text-sm/6 border border-muted bg-muted rounded-md px-4 py-3 whitespace-pre-wrap break-words overflow-x-auto focus:outline-none"
   >
-    <ul class="list-none p-0 m-0">
+    <ul class="list-none p-0 m-0 grid grid-cols-[1fr_auto] min-w-fit w-full">
       <FolderStructureTreeItem
         v-for="(item, index) in structure"
         :key="index"
