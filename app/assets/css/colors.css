@@ -143,4 +143,6 @@
   --color-flexoki-bl-2: light-dark(var(--color-flexoki-blue-400), var(--color-flexoki-blue-600));
   --color-flexoki-pu-2: light-dark(var(--color-flexoki-purple-400), var(--color-flexoki-purple-600));
   --color-flexoki-ma-2: light-dark(var(--color-flexoki-magenta-400), var(--color-flexoki-magenta-600));
+
+  --color-primary: light-dark(oklch(0.61 0.17 134.29), oklch(0.69 0.19 134.2));
 }

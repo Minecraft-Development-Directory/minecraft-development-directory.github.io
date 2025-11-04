@@ -1,42 +1,49 @@
 <template>
-  <li>
+  <li class="contents">
     <div
       :class="[
-        'px-2 py-1 gap-2 rounded-md flex items-center select-none hover:bg-accented transition-colors duration-150 ease-in',
+        'pl-2 py-1 gap-x-8 rounded-md select-none hover:bg-accented transition-colors duration-150 ease-in grid grid-row-subgrid col-span-2 w-full min-w-fit',
         {
           'cursor-pointer': item.type === 'folder',
         },
       ]"
       @click="toggle"
     >
-      <UIcon
-        :name="iconData.icon"
-        class="size-4 shrink-0"
-        :class="iconData.color"
-        :style="{ color: iconData.color }"
-      />
+      <span class="flex items-center gap-2 col-start-1 col-span-1">
+        <UIcon
+          :name="iconData.icon"
+          class="size-4 shrink-0"
+          :class="iconData.color"
+          :style="{ color: iconData.color }"
+        />
 
-      <span class="flex-1">{{ itemName }}</span>
+        <span class="flex-1">{{ itemName }}</span>
+      </span>
 
       <span
         v-if="item.comment"
-        class="text-muted italic"
+        class="text-muted italic text-end text-nowrap flex items-center justify-end col-start-2"
       >
         {{ item.comment }}
       </span>
     </div>
 
-    <ul
-      v-show="isOpen"
+    <template
       v-if="item.type === 'folder'"
-      class="ml-4 pl-2 border-l border-accented"
     >
-      <TreeItem
-        v-for="(child, index) in item.children"
-        :key="index"
-        :item="child"
-      />
-    </ul>
+      <div class="col-span-2 pl-4 grid-rows-subgrid min-w-fit">
+        <ul
+          v-show="isOpen"
+          class="pl-2 border-l border-accented col-start-1 col-span-2 grid grid-col-subgrid grid-cols-[1fr_auto] w-full min-w-fit"
+        >
+          <TreeItem
+            v-for="(child, index) in item.children"
+            :key="index"
+            :item="child"
+          />
+        </ul>
+      </div>
+    </template>
   </li>
 </template>
 

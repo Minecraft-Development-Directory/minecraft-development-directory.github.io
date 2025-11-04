@@ -79,7 +79,7 @@ const title = computed(() => props.title.slice(0, 60))
     </svg>
 
     <div class="w-[600px] pl-[100px] top-[150px]">
-      <p class="uppercase text-[24px] text-[#668014] mb-4 font-semibold">
+      <p class="uppercase text-[24px] text-[#407110] mb-4 font-semibold">
         {{ headline }}
       </p>
       <h1
@@ -156,7 +156,7 @@ const title = computed(() => props.title.slice(0, 60))
       </svg>
       <UIcon
         name="i-lucide-container"
-        class="size-18 shrink-0 text-[#668014]"
+        class="size-18 shrink-0 text-[#4b8610]"
         mode="svg"
       />
     </div>
