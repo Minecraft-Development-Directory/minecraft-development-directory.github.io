@@ -14,7 +14,7 @@
 /* Flexoki overrides for Nuxt UI colors */
 :root {
   /* Colors */
-  --ui-primary: var(--color-flexoki-gr);
+  --ui-primary: var(--color-primary);
   --ui-secondary: var(--color-flexoki-cy);
   --ui-success: var(--color-flexoki-gr);
   --ui-info: var(--color-flexoki-bl);
