@@ -61,7 +61,6 @@ for (const locale of locales) {
       source: {
         include: `${code}/guides/**/*`,
         prefix: `/guides`,
-        exclude: ["**/.navigation.yml"],
       },
       schema: z.object({
         gameVersion: z
