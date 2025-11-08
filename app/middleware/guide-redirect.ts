@@ -9,7 +9,7 @@ export default defineNuxtRouteMiddleware(async () => {
 
   // Get the first guide in the current locale
   const getFirstGuidePath = async (lang: typeof locale) => {
-    const doc = await queryCollection(`guides_${lang}`).first()
+    const doc = await queryCollection(`guides_${lang}`).where("id", "NOT LIKE", "%.yml").first()
     return doc ? `/${locale}${doc.path}` : null
   }
 
